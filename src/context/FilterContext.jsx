@@ -12,9 +12,15 @@ export function FilterProvider({ children }) {
   const [subFilters, setSubFilters] = useState({});
   const [filteredProducts, setFilteredProducts] = useState([]);
 
+  // Limpiar subfiltros cuando cambia la categoría
+  useEffect(() => {
+    setSubFilters({});
+  }, [selectedCategory]);
+
   useEffect(() => {
     let filtered = products || [];
 
+    // Si hay búsqueda activa, buscar en TODOS los productos ignorando filtros
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter(product =>
@@ -24,34 +30,35 @@ export function FilterProvider({ children }) {
         product.sku?.toLowerCase().includes(query) ||
         product.category?.toLowerCase().includes(query)
       );
-    }
-
-    if (selectedCategory && selectedCategory !== 'Todos') {
-      filtered = filtered.filter(product => product.category === selectedCategory);
-    }
-
-    Object.entries(subFilters).forEach(([filterType, values]) => {
-      if (values && values.length > 0) {
-        filtered = filtered.filter(product => {
-          if (!product.specifications) return false;
-          
-          const specKeys = Object.keys(product.specifications);
-          const matchingKey = specKeys.find(key => 
-            key.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") === 
-            filterType.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-          );
-          
-          if (!matchingKey) return false;
-          
-          const specValue = product.specifications[matchingKey];
-          if (!specValue) return false;
-          
-          return values.some(value => 
-            specValue.toLowerCase().includes(value.toLowerCase())
-          );
-        });
+    } else {
+      // Solo aplicar filtros si NO hay búsqueda activa
+      if (selectedCategory && selectedCategory !== 'Todos') {
+        filtered = filtered.filter(product => product.category === selectedCategory);
       }
-    });
+
+      Object.entries(subFilters).forEach(([filterType, values]) => {
+        if (values && values.length > 0) {
+          filtered = filtered.filter(product => {
+            if (!product.specifications) return false;
+            
+            const specKeys = Object.keys(product.specifications);
+            const matchingKey = specKeys.find(key => 
+              key.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") === 
+              filterType.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+            );
+            
+            if (!matchingKey) return false;
+            
+            const specValue = product.specifications[matchingKey];
+            if (!specValue) return false;
+            
+            return values.some(value => 
+              specValue.toLowerCase().includes(value.toLowerCase())
+            );
+          });
+        }
+      });
+    }
 
     setFilteredProducts(filtered);
   }, [products, searchQuery, selectedCategory, subFilters]);

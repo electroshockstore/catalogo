@@ -1,4 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useStock } from '../context/StockContext';
 import Header from '../components/InventoryApp/Header';
 import ProductDetail from '../components/InventoryApp/ProductDetail/index';
@@ -12,6 +13,10 @@ const ProductDetailPage = () => {
   const { searchQuery, setSearchQuery } = useFilter();
   
   const product = getProductById(parseInt(id));
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   const handleClose = () => {
     navigate('/');
