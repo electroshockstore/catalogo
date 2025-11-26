@@ -39,26 +39,20 @@ const Store = () => {
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
       />
-      
-      {/* Panel de filtros sticky */}
-      <div className="sticky top-0 z-40 bg-gradient-to-b from-[#E5E7EB] to-[#C7CCD1] border-b border-gray-300 shadow-sm">
-        <div className="w-full px-4 sm:px-6 py-3 sm:py-4">
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-            <div className="flex-1">
-              <CategoryFilter 
-                selectedCategory={selectedCategory}
-                onCategoryChange={setSelectedCategory}
-              />
-            </div>
-            <ViewToggleButton 
-              viewMode={viewMode}
-              toggleViewMode={toggleViewMode}
+      <main className="flex-1 w-full px-4 sm:px-6 py-4 sm:py-8">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-4 sm:mb-6">
+          <div className="flex-1">
+            <CategoryFilter 
+              selectedCategory={selectedCategory}
+              onCategoryChange={setSelectedCategory}
             />
           </div>
+          <ViewToggleButton 
+            viewMode={viewMode}
+            toggleViewMode={toggleViewMode}
+          />
         </div>
-      </div>
 
-      <main className="flex-1 w-full px-4 sm:px-6 py-4 sm:py-8">
         <div className="flex flex-col lg:flex-row gap-6">
           {showSidebar && (
             <aside className="lg:flex-shrink-0">

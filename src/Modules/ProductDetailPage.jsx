@@ -4,13 +4,14 @@ import { useStock } from '../context/StockContext';
 import Header from '../components/InventoryApp/Header';
 import ProductDetail from '../components/InventoryApp/ProductDetail/index';
 import Footer from '../components/InventoryApp/Footer';
+import CategoryFilter from '../components/InventoryApp/CategoryFilter';
 import { useFilter } from '../context/FilterContext';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { getProductById } = useStock();
-  const { searchQuery, setSearchQuery } = useFilter();
+  const { searchQuery, setSearchQuery, selectedCategory, setSelectedCategory } = useFilter();
   
   const product = getProductById(parseInt(id));
 
@@ -45,9 +46,15 @@ const ProductDetailPage = () => {
   return (
     <div className="min-h-screen w-full flex flex-col">
       <Header searchQuery={searchQuery} onSearchChange={setSearchQuery} />
-      <div className="flex-1 pt-4 sm:pt-6">
+      <main className="flex-1 w-full px-4 sm:px-6 py-4 sm:py-8">
+        <div className="mb-4 sm:mb-6">
+          <CategoryFilter 
+            selectedCategory={selectedCategory}
+            onCategoryChange={setSelectedCategory}
+          />
+        </div>
         <ProductDetail product={product} onClose={handleClose} viewOnly={true} isPage={true} />
-      </div>
+      </main>
       <Footer />
     </div>
   );
