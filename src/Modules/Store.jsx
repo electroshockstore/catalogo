@@ -41,13 +41,13 @@ const Store = () => {
       />
       <main className="flex-1 w-full px-4 sm:px-6 py-4 sm:py-8">
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-4 sm:mb-6 sm:items-center">
-          <div className="flex-1">
+          <div className="flex-1 overflow-x-auto">
             <CategoryFilter 
               selectedCategory={selectedCategory}
               onCategoryChange={setSelectedCategory}
             />
           </div>
-          <div className="flex sm:items-center">
+          <div className="flex sm:items-center flex-shrink-0">
             <ViewToggleButton 
               viewMode={viewMode}
               toggleViewMode={toggleViewMode}

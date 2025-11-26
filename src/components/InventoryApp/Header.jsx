@@ -58,9 +58,11 @@ const Header = ({ searchQuery, onSearchChange }) => {
         <div className="flex flex-col gap-3 sm:hidden">
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <Package className="h-5 w-5 text-white" />
-              </div>
+              <img 
+                src="/logotipo.png" 
+                alt="Shock-Store Logo" 
+                className="h-14 w-auto object-contain"
+              />
               <div>
                 <h1 className="text-lg font-black text-white leading-tight">Shock-Store</h1>
                 <h2 className="text-xs font-semibold text-blue-400">Catálogo</h2>
@@ -163,9 +165,11 @@ const Header = ({ searchQuery, onSearchChange }) => {
         <div className="hidden sm:flex items-center justify-between gap-6">
           {/* Logo */}
           <div className="flex items-center gap-3 flex-shrink-0">
-            <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
-              <Package className="h-6 w-6 text-white" />
-            </div>
+            <img 
+              src="/logotipo.png" 
+              alt="Shock-Store Logo" 
+              className="h-12 w-auto object-contain"
+            />
             <div>
               <h1 className="text-2xl font-black text-white leading-tight">Shock-Store</h1>
               <h2 className="text-sm font-semibold text-blue-400">Catálogo</h2>

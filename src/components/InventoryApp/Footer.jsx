@@ -23,9 +23,11 @@ const Footer = () => {
           
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <div className="p-3 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl shadow-lg">
-                <Store className="h-8 w-8 text-white" strokeWidth={2.5} />
-              </div>
+              <img 
+                src="/logotipo.png" 
+                alt="Shock-Store Logo" 
+                className="h-16 w-auto object-contain"
+              />
               <div>
                 <h3 className="text-3xl font-black text-white tracking-tight">Shock-Store</h3>
                 <p className="text-sm font-bold text-blue-400">Catálogo de Productos</p>

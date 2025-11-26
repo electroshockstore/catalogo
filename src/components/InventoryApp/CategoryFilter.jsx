@@ -36,6 +36,40 @@ const CategoryFilter = ({ selectedCategory, onCategoryChange }) => {
     return iconMap[category] || Grid3X3;
   };
 
+  const getCategoryColor = (category, isSelected) => {
+    const colorMap = {
+      'Todos': isSelected ? 'text-blue-600' : 'text-blue-500',
+      'Fuentes': isSelected ? 'text-amber-600' : 'text-amber-500',
+      'Almacenamiento': isSelected ? 'text-purple-600' : 'text-purple-500',
+      'Memorias RAM': isSelected ? 'text-green-600' : 'text-green-500',
+      'Motherboards': isSelected ? 'text-indigo-600' : 'text-indigo-500',
+      'Procesadores': isSelected ? 'text-red-600' : 'text-red-500',
+      'Refrigeración': isSelected ? 'text-cyan-600' : 'text-cyan-500',
+      'Auriculares': isSelected ? 'text-pink-600' : 'text-pink-500',
+      'Teclados': isSelected ? 'text-violet-600' : 'text-violet-500',
+      'Mouse': isSelected ? 'text-orange-600' : 'text-orange-500',
+      'Joystick': isSelected ? 'text-emerald-600' : 'text-emerald-500'
+    };
+    return colorMap[category] || (isSelected ? 'text-gray-600' : 'text-gray-500');
+  };
+
+  const getCategoryGradient = (category) => {
+    const gradientMap = {
+      'Todos': 'from-blue-500 to-blue-600',
+      'Fuentes': 'from-amber-500 to-amber-600',
+      'Almacenamiento': 'from-purple-500 to-purple-600',
+      'Memorias RAM': 'from-green-500 to-green-600',
+      'Motherboards': 'from-indigo-500 to-indigo-600',
+      'Procesadores': 'from-red-500 to-red-600',
+      'Refrigeración': 'from-cyan-500 to-cyan-600',
+      'Auriculares': 'from-pink-500 to-pink-600',
+      'Teclados': 'from-violet-500 to-violet-600',
+      'Mouse': 'from-orange-500 to-orange-600',
+      'Joystick': 'from-emerald-500 to-emerald-600'
+    };
+    return gradientMap[category] || 'from-gray-500 to-gray-600';
+  };
+
   // Cerrar dropdown al hacer click fuera
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -68,7 +102,9 @@ const CategoryFilter = ({ selectedCategory, onCategoryChange }) => {
                      transition-all duration-200"
         >
           <div className="flex items-center gap-3">
-            <SelectedIcon className="h-5 w-5 text-blue-600" strokeWidth={2.5} />
+            <div className={`p-1.5 rounded-lg bg-gradient-to-br ${getCategoryGradient(selectedCategory)} shadow-md`}>
+              <SelectedIcon className="h-4 w-4 text-white" strokeWidth={2.5} />
+            </div>
             <span className="font-bold text-base text-gray-900">
               {selectedCategory}
             </span>
@@ -104,10 +140,16 @@ const CategoryFilter = ({ selectedCategory, onCategoryChange }) => {
                       }
                     `}
                   >
-                    <Icon 
-                      className={`h-5 w-5 ${isSelected ? 'text-blue-600' : 'text-gray-500'}`} 
-                      strokeWidth={2.5} 
-                    />
+                    <div className={`p-1.5 rounded-lg ${
+                      isSelected 
+                        ? `bg-gradient-to-br ${getCategoryGradient(category)} shadow-md` 
+                        : 'bg-gray-100'
+                    } transition-all duration-200`}>
+                      <Icon 
+                        className={`h-4 w-4 ${isSelected ? 'text-white' : getCategoryColor(category, false)}`} 
+                        strokeWidth={2.5} 
+                      />
+                    </div>
                     <span className={`font-semibold text-base ${isSelected ? 'font-bold' : ''}`}>
                       {category}
                     </span>
@@ -136,12 +178,18 @@ const CategoryFilter = ({ selectedCategory, onCategoryChange }) => {
                 flex items-center gap-3 px-6 py-3.5 rounded-full font-bold text-base
                 transition-all duration-200 whitespace-nowrap
                 ${isSelected 
-                  ? 'bg-blue-600 text-white shadow-[0_4px_12px_rgba(37,99,235,0.3)] scale-105' 
+                  ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-[0_4px_16px_rgba(59,130,246,0.4)] scale-105' 
                   : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                 }
               `}
             >
-              <Icon className="h-5 w-5" strokeWidth={2.5} />
+              {isSelected ? (
+                <div className="p-1.5 rounded-lg bg-white/20 backdrop-blur-sm">
+                  <Icon className="h-4 w-4 text-white" strokeWidth={2.5} />
+                </div>
+              ) : (
+                <Icon className={`h-5 w-5 ${getCategoryColor(category, false)}`} strokeWidth={2.5} />
+              )}
               <span>{category}</span>
             </button>
           );
