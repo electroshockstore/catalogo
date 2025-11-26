@@ -40,17 +40,19 @@ const Store = () => {
         onSearchChange={setSearchQuery}
       />
       <main className="flex-1 w-full px-4 sm:px-6 py-4 sm:py-8">
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-4 sm:mb-6">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-4 sm:mb-6 sm:items-center">
           <div className="flex-1">
             <CategoryFilter 
               selectedCategory={selectedCategory}
               onCategoryChange={setSelectedCategory}
             />
           </div>
-          <ViewToggleButton 
-            viewMode={viewMode}
-            toggleViewMode={toggleViewMode}
-          />
+          <div className="flex sm:items-center">
+            <ViewToggleButton 
+              viewMode={viewMode}
+              toggleViewMode={toggleViewMode}
+            />
+          </div>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-6">

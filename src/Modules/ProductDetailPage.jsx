@@ -19,6 +19,11 @@ const ProductDetailPage = () => {
     window.scrollTo(0, 0);
   }, [id]);
 
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+    navigate('/');
+  };
+
   const handleClose = () => {
     navigate('/');
   };
@@ -50,7 +55,7 @@ const ProductDetailPage = () => {
         <div className="mb-4 sm:mb-6">
           <CategoryFilter 
             selectedCategory={selectedCategory}
-            onCategoryChange={setSelectedCategory}
+            onCategoryChange={handleCategoryChange}
           />
         </div>
         <ProductDetail product={product} onClose={handleClose} viewOnly={true} isPage={true} />

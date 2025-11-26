@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import ProductCard from './ProductCard/index';
 
 const EmptyState = memo(() => (
@@ -69,7 +70,13 @@ const ProductGrid = memo(({ products, viewMode, openModal }) => {
   }
 
   return (
-    <div className="p-0 sm:p-4 md:p-6">
+    <motion.div 
+      className="p-0 sm:p-4 md:p-6"
+      key={products.map(p => p.id).join('-')}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
+    >
       <div className={gridClasses}>
         {products.map((product) => (
           <ProductCard
@@ -80,7 +87,7 @@ const ProductGrid = memo(({ products, viewMode, openModal }) => {
           />
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 });
 

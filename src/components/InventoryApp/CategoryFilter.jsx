@@ -8,7 +8,11 @@ import {
   Cpu,
   CircuitBoard,
   Fan,
-  ChevronDown
+  ChevronDown,
+  Headphones,
+  Keyboard,
+  Mouse,
+  Gamepad2
 } from 'lucide-react';
 
 const CategoryFilter = ({ selectedCategory, onCategoryChange }) => {
@@ -23,7 +27,11 @@ const CategoryFilter = ({ selectedCategory, onCategoryChange }) => {
       'Memorias RAM': MemoryStick,
       'Motherboards': CircuitBoard,
       'Procesadores': Cpu,
-      'Refrigeración': Fan
+      'Refrigeración': Fan,
+      'Auriculares': Headphones,
+      'Teclados': Keyboard,
+      'Mouse': Mouse,
+      'Joystick': Gamepad2
     };
     return iconMap[category] || Grid3X3;
   };
@@ -114,32 +122,30 @@ const CategoryFilter = ({ selectedCategory, onCategoryChange }) => {
         )}
       </div>
 
-      {/* Desktop: Pills horizontales con scroll */}
-      <div className="hidden sm:block overflow-x-auto scrollbar-hide">
-        <div className="flex gap-2 min-w-max">
-          {categories.map((category) => {
-            const Icon = getCategoryIcon(category);
-            const isSelected = selectedCategory === category;
-            
-            return (
-              <button
-                key={category}
-                onClick={() => onCategoryChange(category)}
-                className={`
-                  flex items-center gap-2.5 px-6 py-3 rounded-full font-bold text-sm
-                  transition-all duration-200 whitespace-nowrap
-                  ${isSelected 
-                    ? 'bg-blue-600 text-white shadow-[0_4px_12px_rgba(37,99,235,0.3)] scale-105' 
-                    : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-600 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)]'
-                  }
-                `}
-              >
-                <Icon className="h-4 w-4" strokeWidth={2.5} />
-                <span>{category}</span>
-              </button>
-            );
-          })}
-        </div>
+      {/* Desktop: Segmented Control estilo Apple */}
+      <div className="hidden sm:inline-flex bg-gray-100 rounded-full p-2 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+        {categories.map((category) => {
+          const Icon = getCategoryIcon(category);
+          const isSelected = selectedCategory === category;
+          
+          return (
+            <button
+              key={category}
+              onClick={() => onCategoryChange(category)}
+              className={`
+                flex items-center gap-3 px-6 py-3.5 rounded-full font-bold text-base
+                transition-all duration-200 whitespace-nowrap
+                ${isSelected 
+                  ? 'bg-blue-600 text-white shadow-[0_4px_12px_rgba(37,99,235,0.3)] scale-105' 
+                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                }
+              `}
+            >
+              <Icon className="h-5 w-5" strokeWidth={2.5} />
+              <span>{category}</span>
+            </button>
+          );
+        })}
       </div>
     </>
   );
