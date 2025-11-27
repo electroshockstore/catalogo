@@ -116,59 +116,54 @@ const CategoryFilter = ({ selectedCategory, onCategoryChange }) => {
           />
         </button>
 
-        {/* Dropdown Menu - Fixed z-index y posicionamiento */}
+        {/* Dropdown Menu */}
         {isOpen && (
-          <>
-            {/* Overlay para cerrar al hacer click fuera */}
-            <div 
-              className="fixed inset-0 z-40"
-              onClick={() => setIsOpen(false)}
-            />
-            
-            <div className="absolute top-full left-0 right-0 mt-2 z-50
-                            bg-white rounded-2xl border-2 border-gray-200
-                            shadow-[0_8px_24px_rgba(0,0,0,0.12)]
-                            max-h-[60vh] overflow-y-auto">
-              <div className="py-2">
-                {categories.map((category) => {
-                  const Icon = getCategoryIcon(category);
-                  const isSelected = selectedCategory === category;
-                  
-                  return (
-                    <button
-                      key={category}
-                      onClick={() => handleCategorySelect(category)}
-                      className={`
-                        w-full flex items-center gap-3 px-5 py-3.5
-                        transition-all duration-150
-                        ${isSelected 
-                          ? 'bg-blue-50 text-blue-600' 
-                          : 'text-gray-700 hover:bg-gray-50 active:bg-gray-100'
-                        }
-                      `}
-                    >
-                      <div className={`p-1.5 rounded-lg ${
-                        isSelected 
-                          ? `bg-gradient-to-br ${getCategoryGradient(category)} shadow-md` 
-                          : 'bg-gray-100'
-                      } transition-all duration-200`}>
-                        <Icon 
-                          className={`h-4 w-4 ${isSelected ? 'text-white' : getCategoryColor(category, false)}`} 
-                          strokeWidth={2.5} 
-                        />
-                      </div>
-                      <span className={`font-semibold text-base ${isSelected ? 'font-bold' : ''}`}>
-                        {category}
-                      </span>
-                      {isSelected && (
-                        <div className="ml-auto w-2 h-2 rounded-full bg-blue-600" />
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
+          <div className="absolute top-full left-0 right-0 mt-2 z-50
+                          bg-white rounded-2xl border-2 border-gray-200
+                          shadow-[0_8px_24px_rgba(0,0,0,0.12)]
+                          max-h-[60vh] overflow-y-auto">
+            <div className="py-2">
+              {categories.map((category) => {
+                const Icon = getCategoryIcon(category);
+                const isSelected = selectedCategory === category;
+                
+                return (
+                  <button
+                    key={category}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleCategorySelect(category);
+                    }}
+                    className={`
+                      w-full flex items-center gap-3 px-5 py-3.5
+                      transition-all duration-150
+                      ${isSelected 
+                        ? 'bg-blue-50 text-blue-600' 
+                        : 'text-gray-700 hover:bg-gray-50 active:bg-gray-100'
+                      }
+                    `}
+                  >
+                    <div className={`p-1.5 rounded-lg ${
+                      isSelected 
+                        ? `bg-gradient-to-br ${getCategoryGradient(category)} shadow-md` 
+                        : 'bg-gray-100'
+                    } transition-all duration-200`}>
+                      <Icon 
+                        className={`h-4 w-4 ${isSelected ? 'text-white' : getCategoryColor(category, false)}`} 
+                        strokeWidth={2.5} 
+                      />
+                    </div>
+                    <span className={`font-semibold text-base ${isSelected ? 'font-bold' : ''}`}>
+                      {category}
+                    </span>
+                    {isSelected && (
+                      <div className="ml-auto w-2 h-2 rounded-full bg-blue-600" />
+                    )}
+                  </button>
+                );
+              })}
             </div>
-          </>
+          </div>
         )}
       </div>
 

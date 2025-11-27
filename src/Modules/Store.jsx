@@ -42,7 +42,7 @@ const Store = () => {
       />
       <main className="flex-1 w-full px-4 sm:px-6 py-4 sm:py-8">
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-4 sm:mb-6 sm:items-center">
-          <div className="flex-1 overflow-x-auto">
+          <div className="flex-1 sm:overflow-x-auto">
             <CategoryFilter 
               selectedCategory={selectedCategory}
               onCategoryChange={setSelectedCategory}
