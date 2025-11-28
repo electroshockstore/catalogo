@@ -167,8 +167,8 @@ const CategoryFilter = ({ selectedCategory, onCategoryChange }) => {
         )}
       </div>
 
-      {/* Desktop: Segmented Control estilo Apple */}
-      <div className="hidden sm:inline-flex bg-gray-100 rounded-full p-2 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+      {/* Desktop: Segmented Control estilo Apple con wrap */}
+      <div className="hidden sm:flex flex-wrap gap-2 bg-gray-100 rounded-2xl p-2 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
         {categories.map((category) => {
           const Icon = getCategoryIcon(category);
           const isSelected = selectedCategory === category;
@@ -178,7 +178,7 @@ const CategoryFilter = ({ selectedCategory, onCategoryChange }) => {
               key={category}
               onClick={() => onCategoryChange(category)}
               className={`
-                flex items-center gap-3 px-6 py-3.5 rounded-full font-bold text-base
+                flex items-center gap-2 px-4 py-2.5 rounded-full font-bold text-sm
                 transition-all duration-200 whitespace-nowrap
                 ${isSelected 
                   ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-[0_4px_16px_rgba(59,130,246,0.4)] scale-105' 
@@ -187,11 +187,11 @@ const CategoryFilter = ({ selectedCategory, onCategoryChange }) => {
               `}
             >
               {isSelected ? (
-                <div className="p-1.5 rounded-lg bg-white/20 backdrop-blur-sm">
+                <div className="p-1 rounded-lg bg-white/20 backdrop-blur-sm">
                   <Icon className="h-4 w-4 text-white" strokeWidth={2.5} />
                 </div>
               ) : (
-                <Icon className={`h-5 w-5 ${getCategoryColor(category, false)}`} strokeWidth={2.5} />
+                <Icon className={`h-4 w-4 ${getCategoryColor(category, false)}`} strokeWidth={2.5} />
               )}
               <span>{category}</span>
             </button>
