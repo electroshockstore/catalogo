@@ -62,7 +62,7 @@ const HeroCarousel = () => {
     const timer = setInterval(() => {
       setDirection(1);
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
+    }, 8000);
 
     return () => clearInterval(timer);
   }, [isPaused]);
@@ -84,21 +84,15 @@ const HeroCarousel = () => {
 
   const slideVariants = {
     enter: (direction) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
-      scale: 0.8
+      opacity: 0
     }),
     center: {
       zIndex: 1,
-      x: 0,
-      opacity: 1,
-      scale: 1
+      opacity: 1
     },
     exit: (direction) => ({
       zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
-      scale: 0.8
+      opacity: 0
     })
   };
 
@@ -167,8 +161,8 @@ const HeroCarousel = () => {
         {/* Enhanced background with animated gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 opacity-95" />
         
-        <div className="relative">
-          <AnimatePresence initial={false} custom={direction}>
+        <div className="relative h-[450px] sm:h-[480px] md:h-[500px] lg:h-[420px]">
+          <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={currentSlide}
               custom={direction}
@@ -177,11 +171,9 @@ const HeroCarousel = () => {
               animate="center"
               exit="exit"
               transition={{
-                x: { type: "spring", stiffness: 250, damping: 25 },
-                opacity: { duration: 0.3 },
-                scale: { duration: 0.3 }
+                opacity: { duration: 0.5, ease: "easeInOut" }
               }}
-              className={`bg-gradient-to-br ${current.bgGradient}`}
+              className={`absolute inset-0 bg-gradient-to-br ${current.bgGradient}`}
             >
               {/* Animated mesh gradient overlay */}
               <motion.div 
@@ -206,100 +198,95 @@ const HeroCarousel = () => {
                 </svg>
               </div>
               
-              <div className="relative flex flex-col items-center px-4 sm:px-8 md:px-12 lg:px-16 py-6 sm:py-8 text-white">
-                {/* Enhanced Title with Icon - Compact Version */}
-                <motion.div
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
-                  className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6"
-                >
-                  <motion.div
-                    animate={{ 
-                      boxShadow: [
-                        '0 0 20px rgba(255,255,255,0.3)',
-                        '0 0 40px rgba(255,255,255,0.5)',
-                        '0 0 20px rgba(255,255,255,0.3)'
-                      ]
-                    }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="bg-white/25 backdrop-blur-md p-2 sm:p-3 rounded-xl shadow-2xl border border-white/20"
-                  >
-                    <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-white" strokeWidth={2.5} />
-                  </motion.div>
+              <div className="relative h-full flex items-center px-6 sm:px-10 md:px-16 lg:px-20 py-8 text-white">
+                <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                   
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-center">
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-200 drop-shadow-2xl">
-                      {current.title}
-                    </span>
-                  </h2>
-                </motion.div>
+                  {/* Left Side - Content */}
+                  <div className="space-y-6">
+                    {/* Icon + Title */}
+                    <div className="flex items-center gap-4">
+                      <div className="bg-white/20 backdrop-blur-sm p-3 rounded-xl border border-white/40 shadow-lg">
+                        <Icon className="w-10 h-10 sm:w-12 sm:h-12 text-white" strokeWidth={2.5} />
+                      </div>
+                      <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight">
+                        {current.title}
+                      </h2>
+                    </div>
 
-                {/* Enhanced Content Card */}
-                <motion.div
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.4 }}
-                  whileHover={{ scale: 1.02 }}
-                  className="bg-white/98 backdrop-blur-xl rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 w-full max-w-4xl shadow-2xl border border-white/20 relative overflow-hidden"
-                >
-                  <ul className="space-y-2 sm:space-y-2.5 relative z-10">
-                    {current.items.map((item, index) => (
-                      <motion.li
-                        key={index}
-                        initial={{ x: -30, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ 
-                          delay: 0.5 + index * 0.1,
-                          type: "spring",
-                          stiffness: 120
-                        }}
-                        whileHover={{ 
-                          x: 8,
-                          transition: { duration: 0.2 }
-                        }}
-                        className={`flex items-start gap-2 sm:gap-3 p-2 sm:p-2.5 rounded-lg transition-all duration-300 ${
-                          item.highlight 
-                            ? 'bg-red-50 border-2 border-red-200 text-red-800 font-bold shadow-md' 
-                            : 'bg-gray-50 border border-gray-200 text-gray-800 font-semibold hover:bg-blue-50 hover:border-blue-200'
-                        }`}
-                      >
-                        <motion.span 
-                          animate={item.highlight ? { 
-                            scale: [1, 1.15, 1],
-                            rotate: [0, 5, -5, 0]
-                          } : {}}
-                          transition={{ 
-                            duration: 2, 
-                            repeat: Infinity,
-                            repeatDelay: 1
-                          }}
-                          className={`text-xl sm:text-2xl flex-shrink-0 ${
-                            item.highlight ? 'text-red-600' : 'text-emerald-600'
+                    {/* Items List */}
+                    <div className="space-y-3">
+                      {current.items.map((item, index) => (
+                        <div
+                          key={index}
+                          className={`flex items-start gap-3 p-3 rounded-lg backdrop-blur-sm transition-all duration-300 ${
+                            item.highlight 
+                              ? 'bg-white/95 border-l-4 border-red-500 shadow-lg' 
+                              : 'bg-white/80 border-l-4 border-emerald-500'
                           }`}
                         >
-                          {item.highlight ? '⚠️' : '✓'}
-                        </motion.span>
-                        <span className={`leading-snug text-xs sm:text-sm md:text-base ${
-                          item.highlight ? 'font-bold' : 'font-semibold'
-                        }`}>
-                          {item.text}
-                        </span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </motion.div>
+                          <span className={`text-2xl flex-shrink-0 ${
+                            item.highlight ? 'text-red-600' : 'text-emerald-600'
+                          }`}>
+                            {item.highlight ? '⚠️' : '✓'}
+                          </span>
+                          <span className={`text-sm sm:text-base leading-snug ${
+                            item.highlight 
+                              ? 'text-red-900 font-bold' 
+                              : 'text-gray-800 font-semibold'
+                          }`}>
+                            {item.text}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Right Side - Visual Element */}
+                  <div className="hidden lg:flex items-center justify-center">
+                    <div className="relative">
+                      <motion.div
+                        animate={{ 
+                          scale: [1, 1.05, 1],
+                          rotate: [0, 2, -2, 0]
+                        }}
+                        transition={{ 
+                          duration: 4,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                        className="bg-white/10 backdrop-blur-md rounded-3xl p-12 border-2 border-white/30 shadow-2xl"
+                      >
+                        <Icon className="w-48 h-48 text-white/80" strokeWidth={1.5} />
+                      </motion.div>
+                      
+                      {/* Decorative elements */}
+                      <motion.div
+                        animate={{ 
+                          opacity: [0.3, 0.6, 0.3],
+                          scale: [0.9, 1.1, 0.9]
+                        }}
+                        transition={{ 
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                        className="absolute inset-0 bg-white/20 blur-3xl rounded-full -z-10"
+                      />
+                    </div>
+                  </div>
+
+                </div>
               </div>
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* Enhanced Navigation Arrows */}
+        {/* Enhanced Navigation Arrows - Hidden on mobile */}
         <motion.button
           onClick={prevSlide}
           whileHover={{ scale: 1.15, x: -5 }}
           whileTap={{ scale: 0.95 }}
-          className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 bg-white/40 hover:bg-white/60 backdrop-blur-md p-3 sm:p-4 rounded-full transition-all duration-300 z-20 shadow-2xl border border-white/30 group"
+          className="hidden md:block absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 bg-white/40 hover:bg-white/60 backdrop-blur-md p-3 sm:p-4 rounded-full transition-all duration-300 z-20 shadow-2xl border border-white/30 group"
           aria-label="Anterior"
         >
           <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7 text-white group-hover:text-gray-100" strokeWidth={3} />
@@ -309,7 +296,7 @@ const HeroCarousel = () => {
           onClick={nextSlide}
           whileHover={{ scale: 1.15, x: 5 }}
           whileTap={{ scale: 0.95 }}
-          className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 bg-white/40 hover:bg-white/60 backdrop-blur-md p-3 sm:p-4 rounded-full transition-all duration-300 z-20 shadow-2xl border border-white/30 group"
+          className="hidden md:block absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 bg-white/40 hover:bg-white/60 backdrop-blur-md p-3 sm:p-4 rounded-full transition-all duration-300 z-20 shadow-2xl border border-white/30 group"
           aria-label="Siguiente"
         >
           <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 text-white group-hover:text-gray-100" strokeWidth={3} />
@@ -338,7 +325,7 @@ const HeroCarousel = () => {
           className="absolute bottom-0 left-0 h-1 bg-white/80"
           initial={{ width: "0%" }}
           animate={{ width: isPaused ? `${(currentSlide / slides.length) * 100}%` : "100%" }}
-          transition={{ duration: isPaused ? 0 : 5, ease: "linear" }}
+          transition={{ duration: isPaused ? 0 : 8, ease: "linear" }}
           key={currentSlide}
         />
       </div>
