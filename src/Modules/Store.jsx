@@ -7,6 +7,7 @@ import ProductGrid from '../components/InventoryApp/ProductGrid';
 import SidebarFilters from '../components/InventoryApp/SidebarFilters';
 import Footer from '../components/InventoryApp/Footer';
 import ScrollButton from '../components/InventoryApp/ScrollButton';
+import HeroCarousel from '../components/InventoryApp/HeroCarousel';
 import { useFilter } from '../context/FilterContext';
 
 const Store = () => {
@@ -32,7 +33,7 @@ const Store = () => {
     navigate(`/producto/${product.id}`);
   };
 
-  const showSidebar = selectedCategory !== 'Todos';
+  const showSidebar = selectedCategory && selectedCategory !== 'Todos';
 
   return (
     <div className="min-h-screen w-full flex flex-col">
@@ -56,26 +57,32 @@ const Store = () => {
           </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-6">
-          {showSidebar && (
-            <aside className="lg:flex-shrink-0">
-              <SidebarFilters
-                selectedCategory={selectedCategory}
-                filters={subFilters}
-                onFilterChange={handleSubFilterChange}
-                onClearFilters={clearSubFilters}
-              />
-            </aside>
-          )}
-          
-          <div className="flex-1 min-w-0">
-            <ProductGrid 
-              products={filteredProducts}
-              viewMode={viewMode}
-              openModal={openProductDetail}
-            />
+        {!selectedCategory ? (
+          <div className="w-full">
+            <HeroCarousel />
           </div>
-        </div>
+        ) : (
+          <div className="flex flex-col lg:flex-row gap-6">
+            {showSidebar && (
+              <aside className="lg:flex-shrink-0">
+                <SidebarFilters
+                  selectedCategory={selectedCategory}
+                  filters={subFilters}
+                  onFilterChange={handleSubFilterChange}
+                  onClearFilters={clearSubFilters}
+                />
+              </aside>
+            )}
+            
+            <div className="flex-1 min-w-0">
+              <ProductGrid 
+                products={filteredProducts}
+                viewMode={viewMode}
+                openModal={openProductDetail}
+              />
+            </div>
+          </div>
+        )}
       </main>
       <Footer />
       <ScrollButton />

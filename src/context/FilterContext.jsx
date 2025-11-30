@@ -8,7 +8,7 @@ export { FilterContext };
 export function FilterProvider({ children }) {
   const { products } = useStock();
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('Todos');
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [subFilters, setSubFilters] = useState({});
   const [filteredProducts, setFilteredProducts] = useState([]);
 
@@ -32,7 +32,7 @@ export function FilterProvider({ children }) {
       );
     } else {
       // Solo aplicar filtros si NO hay búsqueda activa
-      if (selectedCategory && selectedCategory !== 'Todos') {
+      if (selectedCategory) {
         filtered = filtered.filter(product => product.category === selectedCategory);
       }
 
@@ -167,7 +167,7 @@ export function FilterProvider({ children }) {
 
   const clearFilters = () => {
     setSearchQuery('');
-    setSelectedCategory('Todos');
+    setSelectedCategory(null);
     setSubFilters({});
   };
 

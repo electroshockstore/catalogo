@@ -87,7 +87,7 @@ const CategoryFilter = ({ selectedCategory, onCategoryChange }) => {
     setIsOpen(false);
   };
 
-  const SelectedIcon = getCategoryIcon(selectedCategory);
+  const SelectedIcon = selectedCategory ? getCategoryIcon(selectedCategory) : Grid3X3;
 
   return (
     <>
@@ -102,11 +102,11 @@ const CategoryFilter = ({ selectedCategory, onCategoryChange }) => {
                      transition-all duration-200"
         >
           <div className="flex items-center gap-3">
-            <div className={`p-1.5 rounded-lg bg-gradient-to-br ${getCategoryGradient(selectedCategory)} shadow-md`}>
+            <div className={`p-1.5 rounded-lg bg-gradient-to-br ${selectedCategory ? getCategoryGradient(selectedCategory) : 'from-gray-400 to-gray-500'} shadow-md`}>
               <SelectedIcon className="h-4 w-4 text-white" strokeWidth={2.5} />
             </div>
             <span className="font-bold text-base text-gray-900">
-              {selectedCategory}
+              {selectedCategory || 'Seleccionar categoría'}
             </span>
           </div>
           <ChevronDown 

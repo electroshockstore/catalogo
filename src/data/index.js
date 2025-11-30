@@ -10,7 +10,6 @@ import { tecladosProducts } from './categories/teclados';
 import { joystickProducts } from './categories/joystick';
 
 export const categories = [
-  'Todos',
   'Fuentes',
   'Almacenamiento',
   'Memorias RAM',
