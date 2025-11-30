@@ -1,7 +1,7 @@
 // Header negro con buscador centrado - Responsive
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Package, Search, FileText, MapPin, X } from 'lucide-react';
+import { Package, Search, FileText, MapPin, X, Home } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStock } from '../../context/StockContext';
 
@@ -57,7 +57,10 @@ const Header = ({ searchQuery, onSearchChange }) => {
         {/* Layout mobile: vertical */}
         <div className="flex flex-col gap-3 sm:hidden">
           <div className="flex items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
+            <button 
+              onClick={() => navigate('/')}
+              className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+            >
               <img 
                 src="/logotipo.png" 
                 alt="Shock-Store Logo" 
@@ -67,9 +70,19 @@ const Header = ({ searchQuery, onSearchChange }) => {
                 <h1 className="text-lg font-black text-white leading-tight">Shock-Store</h1>
                 <h2 className="text-xs font-semibold text-blue-400">Catálogo</h2>
               </div>
-            </div>
+            </button>
             
             <div className="flex items-center gap-2">
+              <button
+                onClick={() => navigate('/')}
+                className="p-2.5 bg-green-600 hover:bg-green-700 
+                         rounded-full text-white
+                         transition-all duration-200"
+                aria-label="Inicio"
+              >
+                <Home className="h-4 w-4" strokeWidth={2.5} />
+              </button>
+              
               <button
                 onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
                 className="p-2.5 bg-gray-900 hover:bg-gray-800 
@@ -163,8 +176,11 @@ const Header = ({ searchQuery, onSearchChange }) => {
 
         {/* Layout desktop: horizontal */}
         <div className="hidden sm:flex items-center justify-between gap-6">
-          {/* Logo */}
-          <div className="flex items-center gap-3 flex-shrink-0">
+          {/* Logo - Clickeable */}
+          <button 
+            onClick={() => navigate('/')}
+            className="flex items-center gap-3 flex-shrink-0 hover:opacity-80 transition-opacity"
+          >
             <img 
               src="/logotipo.png" 
               alt="Shock-Store Logo" 
@@ -174,7 +190,7 @@ const Header = ({ searchQuery, onSearchChange }) => {
               <h1 className="text-2xl font-black text-white leading-tight">Shock-Store</h1>
               <h2 className="text-sm font-semibold text-blue-400">Catálogo</h2>
             </div>
-          </div>
+          </button>
 
           {/* Buscador centrado */}
           <div className="flex-1 max-w-2xl" ref={searchRef}>
@@ -247,6 +263,17 @@ const Header = ({ searchQuery, onSearchChange }) => {
           </div>
 
           <div className="flex items-center gap-3 flex-shrink-0">
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center gap-2 px-4 py-2.5 
+                       bg-green-600 hover:bg-green-700 
+                       rounded-full text-white font-semibold text-sm
+                       transition-all duration-200 hover:shadow-lg hover:shadow-green-500/30"
+            >
+              <Home className="h-4 w-4" strokeWidth={2.5} />
+              <span className="hidden lg:inline">Inicio</span>
+            </button>
+            
             <button
               onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
               className="flex items-center gap-2 px-4 py-2.5 

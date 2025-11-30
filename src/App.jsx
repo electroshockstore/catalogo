@@ -69,7 +69,7 @@ function App() {
   return (
     <StockProvider>
       <FilterProvider>
-        <Router basename="/">
+        <Router basename="/catalogo-venta">
           <div className="min-h-screen bg-gradient-to-b from-[#E5E7EB] to-[#C7CCD1] antialiased">
             <main className="relative z-10 w-full">
               <AnimatedRoutes />
