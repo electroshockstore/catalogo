@@ -5,7 +5,7 @@ import { Package, Search, FileText, MapPin, X, Home } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStock } from '../../context/StockContext';
 
-const Header = ({ searchQuery, onSearchChange }) => {
+const Header = ({ searchQuery, onSearchChange, onGoHome }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const searchRef = useRef(null);
@@ -58,7 +58,10 @@ const Header = ({ searchQuery, onSearchChange }) => {
         <div className="flex flex-col gap-3 sm:hidden">
           <div className="flex items-center justify-between gap-2">
             <button 
-              onClick={() => navigate('/')}
+              onClick={() => {
+                navigate('/');
+                onGoHome?.();
+              }}
               className="flex items-center gap-2 hover:opacity-80 transition-opacity"
             >
               <img 
@@ -74,7 +77,10 @@ const Header = ({ searchQuery, onSearchChange }) => {
             
             <div className="flex items-center gap-2">
               <button
-                onClick={() => navigate('/')}
+                onClick={() => {
+                  navigate('/');
+                  onGoHome?.();
+                }}
                 className="p-2.5 bg-green-600 hover:bg-green-700 
                          rounded-full text-white
                          transition-all duration-200"
@@ -178,7 +184,10 @@ const Header = ({ searchQuery, onSearchChange }) => {
         <div className="hidden sm:flex items-center justify-between gap-6">
           {/* Logo - Clickeable */}
           <button 
-            onClick={() => navigate('/')}
+            onClick={() => {
+              navigate('/');
+              onGoHome?.();
+            }}
             className="flex items-center gap-3 flex-shrink-0 hover:opacity-80 transition-opacity"
           >
             <img 
@@ -264,7 +273,10 @@ const Header = ({ searchQuery, onSearchChange }) => {
 
           <div className="flex items-center gap-3 flex-shrink-0">
             <button
-              onClick={() => navigate('/')}
+              onClick={() => {
+                navigate('/');
+                onGoHome?.();
+              }}
               className="flex items-center gap-2 px-4 py-2.5 
                        bg-green-600 hover:bg-green-700 
                        rounded-full text-white font-semibold text-sm

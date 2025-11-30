@@ -35,11 +35,18 @@ const Store = () => {
 
   const showSidebar = selectedCategory && selectedCategory !== 'Todos';
 
+  const handleGoHome = () => {
+    setSelectedCategory(null);
+    setSearchQuery('');
+    clearSubFilters();
+  };
+
   return (
     <div className="min-h-screen w-full flex flex-col">
       <Header 
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
+        onGoHome={handleGoHome}
       />
       <main className="flex-1 w-full px-4 sm:px-6 py-4 sm:py-8">
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-4 sm:mb-6 sm:items-center">
