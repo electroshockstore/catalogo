@@ -8,6 +8,7 @@ import SidebarFilters from '../components/InventoryApp/SidebarFilters';
 import Footer from '../components/InventoryApp/Footer';
 import ScrollButton from '../components/InventoryApp/ScrollButton';
 import HeroCarousel from '../components/InventoryApp/HeroCarousel';
+import FloatingChatButton from '../components/InventoryApp/FloatingChatButton';
 import { useFilter } from '../context/FilterContext';
 
 const Store = () => {
@@ -93,6 +94,7 @@ const Store = () => {
       </main>
       <Footer />
       <ScrollButton />
+      <FloatingChatButton />
     </div>
   );
 };
