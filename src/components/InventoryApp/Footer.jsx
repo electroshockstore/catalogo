@@ -17,7 +17,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="w-full bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white">
+    <footer className="w-full bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white pb-24 sm:pb-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
           
