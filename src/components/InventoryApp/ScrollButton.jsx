@@ -28,11 +28,11 @@ const ScrollButton = () => {
   if (!showButton) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
       {/* Botón Scroll to Top */}
       <button
         onClick={scrollToTop}
-        className="group relative w-14 h-14 rounded-full 
+        className="group relative w-12 h-12 sm:w-14 sm:h-14 rounded-full 
                    bg-gradient-to-br from-blue-500 to-blue-600 
                    text-white shadow-[0_8px_24px_rgba(59,130,246,0.4)]
                    hover:shadow-[0_12px_32px_rgba(59,130,246,0.5)]
@@ -41,7 +41,7 @@ const ScrollButton = () => {
                    flex items-center justify-center"
         aria-label="Ir al inicio"
       >
-        <ArrowUp className="h-6 w-6" strokeWidth={2.5} />
+        <ArrowUp className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={2.5} />
         
         {/* Tooltip */}
         <span className="absolute right-full mr-3 px-3 py-2 
