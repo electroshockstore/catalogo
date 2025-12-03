@@ -81,7 +81,7 @@ export const tecladosProducts = [
     model: "S143",
     category: "Teclados",
     price: 60000,
-    stock: 12,
+    stock: 2,
     sku: "RED-S143-KIT",
     description: "Combo gaming RGB: Teclado mecánico 60% compacto + Mouse 7 botones programables",
     images: [
@@ -119,7 +119,7 @@ export const tecladosProducts = [
     model: "MK220",
     category: "Teclados",
     price: 30000,
-    stock: 15,
+    stock: 11,
     sku: "LOGI-MK220",
     description: "Combo inalámbrico: Teclado compacto + Mouse óptico para oficina",
     images: [
@@ -155,7 +155,7 @@ export const tecladosProducts = [
     model: "Alloy Core RGB",
     category: "Teclados",
     price: 55000,
-    stock: 9,
+    stock: 5,
     sku: "HYPE-ALLOY-CORE",
     description: "Teclado membrana RGB con placa de acero reforzado y teclas multimedia dedicadas",
     images: [
@@ -189,7 +189,7 @@ export const tecladosProducts = [
     model: "Fizz K617CT",
     category: "Teclados",
     price: 40000,
-    stock: 10,
+    stock: 1,
     sku: "RED-FIZZ-WHT",
     description: "Teclado mecánico 60% compacto RGB con keycaps translúcidas y cable USB-C desmontable",
     images: [
@@ -222,7 +222,7 @@ export const tecladosProducts = [
     model: "Horus Mini K632-RGB",
     category: "Teclados",
     price: 60000,
-    stock: 8,
+    stock: 1,
     sku: "RED-HORUS-MINI",
     description: "Teclado mecánico 60% RGB con switches Red lineales y cable USB-C desmontable",
     images: [
@@ -256,7 +256,7 @@ export const tecladosProducts = [
     model: "Ziggs K669",
     category: "Teclados",
     price: 45000,
-    stock: 9,
+    stock: 2,
     sku: "RED-ZIGGS",
     description: "Teclado mecánico RGB full size con switches Outemu Blue y distribución español LATAM",
     images: [
@@ -290,7 +290,7 @@ export const tecladosProducts = [
     model: "G413",
     category: "Teclados",
     price: 150000,
-    stock: 5,
+    stock: 2,
     sku: "LOGI-G413SE",
     description: "Teclado mecánico full size con switches Romer-G, chasis de aluminio y puerto USB passthrough",
     images: [
@@ -363,7 +363,7 @@ export const tecladosProducts = [
     model: "Fizz Pro K616-RGB",
     category: "Teclados",
     price: 75000,
-    stock: 8,
+    stock: 3,
     sku: "RED-FIZZ-PRO",
     description: "Teclado mecánico 60% compacto RGB con triple conectividad: Bluetooth 5.0 / 2.4 GHz / USB-C",
     images: [
