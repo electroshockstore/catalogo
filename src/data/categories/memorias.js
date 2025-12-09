@@ -6,7 +6,7 @@ export const memoriasProducts = [
     brand: "ADATA",
     model: "XPG Lancer Blade",
     category: "Memorias RAM",
-    price: 150000,
+    price: 200000,
     stock: 2,
     images: [
       "/images/ram/lancerblade_16gb_ddr5_sinrgb.webp",
@@ -33,7 +33,7 @@ export const memoriasProducts = [
     brand: "NETAC",
     model: "Shadow 2",
     category: "Memorias RAM",
-    price: 150000,
+    price: 200000,
     stock: 4,
     images: [
       "/images/ram/netac_shadow2_ram.webp",
@@ -59,7 +59,7 @@ export const memoriasProducts = [
     brand: "ADATA",
     model: "XPG Gammix D35",
     category: "Memorias RAM",
-    price: 95000,
+    price: 130000,
     stock: 2,
     images: [
       "/images/ram/ram_xpg_gamminxd35_ddr4.webp",
@@ -120,11 +120,11 @@ export const memoriasProducts = [
   },
   {
     id: 400,
-    name: "Memoria Ram Xpg D35g 16gb Ddr4 RGB 3200mhz",
+    name: "Memoria Ram Xpg D35g Spectrix 16gb Ddr4 RGB 3200mhz",
     brand: "XPG",
     model: "Spectrix D35G",
     category: "Memorias RAM",
-    price: 120000,
+    price: 140000,
     stock: 3,
     images: [
       "/images/ram/spectrix-d35g_16gb.webp",
@@ -213,7 +213,7 @@ export const memoriasProducts = [
     brand: "ADATA",
     model: "Premier",
     category: "Memorias RAM",
-    price: 85000,
+    price: 95000,
     stock: 2,
     images: [
       "/images/ram/adata_ddr416gb_basic.webp",
@@ -240,7 +240,7 @@ export const memoriasProducts = [
     brand: "Netac",
     model: "Basic",
     category: "Memorias RAM",
-    price: 85000,
+    price: 90000,
     stock: 4,
     images: [
       "/images/ram/netac_basic_16gb.webp",
@@ -267,7 +267,7 @@ export const memoriasProducts = [
     brand: "Patriot",
     model: "Signature",
     category: "Memorias RAM",
-    price: 85000,
+    price: 90000,
     stock: 3,
     images: [
       "/images/ram/patriot_signature_ddr416.webp",
@@ -295,7 +295,7 @@ export const memoriasProducts = [
     brand: "Lexar",
     model: "LD4AU016G",
     category: "Memorias RAM",
-    price: 85000,
+    price: 100000,
     stock: 12,
     images: [
       "/images/ram/adata16g_ddr4.webp",
