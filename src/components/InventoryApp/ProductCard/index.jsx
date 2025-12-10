@@ -60,20 +60,21 @@ const ProductCard = memo(({ product, viewMode, onClick }) => {
     return (
       <div 
         className="group relative bg-white rounded-2xl 
-                   border-2 border-gray-200 shadow-lg 
-                   hover:shadow-xl hover:border-gray-300 hover:-translate-y-0.5
+                   shadow-lg 
+                   hover:shadow-xl hover:-translate-y-0.5
                    transition-all duration-300 overflow-hidden p-4 sm:p-6 hover:z-10 cursor-pointer"
         onClick={handleClick}
       >
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
           {/* Imagen compacta */}
-          <div className="relative w-full sm:w-32 h-32 flex-shrink-0 bg-gray-50 rounded-xl p-4 border-2 border-gray-200">
+          <div className="relative w-full sm:w-32 h-32 flex-shrink-0 bg-white rounded-xl p-4">
             <img
               src={productImage}
               alt={product.name}
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain drop-shadow-md"
               loading="lazy"
             />
+            
             <div className={`absolute -top-2 -right-2 w-10 h-10 rounded-xl bg-gradient-to-br ${stockStatus.color} 
                            shadow-lg flex items-center justify-center`}>
               <span className="text-white font-bold text-sm">{product.stock}</span>
@@ -110,8 +111,8 @@ const ProductCard = memo(({ product, viewMode, onClick }) => {
   return (
     <div 
       className="group relative bg-white rounded-2xl 
-                 border-2 border-gray-200 shadow-lg 
-                 hover:shadow-2xl hover:border-gray-300 hover:-translate-y-1
+                 shadow-lg 
+                 hover:shadow-2xl hover:-translate-y-1
                  transition-all duration-300 overflow-hidden hover:z-10 cursor-pointer"
       onClick={handleClick}
     >
