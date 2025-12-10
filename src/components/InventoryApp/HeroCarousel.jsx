@@ -145,7 +145,7 @@ const HeroCarousel = () => {
           type: "spring",
           stiffness: 100
         }}
-        className="flex justify-center mb-8 sm:mb-12 relative"
+        className="flex justify-center mb-8 sm:mb-12 md:mb-14 relative"
       >
         <div className="relative group">
           <motion.div
@@ -162,7 +162,7 @@ const HeroCarousel = () => {
             <img 
               src="/logotipo.png" 
               alt="Electro Shock Logo" 
-              className="h-28 sm:h-36 md:h-44 lg:h-52 object-contain drop-shadow-2xl relative z-10"
+              className="h-32 sm:h-40 md:h-48 lg:h-56 object-contain drop-shadow-2xl relative z-10"
             />
           </motion.div>
           
@@ -196,7 +196,7 @@ const HeroCarousel = () => {
         {/* Enhanced background with animated gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 opacity-95" />
         
-        <div className="relative h-[450px] sm:h-[480px] md:h-[500px] lg:h-[420px]">
+        <div className="relative h-[480px] sm:h-[520px] md:h-[550px] lg:h-[480px]">
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={currentSlide}
@@ -252,11 +252,11 @@ const HeroCarousel = () => {
                     <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                       
                       {/* Left Side - Content */}
-                      <div className="space-y-6">
+                      <div className="space-y-6 sm:space-y-7">
                         {/* Icon + Title */}
-                        <div className="flex items-center gap-4">
-                          <div className="bg-white/20 backdrop-blur-sm p-3 rounded-xl border border-white/40 shadow-lg">
-                            <Icon className="w-10 h-10 sm:w-12 sm:h-12 text-white" strokeWidth={2.5} />
+                        <div className="flex items-center gap-3 sm:gap-4">
+                          <div className="bg-white/20 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-white/40 shadow-lg">
+                            <Icon className="w-12 h-12 sm:w-14 sm:h-14 text-white" strokeWidth={2.5} />
                           </div>
                           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight">
                             {current.title}
@@ -264,22 +264,22 @@ const HeroCarousel = () => {
                         </div>
 
                         {/* Items List */}
-                        <div className="space-y-3">
+                        <div className="space-y-3 sm:space-y-4">
                           {current.items.map((item, index) => (
                             <div
                               key={index}
-                              className={`flex items-start gap-3 p-3 rounded-lg backdrop-blur-sm transition-all duration-300 ${
+                              className={`flex items-start gap-3 p-3 sm:p-4 rounded-lg backdrop-blur-sm transition-all duration-300 ${
                                 item.highlight 
                                   ? 'bg-white/95 border-l-4 border-red-500 shadow-lg' 
                                   : 'bg-white/80 border-l-4 border-emerald-500'
                               }`}
                             >
-                              <span className={`text-2xl flex-shrink-0 ${
+                              <span className={`text-2xl sm:text-3xl flex-shrink-0 ${
                                 item.highlight ? 'text-red-600' : 'text-emerald-600'
                               }`}>
                                 {item.highlight ? '⚠️' : '✓'}
                               </span>
-                              <span className={`text-sm sm:text-base leading-snug ${
+                              <span className={`text-sm sm:text-base md:text-lg leading-snug ${
                                 item.highlight 
                                   ? 'text-red-900 font-bold' 
                                   : 'text-gray-800 font-semibold'
@@ -341,7 +341,7 @@ const HeroCarousel = () => {
           className="hidden md:block absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 bg-white/40 hover:bg-white/60 backdrop-blur-md p-3 sm:p-4 rounded-full transition-all duration-300 z-20 shadow-2xl border border-white/30 group"
           aria-label="Anterior"
         >
-          <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7 text-white group-hover:text-gray-100" strokeWidth={3} />
+          <ChevronLeft className="w-7 h-7 sm:w-8 sm:h-8 text-white group-hover:text-gray-100" strokeWidth={3} />
         </motion.button>
 
         <motion.button
@@ -351,7 +351,7 @@ const HeroCarousel = () => {
           className="hidden md:block absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 bg-white/40 hover:bg-white/60 backdrop-blur-md p-3 sm:p-4 rounded-full transition-all duration-300 z-20 shadow-2xl border border-white/30 group"
           aria-label="Siguiente"
         >
-          <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 text-white group-hover:text-gray-100" strokeWidth={3} />
+          <ChevronRight className="w-7 h-7 sm:w-8 sm:h-8 text-white group-hover:text-gray-100" strokeWidth={3} />
         </motion.button>
 
         {/* Progress bar */}
@@ -365,7 +365,7 @@ const HeroCarousel = () => {
       </div>
 
       {/* Dots Indicator - Outside carousel, below it */}
-      <div className="flex justify-center mt-6 gap-2">
+      <div className="flex justify-center mt-6 sm:mt-8 gap-2 sm:gap-3">
         {slides.map((_, index) => (
           <motion.button
             key={index}
@@ -374,8 +374,8 @@ const HeroCarousel = () => {
             whileTap={{ scale: 0.9 }}
             className={`transition-all duration-300 rounded-full shadow-lg ${
               index === currentSlide
-                ? 'bg-blue-600 w-10 h-3.5'
-                : 'bg-gray-400 w-3.5 h-3.5 hover:bg-gray-600'
+                ? 'bg-blue-600 w-10 sm:w-12 h-3.5 sm:h-4'
+                : 'bg-gray-400 w-3.5 sm:w-4 h-3.5 sm:h-4 hover:bg-gray-600'
             }`}
             aria-label={`Ir a slide ${index + 1}`}
           />
@@ -387,13 +387,13 @@ const HeroCarousel = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.6 }}
-        className="mt-12 sm:mt-16 text-center px-4"
+        className="mt-12 sm:mt-16 md:mt-20 text-center px-4"
       >
-        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+        <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-3 sm:mb-4">
           Explorá Nuestros Productos
         </h3>
         
-        <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed">
           Seleccioná una categoría arriba para ver nuestro catálogo completo
         </p>
       </motion.div>

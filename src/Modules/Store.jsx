@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import Header from '../components/InventoryApp/Header';
 import CategoryFilter from '../components/InventoryApp/CategoryFilter';
 import ViewToggleButton from '../components/InventoryApp/ViewToggleButton';
@@ -10,9 +10,11 @@ import ScrollButton from '../components/InventoryApp/ScrollButton';
 import HeroCarousel from '../components/InventoryApp/HeroCarousel';
 import FloatingChatButton from '../components/InventoryApp/FloatingChatButton';
 import { useFilter } from '../context/FilterContext';
+import { getCategoryFromSlug, getSlugFromCategory, generateSKU } from '../utils/slugify';
 
 const Store = () => {
   const navigate = useNavigate();
+  const { categorySlug } = useParams();
   const { 
     searchQuery, 
     setSearchQuery, 
@@ -26,12 +28,34 @@ const Store = () => {
 
   const [viewMode, setViewMode] = useState('grid');
 
+  // Sincronizar categoría desde URL
+  useEffect(() => {
+    if (categorySlug) {
+      const category = getCategoryFromSlug(categorySlug);
+      if (category && category !== selectedCategory) {
+        setSelectedCategory(category);
+      }
+    }
+  }, [categorySlug]);
+
   const toggleViewMode = () => {
     setViewMode(prev => prev === 'grid' ? 'list' : 'grid');
   };
 
   const openProductDetail = (product) => {
-    navigate(`/producto/${product.id}`);
+    const categorySlug = getSlugFromCategory(product.category);
+    const productSku = generateSKU(product.name, product.brand);
+    navigate(`/categoria/${categorySlug}/${productSku}`, { state: { productId: product.id } });
+  };
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+    if (category) {
+      const slug = getSlugFromCategory(category);
+      navigate(`/categoria/${slug}`);
+    } else {
+      navigate('/');
+    }
   };
 
   const showSidebar = selectedCategory && selectedCategory !== 'Todos';
@@ -40,6 +64,7 @@ const Store = () => {
     setSelectedCategory(null);
     setSearchQuery('');
     clearSubFilters();
+    navigate('/');
   };
 
   return (
@@ -49,12 +74,12 @@ const Store = () => {
         onSearchChange={setSearchQuery}
         onGoHome={handleGoHome}
       />
-      <main className="flex-1 w-full px-4 sm:px-6 py-4 sm:py-8">
+      <main className="flex-1 w-full px-4 sm:px-6 py-4 sm:py-8 min-h-[calc(100vh-80px)]">
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-4 sm:mb-6 sm:items-center">
           <div className="flex-1 sm:overflow-x-auto">
             <CategoryFilter 
               selectedCategory={selectedCategory}
-              onCategoryChange={setSelectedCategory}
+              onCategoryChange={handleCategoryChange}
             />
           </div>
           {selectedCategory && filteredProducts.length > 0 && (
@@ -68,11 +93,11 @@ const Store = () => {
         </div>
 
         {!selectedCategory ? (
-          <div className="w-full">
+          <div className="w-full min-h-[60vh]">
             <HeroCarousel />
           </div>
         ) : (
-          <div className="flex flex-col lg:flex-row gap-6">
+          <div className="flex flex-col lg:flex-row gap-6 min-h-[60vh]">
             {showSidebar && (
               <aside className="lg:flex-shrink-0">
                 <SidebarFilters
@@ -85,11 +110,38 @@ const Store = () => {
             )}
             
             <div className="flex-1 min-w-0">
-              <ProductGrid 
-                products={filteredProducts}
-                viewMode={viewMode}
-                openModal={openProductDetail}
-              />
+              {filteredProducts.length === 0 ? (
+                <div className="flex flex-col items-center justify-center min-h-[50vh] text-center px-4">
+                  <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-12 shadow-2xl border border-gray-700/50 max-w-md">
+                    <div className="bg-blue-500/20 backdrop-blur-sm p-6 rounded-full w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+                      <svg className="w-12 h-12 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-3">
+                      No hay productos disponibles
+                    </h3>
+                    <p className="text-gray-400 mb-6">
+                      No encontramos productos que coincidan con los filtros seleccionados.
+                    </p>
+                    <button
+                      onClick={() => {
+                        clearSubFilters();
+                        setSelectedCategory(null);
+                      }}
+                      className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-xl transition-all duration-200 shadow-lg hover:shadow-blue-500/50 hover:scale-105"
+                    >
+                      Ver todas las categorías
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <ProductGrid 
+                  products={filteredProducts}
+                  viewMode={viewMode}
+                  openModal={openProductDetail}
+                />
+              )}
             </div>
           </div>
         )}

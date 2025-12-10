@@ -11,9 +11,9 @@ const FloatingChatButton = () => {
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ delay: 1, type: "spring", stiffness: 200 }}
-      className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50"
+      className="fixed bottom-6 left-6 sm:bottom-8 sm:left-8 z-50"
     >
-      {/* Main Button */}
+      {/* Main Button - MÁS GRANDE */}
       <motion.button
         onClick={handleClick}
         whileHover={{ scale: 1.05, y: -2 }}
@@ -48,8 +48,8 @@ const FloatingChatButton = () => {
           className="absolute inset-0 rounded-2xl border-4 border-blue-400"
         />
 
-        {/* Button content */}
-        <div className="relative flex items-center gap-2 px-4 py-3 sm:gap-4 sm:px-8 sm:py-5">
+        {/* Button content - MÁS GRANDE */}
+        <div className="relative flex items-center gap-3 px-5 py-4 sm:gap-5 sm:px-10 sm:py-6">
           {/* Icon container with animation */}
           <motion.div
             animate={{
@@ -62,8 +62,8 @@ const FloatingChatButton = () => {
             }}
             className="relative"
           >
-            <div className="w-10 h-10 sm:w-14 sm:h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/30">
-              <MessageCircle className="w-5 h-5 sm:w-8 sm:h-8" strokeWidth={2.5} />
+            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/30">
+              <MessageCircle className="w-6 h-6 sm:w-9 sm:h-9" strokeWidth={2.5} />
             </div>
             
             {/* Online indicator */}
@@ -76,16 +76,16 @@ const FloatingChatButton = () => {
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white shadow-lg"
+              className="absolute -top-1 -right-1 w-5 h-5 bg-green-400 rounded-full border-2 border-white shadow-lg"
             />
           </motion.div>
 
           {/* Text content */}
           <div className="flex flex-col items-start">
-            <span className="text-[10px] sm:text-sm font-semibold text-blue-100 uppercase tracking-wide leading-tight">
+            <span className="text-xs sm:text-base font-semibold text-blue-100 uppercase tracking-wide leading-tight">
               ¿Necesitás ayuda?
             </span>
-            <span className="text-xs sm:text-lg font-black text-white leading-tight">
+            <span className="text-sm sm:text-xl font-black text-white leading-tight">
               Chatear con Representante
             </span>
           </div>
@@ -102,7 +102,7 @@ const FloatingChatButton = () => {
             }}
             className="hidden sm:block"
           >
-            <Send className="w-5 h-5 text-white/80" strokeWidth={2.5} />
+            <Send className="w-6 h-6 text-white/80" strokeWidth={2.5} />
           </motion.div>
         </div>
 

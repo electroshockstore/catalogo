@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useStock } from '../context/StockContext';
 import Header from '../components/InventoryApp/Header';
@@ -7,14 +7,32 @@ import Footer from '../components/InventoryApp/Footer';
 import ScrollButton from '../components/InventoryApp/ScrollButton';
 import CategoryFilter from '../components/InventoryApp/CategoryFilter';
 import { useFilter } from '../context/FilterContext';
+import { generateSKU, getSlugFromCategory } from '../utils/slugify';
 
 const ProductDetailPage = () => {
-  const { id } = useParams();
+  const { id, productSku, categorySlug } = useParams();
+  const location = useLocation();
   const navigate = useNavigate();
-  const { getProductById } = useStock();
+  const { getProductById, products } = useStock();
   const { searchQuery, setSearchQuery, selectedCategory, setSelectedCategory } = useFilter();
   
-  const product = getProductById(parseInt(id));
+  // Buscar producto por ID (ruta legacy) o por SKU
+  let product;
+  if (id) {
+    product = getProductById(parseInt(id));
+  } else if (productSku) {
+    // Buscar por SKU o usar productId del state
+    const productId = location.state?.productId;
+    if (productId) {
+      product = getProductById(productId);
+    } else {
+      // Buscar producto que coincida con el SKU
+      product = products.find(p => {
+        const sku = generateSKU(p.name, p.brand);
+        return sku === productSku;
+      });
+    }
+  }
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -22,11 +40,20 @@ const ProductDetailPage = () => {
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
-    navigate('/');
+    if (category) {
+      const slug = getSlugFromCategory(category);
+      navigate(`/categoria/${slug}`);
+    } else {
+      navigate('/');
+    }
   };
 
   const handleClose = () => {
-    navigate('/');
+    if (categorySlug) {
+      navigate(`/categoria/${categorySlug}`);
+    } else {
+      navigate('/');
+    }
   };
 
   if (!product) {

@@ -1,7 +1,7 @@
 // Header negro con buscador centrado - Responsive
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Package, Search, FileText, MapPin, X, Home } from 'lucide-react';
+import { Package, Search, FileText, MapPin, X, Home, Bot, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStock } from '../../context/StockContext';
 
@@ -147,22 +147,53 @@ const Header = ({ searchQuery, onSearchChange, onGoHome }) => {
               </div>
             </button>
             
-            <div className="flex items-center gap-2">
-              <motion.button
-                onClick={() => {
-                  navigate('/');
-                  onGoHome?.();
-                }}
-                whileTap={{ scale: 0.9 }}
-                className="relative p-2.5 bg-gradient-to-br from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700
-                         rounded-full text-white
-                         transition-all duration-300 shadow-lg hover:shadow-green-500/50
-                         border border-green-500/30 overflow-hidden group"
-                aria-label="Inicio"
+            <div className="flex items-center gap-2 relative">
+              {/* Bot Helper - Mobile */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8, type: "spring" }}
+                className="flex items-center gap-2 mr-1"
               >
-                <div className="absolute inset-0 bg-white/20 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-full" />
-                <Home className="h-4 w-4 relative z-10" strokeWidth={2.5} />
-              </motion.button>
+                <motion.div
+                  animate={{ 
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ 
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="relative"
+                >
+                  <div className="bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full p-2 shadow-lg border-2 border-cyan-300/50">
+                    <Bot className="w-4 h-4 text-white" strokeWidth={2.5} />
+                  </div>
+                  <motion.div
+                    animate={{ 
+                      scale: [1, 1.4, 1],
+                      opacity: [0.6, 0, 0.6]
+                    }}
+                    transition={{ 
+                      duration: 2,
+                      repeat: Infinity
+                    }}
+                    className="absolute inset-0 bg-cyan-400 rounded-full blur-sm"
+                  />
+                </motion.div>
+                
+                <motion.div
+                  animate={{ x: [0, 3, 0] }}
+                  transition={{ 
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <ArrowRight className="w-4 h-4 text-cyan-400" strokeWidth={3} />
+                </motion.div>
+              </motion.div>
+
               
               <motion.button
                 onClick={() => setShowConditionsModal(true)}
@@ -189,6 +220,26 @@ const Header = ({ searchQuery, onSearchChange, onGoHome }) => {
                 <div className="absolute inset-0 bg-white/20 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-full" />
                 <MapPin className="h-4 w-4 relative z-10" strokeWidth={2.5} />
               </motion.button>
+
+
+
+              <motion.button
+                onClick={() => {
+                  navigate('/');
+                  onGoHome?.();
+                }}
+                whileTap={{ scale: 0.9 }}
+                className="relative p-2.5 bg-gradient-to-br from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700
+                         rounded-full text-white
+                         transition-all duration-300 shadow-lg hover:shadow-green-500/50
+                         border border-green-500/30 overflow-hidden group"
+                aria-label="Inicio"
+              >
+                <div className="absolute inset-0 bg-white/20 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-full" />
+                <Home className="h-4 w-4 relative z-10" strokeWidth={2.5} />
+              </motion.button>
+
+
             </div>
           </div>
           
@@ -351,24 +402,64 @@ const Header = ({ searchQuery, onSearchChange, onGoHome }) => {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <motion.button
-              onClick={() => {
-                navigate('/');
-                onGoHome?.();
-              }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="relative flex items-center gap-2 px-5 py-2.5 
-                       bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700
-                       rounded-full text-white font-bold text-sm
-                       transition-all duration-300 shadow-lg hover:shadow-green-500/50
-                       border border-green-500/30 overflow-hidden group"
+          <div className="flex items-center gap-2 flex-shrink-0 relative">
+            {/* Bot Helper - Desktop */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.8, type: "spring" }}
+              className="flex items-center gap-3 mr-2"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-              <Home className="h-4 w-4 relative z-10" strokeWidth={2.5} />
-              <span className="hidden lg:inline relative z-10">Inicio</span>
-            </motion.button>
+              <div className="relative">
+                <motion.div
+                  animate={{ 
+                    scale: [1, 1.15, 1]
+                  }}
+                  transition={{ 
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="relative"
+                >
+                  <div className="bg-gradient-to-br from-cyan-500 via-blue-600 to-indigo-600 rounded-full p-2.5 shadow-xl border-2 border-cyan-300/50">
+                    <Bot className="w-5 h-5 text-white" strokeWidth={2.5} />
+                  </div>
+                  <motion.div
+                    animate={{ 
+                      scale: [1, 1.5, 1],
+                      opacity: [0.6, 0, 0.6]
+                    }}
+                    transition={{ 
+                      duration: 2,
+                      repeat: Infinity
+                    }}
+                    className="absolute inset-0 bg-cyan-400 rounded-full blur-md"
+                  />
+                </motion.div>
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <motion.div
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ 
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <ArrowRight className="w-5 h-5 text-cyan-400" strokeWidth={3} />
+                </motion.div>
+                
+                <div className="bg-gradient-to-r from-cyan-500/20 to-blue-600/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-cyan-400/30">
+                  <p className="text-xs font-bold text-cyan-300 whitespace-nowrap">
+                    ¡Info importante!
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            
             
             <motion.button
               onClick={() => setShowConditionsModal(true)}
@@ -399,6 +490,27 @@ const Header = ({ searchQuery, onSearchChange, onGoHome }) => {
               <MapPin className="h-4 w-4 relative z-10" strokeWidth={2.5} />
               <span className="hidden lg:inline relative z-10">Puntos de Retiro</span>
             </motion.button>
+
+<motion.button
+              onClick={() => {
+                navigate('/');
+                onGoHome?.();
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative flex items-center gap-2 px-5 py-2.5 
+                       bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700
+                       rounded-full text-white font-bold text-sm
+                       transition-all duration-300 shadow-lg hover:shadow-green-500/50
+                       border border-green-500/30 overflow-hidden group"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+              <Home className="h-4 w-4 relative z-10" strokeWidth={2.5} />
+              <span className="hidden lg:inline relative z-10">Inicio</span>
+            </motion.button>
+
+
+
           </div>
         </div>
       </div>

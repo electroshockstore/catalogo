@@ -48,6 +48,33 @@ function AnimatedRoutes() {
           }
         />
         <Route
+          path="/categoria/:categorySlug"
+          element={
+            <motion.div
+              variants={pageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <Store />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/categoria/:categorySlug/:productSku"
+          element={
+            <motion.div
+              variants={pageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <ProductDetailPage />
+            </motion.div>
+          }
+        />
+        {/* Ruta legacy para compatibilidad */}
+        <Route
           path="/producto/:id"
           element={
             <motion.div
