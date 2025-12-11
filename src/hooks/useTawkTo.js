@@ -33,7 +33,7 @@ export const useTawkTo = () => {
           
           setIsLoaded(true);
           
-          // Configurar mensajes en español
+          // Configurar en español
           window.Tawk_API.setAttributes({
             name: 'Visitante de Shock-Store',
             email: '',
@@ -43,6 +43,14 @@ export const useTawkTo = () => {
               console.warn('Error configurando Tawk.to:', error);
             }
           });
+          
+          // Configurar mensajes predeterminados en español
+          if (window.Tawk_API.addEvent) {
+            window.Tawk_API.addEvent({
+              event: 'language',
+              language: 'es'
+            });
+          }
         };
 
         // Detectar cuando hay agentes online
