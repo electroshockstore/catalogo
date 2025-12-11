@@ -8,23 +8,6 @@ export const useTawkTo = () => {
     // Configurar Tawk.to cuando se carga
     const configureTawk = () => {
       if (window.Tawk_API) {
-        // Configurar el widget para que esté oculto inicialmente
-        window.Tawk_API.customStyle = {
-          visibility: {
-            desktop: {
-              position: 'br',
-              xOffset: 20,
-              yOffset: 20
-            },
-            mobile: {
-              position: 'br',
-              xOffset: 10,
-              yOffset: 10
-            }
-          },
-          zIndex: 1000
-        };
-
         // Configurar cuando se carga
         const originalOnLoad = window.Tawk_API.onLoad;
         window.Tawk_API.onLoad = function() {
@@ -32,6 +15,9 @@ export const useTawkTo = () => {
           if (originalOnLoad) originalOnLoad();
           
           setIsLoaded(true);
+          
+          // OCULTAR COMPLETAMENTE el widget flotante
+          window.Tawk_API.hideWidget();
           
           // Configurar en español
           window.Tawk_API.setAttributes({
@@ -43,14 +29,6 @@ export const useTawkTo = () => {
               console.warn('Error configurando Tawk.to:', error);
             }
           });
-          
-          // Configurar mensajes predeterminados en español
-          if (window.Tawk_API.addEvent) {
-            window.Tawk_API.addEvent({
-              event: 'language',
-              language: 'es'
-            });
-          }
         };
 
         // Detectar cuando hay agentes online
@@ -93,32 +71,27 @@ export const useTawkTo = () => {
   }, []);
 
   const openChat = (initialMessage = null) => {
-    if (window.Tawk_API) {
+    // Usar la función global personalizada que abre directamente maximizado
+    if (window.openTawkChat) {
+      return window.openTawkChat(initialMessage);
+    }
+    
+    // Fallback al método tradicional
+    if (window.Tawk_API && window.Tawk_API.maximize) {
       try {
-        // Activar la clase CSS para mostrar el widget
-        document.body.classList.add('tawk-active');
+        window.Tawk_API.maximize();
         
-        // Mostrar el widget
-        window.Tawk_API.showWidget();
-        
-        // Maximizar el chat
-        setTimeout(() => {
-          if (window.Tawk_API.maximize) {
-            window.Tawk_API.maximize();
-          }
-          
-          // Enviar mensaje inicial si se proporciona
-          if (initialMessage) {
-            setTimeout(() => {
-              if (window.Tawk_API.addEvent) {
-                window.Tawk_API.addEvent({
-                  event: 'message',
-                  message: initialMessage
-                });
-              }
-            }, 500);
-          }
-        }, 100);
+        // Enviar mensaje inicial si se proporciona
+        if (initialMessage) {
+          setTimeout(() => {
+            if (window.Tawk_API.addEvent) {
+              window.Tawk_API.addEvent({
+                event: 'message',
+                message: initialMessage
+              });
+            }
+          }, 1000);
+        }
         
         return true;
       } catch (error) {
@@ -130,15 +103,13 @@ export const useTawkTo = () => {
   };
 
   const hideWidget = () => {
-    if (window.Tawk_API && window.Tawk_API.hideWidget) {
-      window.Tawk_API.hideWidget();
-    }
+    // No hacer nada ya que el widget siempre está oculto
+    return true;
   };
 
   const showWidget = () => {
-    if (window.Tawk_API && window.Tawk_API.showWidget) {
-      window.Tawk_API.showWidget();
-    }
+    // No mostrar el widget flotante, solo permitir maximizado
+    return false;
   };
 
   const sendMessage = (message) => {

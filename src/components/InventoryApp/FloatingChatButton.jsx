@@ -17,9 +17,19 @@ const FloatingChatButton = () => {
 
   const handleLiveChat = () => {
     const initialMessage = 'Hola, vengo desde su catálogo web para realizar una consulta. ¿Podrían ayudarme?';
-    const success = openChat(initialMessage);
-    if (!success) {
-      alert('El chat en vivo se está cargando. Por favor, intenta nuevamente en unos segundos.');
+    
+    // Usar la función global que abre directamente maximizado
+    if (window.openTawkChat) {
+      const success = window.openTawkChat(initialMessage);
+      if (!success) {
+        alert('El chat en vivo se está cargando. Por favor, intenta nuevamente en unos segundos.');
+      }
+    } else {
+      // Fallback
+      const success = openChat(initialMessage);
+      if (!success) {
+        alert('El chat en vivo se está cargando. Por favor, intenta nuevamente en unos segundos.');
+      }
     }
     setIsExpanded(false);
   };
