@@ -267,7 +267,7 @@ export const memoriasProducts = [
     brand: "Patriot",
     model: "Signature",
     category: "Memorias RAM",
-    price: 90000,
+    price: 100000,
     stock: 3,
     images: [
       "/images/ram/patriot_signature_ddr416.webp",

@@ -97,7 +97,7 @@ export const auricularesProducts = [
     brand: "Redragon",
     model: "Pandora 2 H350RGB-1",
     category: "Auriculares",
-    price: 80000,
+    price: 70000,
     stock: 10,
     sku: "RED-PAND2-H350",
     description: "Auriculares gaming USB 7.1 virtual con iluminación RGB LED y almohadillas memory foam",
