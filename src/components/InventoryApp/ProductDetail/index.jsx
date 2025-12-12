@@ -2,7 +2,7 @@ import { memo, useMemo } from 'react';
 import { CheckCircle2, AlertCircle, XCircle } from 'lucide-react';
 import DetailHeader from './DetailHeader';
 import ProductImageSection from './ProductImageSection';
-import SpecificationsSection from './SpecificationsSection';
+import SpecsSection from './SpecsSection';
 import ProductInfoCard from './ProductInfoCard';
 import MetodosDePago from './MetodosDePago';
 
@@ -92,7 +92,7 @@ const ProductDetail = memo(({ product, onClose, viewOnly = false, isPage = false
             </div>
 
             {/* Especificaciones - Ancho completo */}
-            <SpecificationsSection specifications={product.specifications} />
+            <SpecsSection specifications={product.specifications} />
 
             {/* Métodos de Pago - Ancho completo */}
             <MetodosDePago />
@@ -126,7 +126,7 @@ const ProductDetail = memo(({ product, onClose, viewOnly = false, isPage = false
             </div>
 
             {/* Especificaciones - Ancho completo */}
-            <SpecificationsSection specifications={product.specifications} />
+            <SpecsSection specifications={product.specifications} />
 
             {/* Métodos de Pago - Ancho completo */}
             <MetodosDePago />

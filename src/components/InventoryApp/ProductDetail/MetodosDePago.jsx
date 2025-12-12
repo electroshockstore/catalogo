@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
 import { Banknote, CreditCard, AlertTriangle, CheckCircle2, Wifi, Shield, Sparkles } from 'lucide-react';
 
 const MetodosDePago = () => {
-  const [selectedMethod, setSelectedMethod] = useState(null);
 
   const paymentMethods = [
     {
@@ -56,81 +54,89 @@ const MetodosDePago = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 p-4 sm:p-8">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 right-20 w-72 h-72 bg-blue-200/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-20 w-72 h-72 bg-emerald-200/30 rounded-full blur-3xl" />
+        <div className="absolute top-10 sm:top-20 right-10 sm:right-20 w-32 h-32 sm:w-72 sm:h-72 bg-blue-200/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 sm:bottom-20 left-10 sm:left-20 w-32 h-32 sm:w-72 sm:h-72 bg-emerald-200/30 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto relative">
         {/* Header Section */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full border-2 border-blue-200 shadow-sm mb-6">
-            <Sparkles className="h-4 w-4 text-blue-600" />
-            <span className="text-sm font-bold text-gray-700">Métodos de Pago</span>
+        <div className="text-center mb-8 sm:mb-12">
+          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-white rounded-full border-2 border-blue-200 shadow-sm mb-4 sm:mb-6">
+            <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />
+            <span className="text-xs sm:text-sm font-bold text-gray-700">Métodos de Pago</span>
           </div>
           
-          <h2 className="text-4xl sm:text-5xl font-black text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-4 sm:mb-6 px-4">
             Opciones de Pago
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600 mt-2">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600 mt-1 sm:mt-2 pb-1 sm:pb-2">
               Seguras y Confiables
             </span>
           </h2>
           
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto font-medium">
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto font-medium px-4">
             Aceptamos las siguientes formas de pago para tu comodidad
           </p>
         </div>
 
         {/* Payment Methods Grid */}
-        <div className="grid md:grid-cols-2 gap-6 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-12 sm:mb-16">
           {paymentMethods.map((method) => {
             const Icon = method.icon;
-            const isSelected = selectedMethod === method.id;
             
             return (
               <div
                 key={method.id}
-                onClick={() => setSelectedMethod(isSelected ? null : method.id)}
-                className={`group relative cursor-pointer transition-all duration-300 ${
-                  isSelected ? 'scale-105' : 'hover:scale-102'
-                }`}
+                className="group relative"
               >
                 {/* Card */}
-                <div className={`relative bg-white rounded-3xl border-2 transition-all duration-300 overflow-hidden shadow-lg hover:shadow-2xl ${
-                  isSelected 
-                    ? 'border-blue-500 shadow-blue-200' 
-                    : 'border-gray-200 hover:border-blue-300'
-                }`}>
+                <div className={`relative bg-white rounded-3xl border-2 overflow-hidden shadow-[0_20px_60px_rgb(0,0,0,0.25)] ${method.id === 'efectivo' ? 'border-emerald-300' : 'border-blue-300'} backdrop-blur-sm`}>
+                  {/* Background image for efectivo method */}
+                  {method.id === 'efectivo' && (
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{
+                        backgroundImage: 'url(/images/cash.png)',
+                           backgroundSize: 'contain',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'right'
+                      }}
+                    />
+                  )}
+                  
+                  {/* Background image for transferencia method */}
+                  {method.id === 'transferencia' && (
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{
+                        backgroundImage: 'url(/images/transfer.png)',
+                        backgroundSize: 'contain',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'right '
+                      }}
+                    />
+                  )}
+                  
                   {/* Gradient background decoration */}
                   <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${method.bgColor} opacity-40 rounded-full blur-3xl transform translate-x-20 -translate-y-20`} />
 
                   {/* Content */}
-                  <div className="relative p-8">
+                  <div className="relative p-4 sm:p-6 lg:p-8 pb-4 sm:pb-6">
                     {/* Icon Circle */}
-                    <div className={`inline-flex p-5 rounded-2xl bg-gradient-to-br ${method.gradient} shadow-xl mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className="h-10 w-10 text-white" strokeWidth={2.5} />
+                    <div className={`inline-flex p-3 sm:p-4 lg:p-5 rounded-xl sm:rounded-2xl bg-gradient-to-br ${method.gradient} shadow-[0_10px_30px_rgba(0,0,0,0.3)] sm:shadow-[0_15px_50px_rgba(0,0,0,0.4)] mb-4 sm:mb-6`}>
+                      <Icon className="h-6 w-6 sm:h-8 sm:w-8 lg:h-10 lg:w-10 text-white" strokeWidth={2.5} />
                     </div>
 
-                    <h3 className="text-2xl font-black text-gray-900 mb-3">
+                    <h3 className={`text-lg sm:text-xl lg:text-2xl font-black mb-2 sm:mb-3 ${method.id === 'efectivo' ? 'text-emerald-800' : 'text-blue-800'}`}>
                       {method.title}
                     </h3>
                     
-                    <p className="text-gray-700 font-semibold text-base mb-4">
+                    <p className={`font-semibold text-sm sm:text-base mb-0 ${method.id === 'efectivo' ? 'text-emerald-700' : 'text-blue-700'}`}>
                       {method.description}
                     </p>
-
-                  
-
-                    {/* Selection Indicator */}
-                    {isSelected && (
-                      <div className="mt-5 flex items-center gap-2">
-                        <div className={`h-2 w-2 rounded-full bg-gradient-to-r ${method.gradient} animate-pulse`} />
-                        <span className="text-xs font-bold text-blue-600">Método Seleccionado</span>
-                      </div>
-                    )}
                   </div>
 
-                  {/* Bottom accent line */}
-                  <div className={`h-2 bg-gradient-to-r ${method.gradient} transform ${isSelected ? 'scale-x-100' : 'scale-x-0'} transition-transform duration-300 origin-left`} />
+                  {/* Bottom accent line - always visible */}
+                  <div className={`h-2 bg-gradient-to-r ${method.gradient}`} />
                 </div>
               </div>
             );
@@ -140,17 +146,17 @@ const MetodosDePago = () => {
         {/* Security Tips Section */}
         <div className="relative">
           {/* Section Header */}
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-3 px-6 py-3 bg-white rounded-2xl border-2 border-gray-200 shadow-md">
-              <Shield className="h-6 w-6 text-gray-700" strokeWidth={2.5} />
-              <h3 className="text-2xl font-black text-gray-900">
+          <div className="text-center mb-6 sm:mb-10">
+            <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-white rounded-xl sm:rounded-2xl border-2 border-gray-200 shadow-md">
+              <Shield className="h-4 w-4 sm:h-6 sm:w-6 text-gray-700" strokeWidth={2.5} />
+              <h3 className="text-lg sm:text-2xl font-black text-gray-900">
                 Tips de Seguridad
               </h3>
             </div>
           </div>
 
           {/* Tips Grid */}
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {securityTips.map((tip, index) => {
               const Icon = tip.icon;
               
@@ -160,22 +166,22 @@ const MetodosDePago = () => {
                   className="group relative"
                 >
                   {/* Card */}
-                  <div className={`relative bg-white rounded-2xl border-2 border-gray-200 p-7 hover:border-gray-300 transition-all duration-300 shadow-md hover:shadow-xl h-full ${tip.bgColor} bg-opacity-30`}>
+                  <div className={`relative bg-white rounded-xl sm:rounded-2xl border-2 border-gray-200 p-4 sm:p-6 lg:p-7 hover:border-gray-300 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] h-full ${tip.bgColor} bg-opacity-30`}>
                     {/* Icon Circle with Gradient */}
-                    <div className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${tip.gradient} shadow-lg mb-5 group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className="h-7 w-7 text-white" strokeWidth={2.5} />
+                    <div className={`inline-flex p-3 sm:p-4 rounded-lg sm:rounded-xl bg-gradient-to-br ${tip.gradient} shadow-lg mb-3 sm:mb-5 group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 text-white" strokeWidth={2.5} />
                     </div>
 
-                    <h4 className="text-lg font-bold text-gray-900 mb-3">
+                    <h4 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3 tracking-tight">
                       {tip.title}
                     </h4>
                     
-                    <p className="text-sm text-gray-700 font-medium leading-relaxed">
+                    <p className="text-xs sm:text-sm text-gray-700 font-normal leading-relaxed tracking-wide">
                       {tip.description}
                     </p>
 
-                    {/* Animated Border Bottom */}
-                    <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${tip.gradient} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-b-2xl`} />
+                    {/* Bottom Border - always visible */}
+                    <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${tip.gradient} rounded-b-2xl`} />
                   </div>
                 </div>
               );
@@ -184,13 +190,16 @@ const MetodosDePago = () => {
         </div>
 
         {/* Footer Info */}
-        <div className="mt-12 text-center">
-          <div className="inline-flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-blue-50 to-emerald-50 rounded-2xl border-2 border-blue-200 shadow-md">
-            <Sparkles className="h-5 w-5 text-blue-600" />
-            <p className="text-sm font-bold text-gray-800">
+        <div className="mt-8 sm:mt-12 text-center px-4">
+          <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-blue-50 to-emerald-50 rounded-xl sm:rounded-2xl border-2 border-blue-200 shadow-md">
+            <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 flex-shrink-0" />
+            <p className="text-xs sm:text-sm font-bold text-gray-800 text-center">
               Verifica siempre que el monto y los datos sean correctos antes de confirmar
             </p>
           </div>
+
+
+
         </div>
       </div>
     </div>
