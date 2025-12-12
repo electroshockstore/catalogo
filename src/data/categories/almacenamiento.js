@@ -1,4 +1,4 @@
-// IDs disponibles: 200-299 | Próximo ID: 211
+// IDs disponibles: 200-299 | Próximo ID: 216
 export const almacenamientoProducts = [
   {
     id: 200,
@@ -427,6 +427,82 @@ export const almacenamientoProducts = [
       "Controlador": "SMI",
       "Temperatura de funcionamiento": "0°C a 70°C",
       "Uso recomendado": "PC básica, notebooks, sistemas livianos"
+    }
+  },
+  {
+    id: 214,
+    name: "Externo Western Digital WD Elements 1TB",
+    brand: "Western Digital",
+    model: "WD Elements Portable",
+    category: "Almacenamiento",
+    price: 120000,
+    stock: 5,
+    sku: "WD-1TB-ELEMENTS",
+    description: "Disco duro externo Western Digital WD Elements 1TB USB 3.0",
+    images: [
+      "/images/almacenamiento/wd_elements_1tb.webp",
+      "/images/almacenamiento/wd_elements_1tb_side.webp",
+      "/images/almacenamiento/wd_elements_1tb_back.webp"
+    ],
+    specifications: {
+      "Marca": "Western Digital",
+      "Línea": "WD Elements Portable",
+      "Modelo": "WDBUZG0010BBK",
+      "Modelo detallado": "WDBUZG0010BBK-0B",
+      "Capacidad": "1 TB",
+      "Tipo": "HDD externo (2.5 pulgadas)",
+      "Interfaz": "USB 3.0 (retrocompatible con USB 2.0)",
+      "Velocidad de transferencia": "Hasta 5 Gbps (USB 3.0 teórico)",
+      "Velocidad de rotación": "5400 RPM",
+      "Cache aproximada": "64–128 MB",
+      "Sistema de archivos de fábrica": "NTFS",
+      "Alimentación": "USB (no requiere fuente externa)",
+      "Plug and play": "Sí",
+      "Compatibilidad": "Windows / macOS / Linux (puede requerir reformateo)",
+      "Carcasa": "Plástico negro texturizado",
+      "Indicador LED": "Sí",
+      "Seguridad": "Protección interna contra golpes (montaje anti-vibración)",
+      "Uso recomendado": "Backup de archivos, transporte de datos"
+    }
+  },
+  {
+    id: 215,
+    name: "Externo Western Digital WD Elements 2TB",
+    brand: "Western Digital",
+    model: "WD Elements Portable",
+    category: "Almacenamiento",
+    price: 180000,
+    stock: 3,
+    sku: "WD-2TB-ELEMENTS",
+    description: "Disco duro externo Western Digital WD Elements 2TB USB 3.0",
+    images: [
+      "/images/almacenamiento/wd_elements_2tb.webp",
+      "/images/almacenamiento/wd_elements_2tb_side.webp",
+      "/images/almacenamiento/wd_elements_2tb_specs.webp"
+    ],
+    specifications: {
+      "Marca": "Western Digital",
+      "Línea": "WD Elements Portable",
+      "Modelo": "WDBU6Y0020BBK",
+      "Modelo detallado": "WDBU6Y0020BBK-WESN",
+      "Capacidad": "2 TB",
+      "Tipo": "Disco duro externo (HDD)",
+      "Interfaz": "USB 3.0 (compatible con USB 2.0)",
+      "Velocidad de transferencia": "Hasta 5 Gbps (USB 3.0 teórico)",
+      "Tamaño": "2.5 pulgadas",
+      "Alimentación": "Por USB (no requiere fuente externa)",
+      "Compatibilidad": "Windows / macOS / Linux (requiere formateo según el SO)",
+      "Sistema de archivos de fábrica": "NTFS",
+      "Cache aproximada": "128 MB (típico en esta línea)",
+      "Velocidad de rotación": "5400 RPM",
+      "Plug and play": "Sí",
+      "Carcasa": "Plástico negro antideslizante",
+      "Indicador LED": "Sí",
+      "Uso recomendado": "Respaldo de archivos, almacenamiento portátil, multimedia",
+      "Alto": "111 mm",
+      "Ancho": "82 mm",
+      "Profundidad": "15 mm",
+      "Peso": "130 g aprox."
     }
   }
 ];

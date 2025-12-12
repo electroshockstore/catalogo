@@ -1,4 +1,4 @@
-// IDs disponibles: 400-499 | Próximo ID: 400 (actualizar IDs existentes)
+// IDs disponibles: 400-499 | Próximo ID: 410
 export const memoriasProducts = [
   {
     id: 27,
@@ -34,7 +34,7 @@ export const memoriasProducts = [
     model: "Shadow 2",
     category: "Memorias RAM",
     price: 200000,
-    stock: 4,
+    stock: 7,
     images: [
       "/images/ram/netac_shadow2_ram.webp",
       "/images/ram/netac_shadow2_ram_side.webp",
@@ -99,7 +99,7 @@ export const memoriasProducts = [
     model: "Shadow",
     category: "Memorias RAM",
     price: 90000,
-    stock: 3,
+    stock: 5,
     images: [
       "/images/ram/ram_netac_shadow_ddr4.webp",
       "/images/ram/ram_netac_shadow_ddr4_side.webp"
@@ -214,7 +214,7 @@ export const memoriasProducts = [
     model: "Premier",
     category: "Memorias RAM",
     price: 95000,
-    stock: 2,
+    stock: 5,
     images: [
       "/images/ram/adata_ddr416gb_basic.webp",
       "/images/ram/adata_ddr416gb_basic_side.webp"
@@ -268,7 +268,7 @@ export const memoriasProducts = [
     model: "Signature",
     category: "Memorias RAM",
     price: 100000,
-    stock: 3,
+    stock: 5,
     images: [
       "/images/ram/patriot_signature_ddr416.webp",
       "/images/ram/patriot_signature_ddr416_side.webp",
@@ -323,6 +323,105 @@ export const memoriasProducts = [
       temperaturaFuncionamiento: "0°C a 85°C",
       normaJEDEC: "Cumple estándar DDR4",
       arquitecturaChips: "1Rx8 o 2Rx8 (dependiendo del lote)"
+    }
+  },
+  {
+    id: 407,
+    name: "Adata Xpg Ddr4 16gb 3200mhz Spectrix D35 Rgb White",
+    brand: "XPG",
+    model: "Spectrix D35",
+    category: "Memorias RAM",
+    price: 140000,
+    stock: 2,
+    images: [
+      "/images/ram/spectrix_d35_white.webp",
+      "/images/ram/spectrix_d35_white_side.webp",
+      "/images/ram/spectrix_d35_white_front.webp"
+    ],
+    description: "Memoria RAM XPG Spectrix D35 16GB DDR4 3200MHz RGB White",
+    specifications: {
+      marca: "XPG",
+      linea: "Spectrix",
+      modelo: "AX4U320016G16A-SWHD35G",
+      modeloDetallado: "GAMMIX D35G",
+      modulosMemoriaRAM: "1 x 16 GB",
+      capacidadTotal: "16 GB",
+      velocidadTransferencia: "0 TB/s",
+      tipoMemoriaRAM: "DDR4 DRAM",
+      formatoMemoriaRAM: "UDIMM",
+      velocidadMemoria: "3.2 GHz",
+      memoriaGraficaECC: "No",
+      iluminacionRGB: "Sí",
+      color: "Blanco",
+      voltaje: "1.35V",
+      latenciaCAS: "CL16"
+    }
+  },
+  {
+    id: 408,
+    name: "HyperX Fury 16GB DDR4 2666MHz CL16",
+    brand: "HyperX",
+    model: "Fury",
+    category: "Memorias RAM",
+    price: 120000,
+    stock: 1,
+    images: [
+      "/images/ram/kingston_fury.webp",
+      "/images/ram/kingston_fury_side.webp",
+      "/images/ram/kingston_fury_back.webp"
+    ],
+    description: "Memoria RAM HyperX Fury 16GB DDR4 2666MHz CL16",
+    specifications: {
+      marca: "HyperX",
+      linea: "Fury",
+      modelo: "HX426C16FB/16",
+      modulos: "1x16GB",
+      tipo: "DDR4 SDRAM",
+      formato: "DIMM",
+      capacidad: "16 GB",
+      frecuenciaEfectivaMHz: "2666 MHz",
+      latenciaCL: "CL16",
+      voltaje: "1.2V",
+      transferenciaTeórica: "21.3 GB/s",
+      ecc: "No",
+      perfilXMP: "Sí (automático mediante Plug-N-Play)",
+      compatibilidad: "Placas base DDR4 Intel y AMD",
+      color: "Negro (heatsink Fury estándar)",
+      disipador: "Aluminio de bajo perfil",
+      serieEspecifica: "Fury Black DDR4",
+      nombreDelCodigo: "Fury (Kingston)"
+    }
+  },
+  {
+    id: 409,
+    name: "NEO FORZA DDR5 16GB 5200 CL42 full box",
+    brand: "Neo Forza",
+    model: "DDR5 5200",
+    category: "Memorias RAM",
+    price: 150000,
+    stock: 2,
+    images: [
+      "/images/ram/neo_forza_ddr5.webp"
+    ],
+    description: "Memoria RAM Neo Forza DDR5 16GB 5200MHz CL42",
+    specifications: {
+      capacidad: "16GB",
+      tipoMemoria: "DDR5",
+      frecuencia: "5200 MHz",
+      latencia: "CL42",
+      voltaje: "1.25V",
+      factorDeForma: "UDIMM",
+      compatibilidad: "Placas base DDR5 Intel y AMD",
+      perfilXmpAmp: "XMP 3.0",
+      disipador: "Aluminio de bajo perfil (varía por modelo)",
+      arquitectura: "On-die ECC (integrado en chips DDR5)",
+      usoRecomendado: "PC gamer, estaciones de trabajo, actualización de equipos DDR5",
+      marca: "Neo Forza",
+      origen: "Fabricante taiwanés especializado en memorias RAM y SSD",
+      segmento: "Gama media con buena relación precio/rendimiento",
+      tipo: "Un solo módulo (1x16GB)",
+      dualChannel: "Sí, al combinar con otro módulo igual",
+      observaciones: "Al ser CL42 no es de las más rápidas, pero funciona estable para uso general y gaming estándar."
     }
   }
 ];

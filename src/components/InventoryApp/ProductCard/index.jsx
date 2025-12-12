@@ -95,10 +95,12 @@ const ProductCard = memo(({ product, viewMode, onClick }) => {
                 {stockStatus.text}
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-2xl font-black text-green-700">
-                {new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 0 }).format(product.price)}
-              </span>
+            <div className="flex items-center gap-3">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-50 to-emerald-50 rounded-2xl border-2 border-blue-200 shadow-md">
+                <span className="text-lg font-black text-gray-800">
+                  {new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 0 }).format(product.price)}
+                </span>
+              </div>
               <span className="text-xs text-gray-500">{product.category}</span>
             </div>
           </div>
