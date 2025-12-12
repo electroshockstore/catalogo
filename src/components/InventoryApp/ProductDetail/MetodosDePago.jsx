@@ -7,7 +7,7 @@ const MetodosDePago = () => {
       id: 'efectivo',
       icon: Banknote,
       title: 'Efectivo',
-      description: 'Pago en el momento de la entrega',
+      description: 'En el momento', 
       color: 'emerald',
       gradient: 'from-emerald-500 to-green-500',
       bgColor: 'from-emerald-50 to-green-50',
@@ -16,35 +16,35 @@ const MetodosDePago = () => {
     {
       id: 'transferencia',
       icon: CreditCard,
-      title: 'Transferencias',
-      description: 'Solo para compras mayores a $100.000',
+      title: 'Transferencia',
+      description: 'Mayores a $100.000', // Texto mejorado
       color: 'blue',
       gradient: 'from-blue-500 to-indigo-500',
       bgColor: 'from-blue-50 to-indigo-50',
-   
       available: true
     }
   ];
 
+  // Consejos de seguridad ultra-sintetizados
   const securityTips = [
     {
       icon: CheckCircle2,
       title: 'Verificación Bancaria',
-      description: 'Checkear su cuenta bancaria y saldo con su banco antes de salir',
+      description: 'Confirme su saldo y el estado de la cuenta inmediatamente antes de la transferencia.',
       gradient: 'from-emerald-500 to-green-500',
       bgColor: 'bg-emerald-50'
     },
     {
       icon: Wifi,
       title: 'Conexión a Internet',
-      description: 'Tener conexión a internet cuando salgan a retirar',
+      description: 'Disponga de una conexión a Internet estable y segura durante la entrega/retiro.',
       gradient: 'from-blue-500 to-cyan-500',
       bgColor: 'bg-blue-50'
     },
     {
       icon: AlertTriangle,
       title: 'Validación de Pago',
-      description: 'No se entrega producto sin que la transferencia se impacte realmente',
+      description: 'La entrega se efectúa solo cuando la transferencia esté acreditada en nuestra cuenta.', // Usando la versión más concisa
       gradient: 'from-amber-500 to-orange-500',
       bgColor: 'bg-orange-50'
     }
@@ -72,10 +72,6 @@ const MetodosDePago = () => {
               Seguras y Confiables
             </span>
           </h2>
-          
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto font-medium px-4">
-            Aceptamos las siguientes formas de pago para tu comodidad
-          </p>
         </div>
 
         {/* Payment Methods Grid */}
@@ -90,13 +86,14 @@ const MetodosDePago = () => {
               >
                 {/* Card */}
                 <div className={`relative bg-white rounded-3xl border-2 overflow-hidden shadow-[0_20px_60px_rgb(0,0,0,0.25)] ${method.id === 'efectivo' ? 'border-emerald-300' : 'border-blue-300'} backdrop-blur-sm`}>
+                  
                   {/* Background image for efectivo method */}
                   {method.id === 'efectivo' && (
                     <div 
                       className="absolute inset-0 bg-cover bg-center"
                       style={{
                         backgroundImage: 'url(/images/cash.png)',
-                           backgroundSize: 'contain',
+                        backgroundSize: 'contain',
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'right'
                       }}
@@ -111,7 +108,7 @@ const MetodosDePago = () => {
                         backgroundImage: 'url(/images/transfer.png)',
                         backgroundSize: 'contain',
                         backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'right '
+                        backgroundPosition: 'right'
                       }}
                     />
                   )}
@@ -126,7 +123,15 @@ const MetodosDePago = () => {
                       <Icon className="h-6 w-6 sm:h-8 sm:w-8 lg:h-10 lg:w-10 text-white" strokeWidth={2.5} />
                     </div>
 
-                    <h3 className={`text-lg sm:text-xl lg:text-2xl font-black mb-2 sm:mb-3 ${method.id === 'efectivo' ? 'text-emerald-800' : 'text-blue-800'}`}>
+                    {/* TÍTULO MEJORADO (MODERNO) */}
+                    <h3 className={`
+                        text-2xl sm:text-xl lg:text-5xl
+                        font-extrabold 
+                        tracking-tight 
+                        leading-snug 
+                        mb-1 sm:mb-2
+                        ${method.id === 'efectivo' ? 'text-emerald-700' : 'text-blue-700'}
+                    `}>
                       {method.title}
                     </h3>
                     
@@ -197,9 +202,6 @@ const MetodosDePago = () => {
               Verifica siempre que el monto y los datos sean correctos antes de confirmar
             </p>
           </div>
-
-
-
         </div>
       </div>
     </div>
