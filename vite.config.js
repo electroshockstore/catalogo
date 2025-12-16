@@ -7,7 +7,6 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    // Optimizaciones para SEO y performance
     rollupOptions: {
       output: {
         manualChunks: {
@@ -16,17 +15,8 @@ export default defineConfig({
         }
       }
     },
-    // Minificación agresiva
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true
-      }
-    },
-    // Optimizar chunks
+    minify: 'esbuild',
     chunkSizeWarningLimit: 1000,
-    // Source maps para producción (opcional, desactivar si no se necesita)
     sourcemap: false
   },
   // Optimizaciones de servidor dev
