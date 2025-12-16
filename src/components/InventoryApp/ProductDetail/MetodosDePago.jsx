@@ -51,17 +51,17 @@ const MetodosDePago = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 p-4 sm:p-8">
+    <div className="bg-gradient-to-br from-gray-50 via-white to-blue-50 p-4 sm:p-6 rounded-xl relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-10 sm:top-20 right-10 sm:right-20 w-32 h-32 sm:w-72 sm:h-72 bg-blue-200/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 sm:bottom-20 left-10 sm:left-20 w-32 h-32 sm:w-72 sm:h-72 bg-emerald-200/30 rounded-full blur-3xl" />
+        <div className="absolute top-5 right-5 w-32 h-32 bg-blue-200/20 rounded-full blur-2xl" />
+        <div className="absolute bottom-5 left-5 w-32 h-32 bg-emerald-200/20 rounded-full blur-2xl" />
       </div>
 
-      <div className="max-w-7xl mx-auto relative">
+      <div className="relative">
         {/* Header Section */}
-        <div className="text-center mb-8 sm:mb-12">
-          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-white rounded-full border-2 border-blue-200 shadow-sm mb-4 sm:mb-6">
+        <div className="text-center mb-6">
+          <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 bg-white rounded-full border-2 border-blue-200 shadow-sm mb-4 sm:mb-6">
             <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />
             <span className="text-xs sm:text-sm font-bold text-gray-700">Métodos de Pago</span>
           </div>
@@ -75,7 +75,7 @@ const MetodosDePago = () => {
         </div>
 
         {/* Payment Methods Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-12 sm:mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-10">
           {paymentMethods.map((method) => {
             const Icon = method.icon;
             
@@ -151,7 +151,7 @@ const MetodosDePago = () => {
         {/* Security Tips Section */}
         <div className="relative">
           {/* Section Header */}
-          <div className="text-center mb-6 sm:mb-10">
+          <div className="text-center mb-4 sm:mb-6">
             <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-white rounded-xl sm:rounded-2xl border-2 border-gray-200 shadow-md">
               <Shield className="h-4 w-4 sm:h-6 sm:w-6 text-gray-700" strokeWidth={2.5} />
               <h3 className="text-lg sm:text-2xl font-black text-gray-900">
@@ -195,7 +195,7 @@ const MetodosDePago = () => {
         </div>
 
         {/* Footer Info */}
-        <div className="mt-8 sm:mt-12 text-center px-4">
+        <div className="mt-6 sm:mt-8 text-center px-4">
           <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-blue-50 to-emerald-50 rounded-xl sm:rounded-2xl border-2 border-blue-200 shadow-md">
             <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 flex-shrink-0" />
             <p className="text-xs sm:text-sm font-bold text-gray-800 text-center">

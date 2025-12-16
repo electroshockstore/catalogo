@@ -20,9 +20,9 @@ const ProductImageSection = ({ images = [], name, stock, stockStatus }) => {
   };
 
   return (
-    <div className="bg-white rounded-xl border-2 border-gray-200 shadow-lg p-6 overflow-hidden">
+    <div className="bg-white rounded-xl border-2 border-gray-200 shadow-lg p-6 overflow-hidden h-full flex flex-col">
       {/* Imagen principal */}
-      <div className="aspect-square bg-gray-50 rounded-lg overflow-hidden relative group">
+      <div className="aspect-square bg-gray-50 rounded-lg overflow-hidden relative group flex-shrink-0">
         <img
           src={currentImage}
           alt={`${name} - Imagen ${currentImageIndex + 1}`}
@@ -73,7 +73,7 @@ const ProductImageSection = ({ images = [], name, stock, stockStatus }) => {
 
       {/* Miniaturas */}
       {hasMultipleImages && (
-        <div className="mt-4 flex gap-2 overflow-x-auto pb-2">
+        <div className="mt-4 flex gap-2 overflow-x-auto pb-2 flex-shrink-0">
           {images.map((img, index) => (
             <button
               key={index}
@@ -96,6 +96,9 @@ const ProductImageSection = ({ images = [], name, stock, stockStatus }) => {
           ))}
         </div>
       )}
+      
+      {/* Espaciador flexible para igualar altura con ProductInfoCard */}
+      <div className="flex-1"></div>
     </div>
   );
 };
