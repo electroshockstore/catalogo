@@ -42,10 +42,12 @@ const PCBuilderCard = ({
             {/* Background Image with Blur - Optimizado */}
             <div className="absolute inset-0">
                 <img 
-                    src="/images/builder.png" 
-                    alt={title}
-                    loading="lazy"
+                    src="/images/builder_tiny.png" 
+                    alt=""
+                    loading="eager"
                     decoding="async"
+                    width="1920"
+                    height="1080"
                     className="w-full h-full object-cover brightness-50 group-hover:brightness-60 transition-all duration-300"
                     style={{ filter: isMobile ? 'blur(1px)' : 'blur(2px)' }}
                 />

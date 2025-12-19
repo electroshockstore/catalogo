@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Shield, Package, AlertTriangle, MapPin, Info } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const slides = [
   {
@@ -99,8 +99,11 @@ const HeroCarousel = () => {
           <img 
             src={current.image} 
             className="w-full h-full object-cover" 
-            alt={current.title}
-            loading="lazy"
+            alt=""
+            loading="eager"
+            decoding="async"
+            width="1920"
+            height="1080"
           />
           {/* Overlay gradiente más fuerte en móvil */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#020617] via-[#020617]/80 md:via-[#020617]/50 to-transparent" />
