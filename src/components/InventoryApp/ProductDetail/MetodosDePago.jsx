@@ -9,7 +9,7 @@ const MetodosDePago = () => {
       title: 'Efectivo',
       description: 'En el momento', 
       color: 'emerald',
-      gradient: 'from-emerald-500 to-green-500',
+   gradient: 'from-yellow-500 to-cyan-500',
       bgColor: 'from-emerald-50 to-green-50',
       available: true
     },
@@ -19,7 +19,7 @@ const MetodosDePago = () => {
       title: 'Transferencia',
       description: 'Mayores a $100.000', // Texto mejorado
       color: 'blue',
-      gradient: 'from-blue-500 to-indigo-500',
+      gradient: 'from-blue-500 to-cyan-400',
       bgColor: 'from-blue-50 to-indigo-50',
       available: true
     }
@@ -38,14 +38,14 @@ const MetodosDePago = () => {
       icon: Wifi,
       title: 'Conexión a Internet',
       description: 'Disponga de una conexión a Internet estable y segura durante la entrega/retiro.',
-      gradient: 'from-blue-500 to-cyan-500',
+      gradient: 'from-yellow-500 to-yellow-300',
       bgColor: 'bg-blue-50'
     },
     {
       icon: AlertTriangle,
       title: 'Validación de Pago',
       description: 'La entrega se efectúa solo cuando la transferencia esté acreditada en nuestra cuenta.', // Usando la versión más concisa
-      gradient: 'from-amber-500 to-orange-500',
+      gradient: 'from-red-500 to-orange-500',
       bgColor: 'bg-orange-50'
     }
   ];
@@ -160,38 +160,44 @@ const MetodosDePago = () => {
             </div>
           </div>
 
-          {/* Tips Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {securityTips.map((tip, index) => {
-              const Icon = tip.icon;
-              
-              return (
-                <div
-                  key={index}
-                  className="group relative"
-                >
-                  {/* Card */}
-                  <div className={`relative bg-white rounded-xl sm:rounded-2xl border-2 border-gray-200 p-4 sm:p-6 lg:p-7 hover:border-gray-300 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] h-full ${tip.bgColor} bg-opacity-30`}>
-                    {/* Icon Circle with Gradient */}
-                    <div className={`inline-flex p-3 sm:p-4 rounded-lg sm:rounded-xl bg-gradient-to-br ${tip.gradient} shadow-lg mb-3 sm:mb-5 group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 text-white" strokeWidth={2.5} />
-                    </div>
+         {/* Tips Grid */}
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+  {securityTips.map((tip, index) => {
+    const Icon = tip.icon;
 
-                    <h4 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3 tracking-tight">
-                      {tip.title}
-                    </h4>
-                    
-                    <p className="text-xs sm:text-sm text-gray-700 font-normal leading-relaxed tracking-wide">
-                      {tip.description}
-                    </p>
+    return (
+      <div key={index} className="group relative">
+        {/* Card Principal con overflow-hidden para contener los bordes redondeados */}
+        <div className={`relative bg-white rounded-2xl sm:rounded-[2rem] border-2 border-gray-100 p-6 sm:p-7 
+          transition-all duration-500 shadow-[0_9px_30px_rgba(0,0,0,0.04)] 
+           h-full overflow-hidden flex flex-col`}
+        >
+          {/* Fondo sutil (Liquid Style) */}
+          <div className={`absolute inset-0 ${tip.bgColor} opacity-10 group-hover:opacity-20 transition-opacity duration-500`} />
 
-                    {/* Bottom Border - always visible */}
-                    <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${tip.gradient} rounded-b-2xl`} />
-                  </div>
-                </div>
-              );
-            })}
+          {/* Icon Circle with Gradient */}
+          <div className="relative z-10">
+            <div className={`inline-flex p-3.5 rounded-2xl bg-gradient-to-br ${tip.gradient} shadow-lg mb-5 
+             `}>
+              <Icon className="h-6 w-6 sm:h-7 sm:w-7 text-white" strokeWidth={2.5} />
+            </div>
+
+            <h4 className="text-xl font-bold text-gray-900 mb-3 tracking-tight">
+              {tip.title}
+            </h4>
+
+            <p className="text-sm text-gray-600 font-medium leading-relaxed">
+              {tip.description}
+            </p>
           </div>
+
+          {/* Bottom Border CORREGIDO: Adaptado perfectamente al redondeo */}
+          <div className={`absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r ${tip.gradient} transition-transform duration-500 transform origin-left`} />
+        </div>
+      </div>
+    );
+  })}
+</div>
         </div>
 
         {/* Footer Info */}
