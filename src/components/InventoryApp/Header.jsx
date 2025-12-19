@@ -5,7 +5,7 @@ import { Package, Search, FileText, MapPin, X, Home, Bot, ArrowRight, Cpu } from
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStock } from '../../context/StockContext';
 
-const Header = ({ searchQuery, onSearchChange, onGoHome }) => {
+const Header = ({ searchQuery = '', onSearchChange, onGoHome }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [showConditionsModal, setShowConditionsModal] = useState(false);
@@ -14,14 +14,15 @@ const Header = ({ searchQuery, onSearchChange, onGoHome }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (searchQuery.trim().length >= 3) {
-      const query = searchQuery.toLowerCase();
+    const query = searchQuery || '';
+    if (query.trim().length >= 3) {
+      const lowerQuery = query.toLowerCase();
       const results = products
         .filter(product =>
-          product.name?.toLowerCase().includes(query) ||
-          product.brand?.toLowerCase().includes(query) ||
-          product.model?.toLowerCase().includes(query) ||
-          product.category?.toLowerCase().includes(query)
+          product.name?.toLowerCase().includes(lowerQuery) ||
+          product.brand?.toLowerCase().includes(lowerQuery) ||
+          product.model?.toLowerCase().includes(lowerQuery) ||
+          product.category?.toLowerCase().includes(lowerQuery)
         )
         .slice(0, 5);
       setSearchResults(results);

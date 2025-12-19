@@ -19,6 +19,7 @@ const PCBuilderCard = ({
     mode = 'manual' // 'assisted' or 'manual'
 }) => {
     const navigate = useNavigate();
+    const isMobile = window.innerWidth < 768;
 
     const handleClick = () => {
         navigate('/pc-builder', { state: { mode } });
@@ -26,27 +27,26 @@ const PCBuilderCard = ({
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: isMobile ? 10 : 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay }}
+            transition={{ delay: isMobile ? delay * 0.5 : delay, duration: isMobile ? 0.3 : 0.5 }}
             onClick={handleClick}
             className="
-                group relative overflow-hidden rounded-3xl transition-all duration-500 cursor-pointer 
-                hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-900/40 /* Sombra al hacer hover */
-                
-                /* ESTILOS DE BORDE Y DEFINICIÓN MODERNOS: */
-                border border-gray-800             /* Borde oscuro para estructura */
-                ring-1 ring-white/10               /* Anillo blanco sutil para destacar */
-                
+                group relative overflow-hidden rounded-3xl transition-all duration-300 cursor-pointer 
+                hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-900/40
+                border border-gray-800
+                ring-1 ring-white/10
             "
         >
-            {/* Background Image with Blur */}
+            {/* Background Image with Blur - Optimizado */}
             <div className="absolute inset-0">
                 <img 
                     src="/images/builder.png" 
                     alt={title}
-                    className="w-full h-full object-cover brightness-50 group-hover:brightness-60 transition-all duration-500"
-                    style={{ filter: 'blur(2px)' }}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover brightness-50 group-hover:brightness-60 transition-all duration-300"
+                    style={{ filter: isMobile ? 'blur(1px)' : 'blur(2px)' }}
                 />
             </div>
 
@@ -81,10 +81,10 @@ const PCBuilderCard = ({
                 </div>
 
                 {/* CTA Button */}
-                <button className={`w-full py-4 px-6 ${buttonGradient} rounded-xl font-bold text-white text-lg transition-all duration-300 shadow-lg flex items-center justify-center gap-3 group-hover:scale-105`}>
+                <button className={`w-full py-4 px-6 ${buttonGradient} rounded-xl font-bold text-white text-lg transition-all duration-200 shadow-lg flex items-center justify-center gap-3 ${!isMobile && 'group-hover:scale-105'}`}>
                     <ButtonIcon className="w-6 h-6" />
                     <span>{buttonText}</span>
-                    <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    <ChevronRight className={`w-5 h-5 ${!isMobile && 'group-hover:translate-x-1'} transition-transform`} />
                 </button>
             </div>
         </motion.div>
