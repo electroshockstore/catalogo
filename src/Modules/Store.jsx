@@ -123,7 +123,7 @@ const Store = () => {
 
       <main className="flex-1 w-full flex flex-col relative">
         {/* Selector de Categorías Superior - Estático, NO sticky */}
-        <div className="px-4 sm:px-6 py-4 sm:py-6 relative z-10">
+        <div className="px-4 sm:px-6 py-4 sm:py-6 relative z-30">
           <CategoryFilter 
             selectedCategory={selectedCategory}
             onCategoryChange={handleCategoryChange}

@@ -102,20 +102,20 @@ const CategoryFilter = ({ selectedCategory, onCategoryChange }) => {
   const SelectedIcon = selectedCategory ? getCategoryIcon(selectedCategory) : Grid3X3;
 
   return (
-    <div className="relative group">
+    <div className="relative group z-30">
       {/* Capa de resplandor 1 - Animada */}
-      <div className="absolute -inset-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-[2.5rem] opacity-30 blur-2xl group-hover:opacity-40 transition-opacity duration-500"></div>
+      <div className="absolute -inset-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-[2.5rem] opacity-30 blur-2xl group-hover:opacity-40 transition-opacity duration-500 -z-10"></div>
       
       {/* Capa de resplandor 2 - Pulsante */}
-      <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 rounded-[2.5rem] opacity-20 blur-xl animate-pulse"></div>
+      <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 rounded-[2.5rem] opacity-20 blur-xl animate-pulse -z-10"></div>
       
       {/* Borde brillante */}
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 rounded-[2.2rem] opacity-50 blur-sm"></div>
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 rounded-[2.2rem] opacity-50 blur-sm -z-10"></div>
       
       {/* Contenedor del CategoryFilter */}
-      <div className="relative">
+      <div className="relative z-30">
         {/* Mobile: Dropdown moderno estilo iOS con borde indicador */}
-        <div className="sm:hidden relative" ref={dropdownRef}>
+        <div className="sm:hidden relative z-30" ref={dropdownRef}>
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={`w-full flex items-center justify-between gap-3 px-5 py-3.5 
