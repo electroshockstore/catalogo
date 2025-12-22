@@ -1,5 +1,6 @@
 // ProductCard.jsx
 import { memo, useMemo, useCallback } from 'react';
+import { trackSelectItem } from '../../../utils/analytics';
 import StockBadge from './StockBadge';
 import StockStatus from './StockStatus';
 import ProductImage from './ProductImage';
@@ -30,11 +31,16 @@ const useStockStatus = () => {
   }), []);
 };
 
-const ProductCard = memo(({ product, viewMode, onClick }) => {
+const ProductCard = memo(({ product, viewMode, onClick, index = 0, listName = 'Product List' }) => {
   const stockStatus = useStockStatus();
   const productImage = useMemo(() => getProductImage(product), [product]);
-  const handleClick = useCallback(() => onClick(product), [onClick, product]);
   const isUsed = product.isUsed || false;
+  
+  const handleClick = useCallback(() => {
+    // Track select_item event
+    trackSelectItem(product, index, listName);
+    onClick(product);
+  }, [onClick, product, index, listName]);
 
   // Vista Lista - Optimizada para mobile
   if (viewMode === 'list') {

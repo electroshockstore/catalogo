@@ -43,7 +43,7 @@ const FloatingChatButton = () => {
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ delay: 1, type: "spring", stiffness: 200 }}
-      className="fixed bottom-4 left-6 sm:bottom-6 sm:left-8 z-10"
+      className="fixed bottom-4 left-6 sm:bottom-6 sm:left-8 z-50"
     >
       {/* Opciones expandidas */}
       <AnimatePresence>

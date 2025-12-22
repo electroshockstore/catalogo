@@ -9,6 +9,7 @@ import CategoryFilter from '../components/InventoryApp/CategoryFilter';
 import { useFilter } from '../context/FilterContext';
 import { generateSKU, getSlugFromCategory } from '../utils/slugify';
 import { useProductSEO } from '../hooks/useSEO';
+import { useProductView } from '../hooks/useAnalytics';
 
 const ProductDetailPage = () => {
   const { id, productSku, categorySlug } = useParams();
@@ -37,6 +38,9 @@ const ProductDetailPage = () => {
 
   // SEO dinámico para el producto
   useProductSEO(product);
+  
+  // Analytics: Track product view
+  useProductView(product);
 
   useEffect(() => {
     window.scrollTo(0, 0);

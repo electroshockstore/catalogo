@@ -15,6 +15,7 @@ import FloatingChatButton from '../components/InventoryApp/FloatingChatButton';
 import { useFilter } from '../context/FilterContext';
 import { getCategoryFromSlug, getSlugFromCategory, generateSKU } from '../utils/slugify';
 import { useCategorySEO, useSEO } from '../hooks/useSEO';
+import { useProductListView, useCategoryTracking } from '../hooks/useAnalytics';
 
 const Store = () => {
   const navigate = useNavigate();
@@ -40,6 +41,15 @@ const Store = () => {
     const priceB = b.price || 0;
     return sortOrder === 'asc' ? priceA - priceB : priceB - priceA;
   });
+
+  // Analytics: Track product list view
+  const listName = selectedCategory && selectedCategory !== 'Todos' 
+    ? `Category: ${selectedCategory}` 
+    : 'All Products';
+  useProductListView(sortedProducts, listName);
+  
+  // Analytics: Track category changes
+  useCategoryTracking(selectedCategory, sortedProducts.length);
 
   // SEO Logic
   if (selectedCategory && selectedCategory !== 'Todos') {
@@ -112,8 +122,8 @@ const Store = () => {
       />
 
       <main className="flex-1 w-full flex flex-col relative">
-        {/* Selector de Categorías Superior */}
-        <div className="px-4 sm:px-6 py-4 sm:py-6 relative z-[60]">
+        {/* Selector de Categorías Superior - Estático, NO sticky */}
+        <div className="px-4 sm:px-6 py-4 sm:py-6 relative z-10">
           <CategoryFilter 
             selectedCategory={selectedCategory}
             onCategoryChange={handleCategoryChange}

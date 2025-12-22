@@ -85,8 +85,7 @@ const ProductDetail = memo(({ product, onClose, viewOnly = false, isPage = false
                   model={product.model}
                   description={product.description}
                   price={product.price}
-                
-                 
+                  product={product}
                 />
               </div>
             </div>
@@ -121,6 +120,7 @@ const ProductDetail = memo(({ product, onClose, viewOnly = false, isPage = false
                   model={product.model}
                   description={product.description}
                   price={product.price}
+                  product={product}
                 />
               </div>
             </div>

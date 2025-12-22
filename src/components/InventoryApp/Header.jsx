@@ -201,13 +201,34 @@ const Header = ({ searchQuery = '', onSearchChange, onGoHome }) => {
               
               <motion.button
                 onClick={() => setShowConditionsModal(true)}
+                animate={{ 
+                  scale: [1, 1.08, 1],
+                  y: [0, -2, 0]
+                }}
+                transition={{ 
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
                 whileTap={{ scale: 0.9 }}
                 className="relative p-2.5 bg-gradient-to-br from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700
                          rounded-full text-white
                          transition-all duration-300 shadow-lg hover:shadow-orange-500/50
-                         border border-orange-500/30 overflow-hidden group"
+                         border-2 border-orange-400/50 overflow-hidden group"
                 aria-label="Condiciones de Venta"
               >
+                {/* Glow pulsante */}
+                <motion.div
+                  animate={{ 
+                    scale: [1, 1.5, 1],
+                    opacity: [0.6, 0, 0.6]
+                  }}
+                  transition={{ 
+                    duration: 2,
+                    repeat: Infinity
+                  }}
+                  className="absolute inset-0 bg-orange-400 rounded-full blur-md"
+                />
                 <div className="absolute inset-0 bg-white/20 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-full" />
                 <FileText className="h-4 w-4 relative z-10" strokeWidth={2.5} />
               </motion.button>
@@ -469,20 +490,43 @@ const Header = ({ searchQuery = '', onSearchChange, onGoHome }) => {
 
          
             
-            <motion.button
-              onClick={() => setShowConditionsModal(true)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="relative flex items-center gap-2 px-5 py-2.5 
-                       bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700
-                       rounded-full text-white font-bold text-sm
-                       transition-all duration-300 shadow-lg hover:shadow-orange-500/50
-                       border border-orange-500/30 overflow-hidden group"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-              <FileText className="h-4 w-4 relative z-10" strokeWidth={2.5} />
-              <span className="hidden lg:inline relative z-10">Condiciones de Venta</span>
-            </motion.button>
+            <div className="relative">
+              <motion.button
+                onClick={() => setShowConditionsModal(true)}
+                animate={{ 
+                  scale: [1, 1.08, 1],
+                  y: [0, -3, 0]
+                }}
+                transition={{ 
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative flex items-center gap-2 px-5 py-2.5 
+                         bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700
+                         rounded-full text-white font-bold text-sm
+                         transition-all duration-300 shadow-lg hover:shadow-orange-500/50
+                         border-2 border-orange-400/50 overflow-hidden group"
+              >
+                {/* Glow pulsante */}
+                <motion.div
+                  animate={{ 
+                    scale: [1, 1.6, 1],
+                    opacity: [0.7, 0, 0.7]
+                  }}
+                  transition={{ 
+                    duration: 2,
+                    repeat: Infinity
+                  }}
+                  className="absolute inset-0 bg-orange-400 rounded-full blur-lg"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                <FileText className="h-4 w-4 relative z-10" strokeWidth={2.5} />
+                <span className="hidden lg:inline relative z-10">Condiciones de Venta</span>
+              </motion.button>
+            </div>
             
             <motion.button
               onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}

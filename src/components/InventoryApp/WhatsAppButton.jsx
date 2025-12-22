@@ -1,7 +1,13 @@
 import { motion } from 'framer-motion';
+import { trackWhatsAppClick } from '../../utils/analytics';
 
-const WhatsAppButton = ({ productName, className = "" }) => {
+const WhatsAppButton = ({ productName, product, className = "" }) => {
   const handleWhatsApp = () => {
+    // Track WhatsApp click
+    if (product) {
+      trackWhatsAppClick(product, 'consult');
+    }
+    
     const phoneNumber = '5491125718382'; // +54 11 2571 8382
     const message = encodeURIComponent(`Hola, vi este producto en su catálogo web: "${productName}". Necesitaría más información. ¿Podrían ayudarme?`);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;

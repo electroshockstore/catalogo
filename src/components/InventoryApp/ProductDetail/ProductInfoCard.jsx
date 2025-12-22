@@ -17,7 +17,8 @@ const ProductInfoCard = ({
   brand, 
   model, 
   description, 
-  price
+  price,
+  product
 }) => {
   return (
     <div className="bg-white rounded-xl border-2 border-gray-200 shadow-lg h-full flex flex-col">
@@ -53,7 +54,7 @@ const ProductInfoCard = ({
         {/* Botones de contacto */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <LiveChatButton productName={name} className="relative overflow-hidden group" />
-          <WhatsAppButton productName={name} className="relative overflow-hidden group" />
+          <WhatsAppButton productName={name} product={product} className="relative overflow-hidden group" />
         </div>
         
         {/* Precio */}

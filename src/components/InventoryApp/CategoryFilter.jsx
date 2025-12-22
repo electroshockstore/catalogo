@@ -194,44 +194,86 @@ const CategoryFilter = ({ selectedCategory, onCategoryChange }) => {
         )}
       </div>
 
-        {/* Desktop: Segmented Control estilo Apple con wrap - RESPONSIVE */}
-<div className="hidden sm:flex flex-wrap gap-2 md:gap-3 bg-white rounded-3xl p-2 md:p-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-  {categories.map((category) => {
-    const Icon = getCategoryIcon(category);
-    const isSelected = selectedCategory === category;
-    
- return (
-      <button
-        key={category}
-        onClick={() => onCategoryChange(category)}
-        className={`
-          flex items-center gap-2 md:gap-3 px-4 py-2.5 md:px-6 md:py-4 rounded-full font-bold 
-          transition-all duration-300 whitespace-nowrap
-          ${isSelected 
-            ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-[0_8px_20px_-4px_rgba(37,99,235,0.4)] scale-105 z-10' 
-            : 'text-gray-500 bg-slate-100/80 hover:bg-slate-100 hover:text-blue-600 border border-slate-100/50 hover:border-blue-200 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]'
-          }
-        `}
-      >
-        {/* Contenedor del Icono */}
-        <div className={`
-          p-1 md:p-1.5 rounded-xl transition-all duration-300
-          ${isSelected 
-            ? 'bg-white/20 backdrop-blur-sm' 
-            : 'bg-white shadow-sm border border-slate-100 group-hover:scale-110'
-          }
-        `}>
-          <Icon 
-            className={`h-3.5 w-3.5 md:h-5 md:w-5 ${isSelected ? 'text-white' : getCategoryColor(category, false)}`} 
-            strokeWidth={2.5} 
-          />
-        </div>
+        {/* Desktop: Segmented Control con scroll horizontal en sm/md, wrap en lg+ */}
+        <div className="hidden sm:block relative group/scroll">
+          {/* Contenedor scrolleable */}
+          <div 
+            id="category-scroll-container"
+            className="flex flex-nowrap lg:flex-wrap gap-2 bg-white rounded-3xl p-2 shadow-[0_2px_8px_rgba(0,0,0,0.06)] 
+                       overflow-x-auto lg:overflow-x-visible scrollbar-hide scroll-smooth"
+            style={{
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+            }}
+          >
+            {categories.map((category) => {
+              const Icon = getCategoryIcon(category);
+              const isSelected = selectedCategory === category;
+              
+              return (
+                <button
+                  key={category}
+                  onClick={() => onCategoryChange(category)}
+                  className={`
+                    flex items-center gap-2 px-4 py-2.5 md:px-4 md:py-3 rounded-full font-bold 
+                    transition-all duration-300 whitespace-nowrap flex-shrink-0
+                    ${isSelected 
+                      ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-[0_8px_20px_-4px_rgba(37,99,235,0.4)] scale-105 z-10' 
+                      : 'text-gray-500 bg-slate-100/80 hover:bg-slate-100 hover:text-blue-600 border border-slate-100/50 hover:border-blue-200 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]'
+                    }
+                  `}
+                >
+                  {/* Contenedor del Icono */}
+                  <div className={`
+                    p-1 md:p-1.5 rounded-xl transition-all duration-300
+                    ${isSelected 
+                      ? 'bg-white/20 backdrop-blur-sm' 
+                      : 'bg-white shadow-sm border border-slate-100 group-hover:scale-110'
+                    }
+                  `}>
+                    <Icon 
+                      className={`h-3.5 w-3.5 md:h-5 md:w-5 ${isSelected ? 'text-white' : getCategoryColor(category, false)}`} 
+                      strokeWidth={2.0} 
+                    />
+                  </div>
 
-        <span className="text-xs md:text-base tracking-tight">{category}</span>
-      </button>
-    );
-  })}
-</div>
+                  <span className="text-xs md:text-base tracking-tight">{category}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Botones de navegación - Solo visibles en md cuando hay scroll */}
+          <button
+            onClick={() => {
+              const container = document.getElementById('category-scroll-container');
+              container.scrollBy({ left: -200, behavior: 'smooth' });
+            }}
+            className="hidden md:flex lg:hidden absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3
+                       w-10 h-10 items-center justify-center rounded-full 
+                       bg-white shadow-lg border border-gray-200
+                       opacity-0 group-hover/scroll:opacity-100 transition-opacity duration-300
+                       hover:bg-gray-50 active:scale-95 z-20"
+            aria-label="Scroll izquierda"
+          >
+            <ChevronDown className="w-5 h-5 text-gray-700 -rotate-90" strokeWidth={2.5} />
+          </button>
+
+          <button
+            onClick={() => {
+              const container = document.getElementById('category-scroll-container');
+              container.scrollBy({ left: 200, behavior: 'smooth' });
+            }}
+            className="hidden md:flex lg:hidden absolute right-0 top-1/2 -translate-y-1/2 translate-x-3
+                       w-10 h-10 items-center justify-center rounded-full 
+                       bg-white shadow-lg border border-gray-200
+                       opacity-0 group-hover/scroll:opacity-100 transition-opacity duration-300
+                       hover:bg-gray-50 active:scale-95 z-20"
+            aria-label="Scroll derecha"
+          >
+            <ChevronDown className="w-5 h-5 text-gray-700 rotate-90" strokeWidth={2.5} />
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -153,3 +153,62 @@
 
   
 }
+
+/* Ocultar scrollbar pero mantener funcionalidad */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* ===== SCROLLBAR PERSONALIZADO MINIMALISTA ===== */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(59, 130, 246, 0.5) rgba(15, 23, 42, 0.3);
+}
+
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.3);
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(59, 130, 246, 0.6), rgba(37, 99, 235, 0.8));
+  border-radius: 10px;
+  border: 2px solid rgba(15, 23, 42, 0.3);
+  transition: all 0.3s ease;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(59, 130, 246, 0.9), rgba(37, 99, 235, 1));
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(180deg, rgba(37, 99, 235, 1), rgba(29, 78, 216, 1));
+}
+
+/* Scrollbar para elementos con fondo claro */
+.scrollbar-light::-webkit-scrollbar-track {
+  background: rgba(226, 232, 240, 0.5);
+}
+
+.scrollbar-light::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(59, 130, 246, 0.4), rgba(37, 99, 235, 0.6));
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.scrollbar-light::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(59, 130, 246, 0.7), rgba(37, 99, 235, 0.9));
+}

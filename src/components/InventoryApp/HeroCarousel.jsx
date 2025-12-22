@@ -84,7 +84,7 @@ const HeroCarousel = () => {
   const current = slides[currentSlide];
 
   return (
-    <section className="relative w-full h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px] bg-[#020617] overflow-hidden rounded-2xl">
+    <section className="relative w-full h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px] bg-[#020617] overflow-hidden rounded-2xl z-10">
       
       {/* Background Image - Optimizado para móvil y desktop */}
       <AnimatePresence mode="wait">
