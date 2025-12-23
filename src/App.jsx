@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Store from "./modules/Store";
 import ProductDetailPage from "./Modules/ProductDetailPage";
 import PCBuilder from "./Modules/PCBuilder";
+import PuntosRetiro from "./Modules/PuntosRetiro";
 import { FilterProvider } from "./context/FilterContext";
 import { StockProvider } from "./context/StockContext";
 import { PCBuilderProvider } from "./context/PCBuilderContext";
@@ -42,6 +43,9 @@ function AnimatedRoutes() {
     if (pathname.includes('/armatupc')) {
       return 'armatupc';
     }
+    if (pathname.includes('/puntos-de-retiro')) {
+      return 'puntos-retiro';
+    }
     if (pathname.includes('/categoria/') && pathname.split('/').length === 4) {
       return 'product-detail'; // Página de detalle de producto
     }
@@ -75,6 +79,20 @@ function AnimatedRoutes() {
               exit="exit"
             >
               <PCBuilder />
+            </motion.div>
+          }
+        />
+        {/* Ruta de Puntos de Retiro */}
+        <Route
+          path="/puntos-de-retiro"
+          element={
+            <motion.div
+              variants={pageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <PuntosRetiro />
             </motion.div>
           }
         />

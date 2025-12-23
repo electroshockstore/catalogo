@@ -234,7 +234,7 @@ const Header = ({ searchQuery = '', onSearchChange, onGoHome }) => {
               </motion.button>
               
               <motion.button
-                onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
+                onClick={() => navigate('/puntos-de-retiro')}
                 whileTap={{ scale: 0.9 }}
                 className="relative p-2.5 bg-gradient-to-br from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700
                          rounded-full text-white
@@ -529,7 +529,7 @@ const Header = ({ searchQuery = '', onSearchChange, onGoHome }) => {
             </div>
             
             <motion.button
-              onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
+              onClick={() => navigate('/puntos-de-retiro')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="relative flex items-center gap-2 px-5 py-2.5 
