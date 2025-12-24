@@ -1,6 +1,6 @@
 // ═══════════════════════════════════════════════════════════════
 // RANGO DE IDs: 1200-1299 (Refrigeración)
-// Próximo ID disponible: 1202
+// Próximo ID disponible: 1205
 // IMPORTANTE: NO usar IDs fuera de este rango
 // ═══════════════════════════════════════════════════════════════
 export const refrigeracionProducts = [
@@ -11,7 +11,7 @@ export const refrigeracionProducts = [
     model: "CC-1013",
     category: "Refrigeración",
     price: 45000,
-    stock: 3,
+    stock: 5,
     sku: "RED-CC1013",
     description: "Cooler CPU por aire 120mm con iluminación ARGB, 4 heatpipes de cobre 6mm, TDP 180W",
     images: [
@@ -68,6 +68,101 @@ export const refrigeracionProducts = [
       "Compatibilidad AMD": "AM4 / AM5",
       "Bomba": "PWM – alta presión, bajo ruido",
       "Tuberías": "Mangueras reforzadas y malladas"
+    }
+  },
+  {
+    id: 1202,
+    name: "Cooler Master Hyper 411 Nano ARGB Black",
+    brand: "Cooler Master",
+    model: "Hyper 411 Nano ARGB Black",
+    category: "Refrigeración",
+    price: 40000,
+    stock: 1,
+    sku: "CM-411-NANO",
+    description: "Cooler CPU por aire 92mm con iluminación ARGB, 4 heatpipes de contacto directo, TDP 130W",
+    images: [
+      "/images/refrigeracion/cooler_hyper411nano.webp",
+      "/images/refrigeracion/cooler_hyper411nano_side.webp",
+      "/images/refrigeracion/cooler_hyper411nano_side2.webp",
+       "/images/refrigeracion/cooler_hyper411nano_back.webp"
+    ],
+    specifications: {
+      "Marca": "Cooler Master",
+      "Línea": "Hyper",
+      "Modelo": "411 Nano ARGB Black",
+      "Compatibilidad Socket": "LGA1851, LGA1700, LGA1200, LGA1151, LGA1150, LGA1155, LGA1156, AM5, AM4",
+      "Dimensiones": "102 x 84.5 x 136 mm",
+      "Material Heatsink": "4 Heat Pipes de cobre con Direct Contact y aletas de aluminio",
+      "Dimensiones Ventilador": "92 mm",
+      "Velocidad Ventilador": "600-2500 RPM ± 10%",
+      "Flujo de Aire": "34.73 CFM (Max)",
+      "Presión Estática": "2.72 mmH2O (Max)",
+      "Nivel de Ruido": "28 dBA",
+      "Tipo de Iluminación": "ARGB (3-pin 5V)",
+      "TDP": "Hasta 130W"
+    }
+  },
+  {
+    id: 1203,
+    name: "Cooler Master Hyper 420s ARGB Black",
+    brand: "Cooler Master",
+    model: "Hyper 420s ARGB",
+    category: "Refrigeración",
+    price: 45000,
+    stock: 1,
+    sku: "CM-420S-ARGB",
+    description: "Cooler CPU por aire 120mm con iluminación ARGB, 4 heatpipes de contacto directo, optimizado para compatibilidad con RAM alta",
+    images: [
+      "/images/refrigeracion/cooler_hyper420s.webp",
+      "/images/refrigeracion/cooler_hyper420s_side.webp",
+      "/images/refrigeracion/cooler_hyper420s_side2.webp",
+       "/images/refrigeracion/cooler_hyper420s_back.webp",
+        "/images/refrigeracion/cooler_hyper420s_front.webp"
+    ],
+    specifications: {
+      "Marca": "Cooler Master",
+      "Línea": "Hyper",
+      "Modelo": "Hyper 420s ARGB",
+      "Compatibilidad Socket": "LGA1700, LGA1200, LGA1151, AM5, AM4",
+      "Dimensiones": "120 x 73 x 154 mm",
+      "Material Heatsink": "4 Heat Pipes de contacto directo",
+      "Dimensiones Ventilador": "120 mm",
+      "Velocidad Ventilador": "650-1750 RPM ± 10%",
+      "Flujo de Aire": "42 CFM",
+      "Nivel de Ruido": "27.2 dBA",
+      "Tipo de Iluminación": "ARGB",
+      "Nota": "Modelo optimizado para mayor compatibilidad con memorias RAM altas"
+    }
+  },
+  {
+    id: 1204,
+    name: "Formula V Air Bridge Blanco ARGB x3 Fan",
+    brand: "Formula V",
+    model: "Air Bridge WH",
+    category: "Refrigeración",
+    price: 50000,
+    stock: 3,
+    sku: "FV-AIRBRIDGE-3FAN",
+    description: "Kit de 3 ventiladores 120mm ARGB con rodamiento hidráulico, incluye control remoto y hub de conexión",
+    images: [
+      "/images/refrigeracion/formulav_cooler.webp",
+      "/images/refrigeracion/formulav_cooler_side.webp",
+      "/images/refrigeracion/formulav_cooler_side2.webp",
+      "/images/refrigeracion/formulav_cooler_side3.webp",
+      "/images/refrigeracion/formulav_cooler_back.webp"
+    ],
+    specifications: {
+      "Marca": "Formula V",
+      "Línea": "Air Bridge",
+      "Modelo": "AIR BRIDGE WH",
+      "Cantidad Fans": "3 unidades",
+      "Dimensiones Ventilador": "120 mm",
+      "Tipo de Rodamiento": "Hidráulico",
+      "Iluminación": "ARGB (Inner & Outer Ring)",
+      "Conectividad": "6-pin (para controladora incluida)",
+      "Velocidad Ventilador": "1200 RPM ± 10%",
+      "Color": "Blanco",
+      "Extras": "Incluye control remoto y Hub de conexión"
     }
   }
 ];

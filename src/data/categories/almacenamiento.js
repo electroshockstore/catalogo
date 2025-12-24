@@ -658,5 +658,34 @@ export const almacenamientoProducts = [
       "Consumo energético": "Optimizado para uso continuo",
       "Fiabilidad": "Diseñado para grabación constante"
     }
+  },
+  {
+    id: 221,
+    name: "Adata Legend 710 1TB - M.2 NVMe Gen3",
+    brand: "ADATA",
+    model: "Legend 710 ALEG-710-1TCS",
+    category: "Almacenamiento",
+    price: 185000,
+    stock: 1,
+    sku: "ADATA-1TB-L710",
+    description: "SSD M.2 NVMe Gen3 x4 de 1TB con disipador de aluminio incluido, lectura 2400 MB/s, escritura 1800 MB/s",
+    images: [
+      "/images/almacenamiento/adata_legend710_1tb.webp",
+      "/images/almacenamiento/adata_legend710_512_side.webp",
+      "/images/almacenamiento/adata_legend710_512_side2.webp"
+    ],
+    specifications: {
+      "Marca": "Adata",
+      "Línea": "LEGEND 710",
+      "Modelo": "ALEG-710-1TCS",
+      "Capacidad": "1 TB",
+      "Interfaz": "PCIe Gen3 x4",
+      "Factor de Forma": "M.2 2280",
+      "Velocidad Lectura Secuencial": "Hasta 2400 MB/s",
+      "Velocidad Escritura Secuencial": "Hasta 1800 MB/s",
+      "MTBF": "1,500,000 horas",
+      "Disipador": "Incluye disipador térmico de aluminio (color azul)",
+      "Tecnologías": "HMB (Host Memory Buffer) y LDPC (Low Density Parity Check Code)"
+    }
   }
 ];

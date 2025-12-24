@@ -1,9 +1,37 @@
 // ═══════════════════════════════════════════════════════════════
 // RANGO DE IDs: 500-599 (Mouse)
-// Próximo ID disponible: 500
+// Próximo ID disponible: 501
 // IMPORTANTE: NO usar IDs fuera de este rango
 // ═══════════════════════════════════════════════════════════════
 export const mouseProducts = [
+  {
+    id: 500,
+    name: "Logitech G305 Inalámbrico varios colores",
+    brand: "Logitech",
+    model: "G305",
+    category: "Mouse",
+    price: 55000,
+    stock: 4,
+    images: [
+      "/images/mouse/logitech_g305mouse.webp",
+      "/images/mouse/logitech_g305mouse_side.webp",
+      "/images/mouse/logitech_g305mouse_specs2.webp",
+         "/images/mouse/logitech_g305mouse_specs.webp"
+    ],
+    description: "Mouse gaming inalámbrico Logitech G305 Lightspeed con sensor HERO, hasta 12,000 DPI y 250 horas de autonomía",
+    specifications: {
+      "Marca": "Logitech",
+      "Línea": "Lightspeed",
+      "Modelo": "G305",
+      "Sensor": "HERO",
+      "Resolución DPI": "200 – 12,000 DPI",
+      "Velocidad máxima": "> 400 IPS",
+      "Aceleración máxima": "> 40 G",
+      "Tasa de reporte": "1000 Hz (1ms)",
+      "Autonomía": "Hasta 250 horas (1 pila AA)",
+      "Peso": "99 g"
+    }
+  },
   {
     id: 45,
     name: "Logitech M170 Rojo Inalámbrico",

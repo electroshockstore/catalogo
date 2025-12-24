@@ -1,6 +1,6 @@
 // ═══════════════════════════════════════════════════════════════
 // RANGO DE IDs: 700-799 (Teclados)
-// Próximo ID disponible: 711
+// Próximo ID disponible: 712
 // IMPORTANTE: NO usar IDs fuera de este rango
 // ═══════════════════════════════════════════════════════════════
 export const tecladosProducts = [
@@ -397,6 +397,37 @@ export const tecladosProducts = [
       "Software": "Redragon Configurator (según versión)",
       "Modo gaming": "Sí, bloqueo de tecla Windows",
       "Peso": "aprox. 430 g"
+    }
+  },
+  {
+    id: 711,
+    name: "Redragon Eisa K686WGB-RGB-MAX Inalambrico dongle ",
+    brand: "Redragon",
+    model: "K686WGB (Eisa)",
+    category: "Teclados",
+    price: 80000,
+    stock: 1,
+    sku: "RED-EISA-K686",
+    description: "Teclado mecánico 98% RGB con triple conectividad: 2.4Ghz, Bluetooth 5.0, USB-C. Switches lineales hot-swappable",
+    images: [
+      "/images/teclados/eisamax_teclado.webp",
+      "/images/teclados/eisamax_teclado_side.webp",
+      "/images/teclados/eisamax_teclado_side2.webp",
+       "/images/teclados/eisamax_teclado_key.webp",
+        "/images/teclados/eisamax_teclado.specs",
+         "/images/teclados/eisamax_teclado_back.webp"
+    ],
+    specifications: {
+      "Marca": "Redragon",
+      "Modelo": "K686WGB (Eisa)",
+      "Arquitectura": "Mecánico",
+      "Distribución": "Inglés US",
+      "Tamaño": "98% (100 teclas)",
+      "Conectividad": "Triple modo (2.4Ghz, Bluetooth 5.0, USB-C)",
+      "Switches": "Redragon Linear (Hot-swappable)",
+      "Iluminación": "RGB Chroma",
+      "Batería": "3000 mAh",
+      "Color": "Blanco/Verde"
     }
   }
 ];

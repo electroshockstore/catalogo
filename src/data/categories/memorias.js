@@ -1,6 +1,6 @@
 // ═══════════════════════════════════════════════════════════════
 // RANGO DE IDs: 400-499 (Memorias RAM)
-// Próximo ID disponible: 410
+// Próximo ID disponible: 411
 // IMPORTANTE: NO usar IDs fuera de este rango
 // ═══════════════════════════════════════════════════════════════
 export const memoriasProducts = [
@@ -477,6 +477,31 @@ export const memoriasProducts = [
       tipo: "Un solo módulo (1x16GB)",
       dualChannel: "Sí, al combinar con otro módulo igual",
       observaciones: "Al ser CL42 no es de las más rápidas, pero funciona estable para uso general y gaming estándar."
+    }
+  },
+  {
+    id: 410,
+    name: "Neo Forza DDR5 32GB 5200MHz CL42 UDIMM",
+    brand: "Neo Forza",
+    model: "NMUD532F82-5200JA10",
+    category: "Memorias RAM",
+    price: 320000,
+    stock: 2,
+    images: [
+      "/images/ram/neo_forza_ddr5.webp"
+    ],
+    description: "Memoria RAM Neo Forza DDR5 32GB 5200MHz CL42 UDIMM con On-die ECC",
+    specifications: {
+      "Marca": "Neo Forza",
+      "Modelo": "NMUD532F82-5200JA10",
+      "Tipo de memoria": "DDR5",
+      "Formato": "UDIMM",
+      "Capacidad total": "32 GB",
+      "Velocidad": "5200 MHz",
+      "Latencia CAS": "CL42",
+      "Voltaje": "1.1V",
+      "Cantidad de pines": "288-pin",
+      "ECC": "On-die ECC"
     }
   }
 ];

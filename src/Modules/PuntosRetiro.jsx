@@ -19,7 +19,7 @@ const PuntosRetiro = () => {
       days: 'Lunes a Viernes',
       weekendSchedule: 'NO',
       mapUrl: 'https://maps.app.goo.gl/vZYggDMLYFrYt3qv5',
-      image: '/images/via_cosenza.webp',
+      image: '/images/puntos_retiro/via_cosenza.webp',
       color: 'from-blue-600 to-cyan-500',
       gradient: 'from-blue-500/20 to-cyan-500/20',
       security: [
@@ -36,11 +36,28 @@ const PuntosRetiro = () => {
       days: 'Lunes a Viernes',
       weekendSchedule: 'Todo el día',
       mapUrl: 'https://maps.app.goo.gl/qouSL9xAgsLR3x4EA',
-      image: '/images/bz_cruce.webp',
+      image: '/images/puntos_retiro/bz_cruce.webp',
       color: 'from-purple-600 to-pink-500',
       gradient: 'from-purple-500/20 to-pink-500/20',
       security: [
         { icon: Shield, text: 'Seguridad Municipal e Interna' },
+        { icon: Camera, text: 'Cámaras de Seguridad' },
+        { icon: MapPinned, text: 'Punto Seguro Transitable' }
+      ]
+    },
+    {
+      id: 3,
+      name: 'Carrefour Fcio Varela',
+      address: 'Patio Comida',
+      schedule: 'A coordinar',
+      days: 'Todos los días',
+      weekendSchedule: 'Disponible',
+      mapUrl: 'https://maps.app.goo.gl/2wB6dvSTKSSVPcsu9',
+      image: '/images/puntos_retiro/carrefour.webp',
+      color: 'from-green-600 to-emerald-500',
+      gradient: 'from-green-500/20 to-emerald-500/20',
+      security: [
+        { icon: Shield, text: 'Seguridad del Centro Comercial' },
         { icon: Camera, text: 'Cámaras de Seguridad' },
         { icon: MapPinned, text: 'Punto Seguro Transitable' }
       ]
@@ -224,7 +241,7 @@ const PuntosRetiro = () => {
             </motion.div>
 
             {/* Pickup Points Grid */}
-            <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-12 md:mb-16">
+            <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12 md:mb-16">
               {pickupPoints.map((point, index) => (
                 <motion.div
                   key={point.id}
@@ -259,8 +276,8 @@ const PuntosRetiro = () => {
 
                         {/* Title overlay */}
                         <div className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6">
-                          <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-1 sm:mb-2 drop-shadow-lg">{point.name}</h3>
-                          <p className="text-gray-200 text-sm sm:text-lg font-semibold drop-shadow-md">{point.address}</p>
+                          <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-1 sm:mb-2 drop-shadow-2xl">{point.name}</h3>
+                          <p className="text-black text-base sm:text-xl md:text-2xl font-black drop-shadow-lg bg-white/80 backdrop-blur-sm px-3 py-1 rounded-lg inline-block">{point.address}</p>
                         </div>
                       </div>
 
@@ -281,34 +298,42 @@ const PuntosRetiro = () => {
                           </div>
                         </div>
 
-                        {/* Schedule Cards */}
-                        <div className="grid sm:grid-cols-2 gap-4">
-                          <div className="bg-white/5 backdrop-blur-sm rounded-xl p-5 border border-white/10 hover:bg-white/10 transition-colors">
-                            <Calendar className="w-6 h-6 text-blue-400 mb-3" strokeWidth={2.5} />
-                            <p className="text-sm text-gray-400 mb-1">Días</p>
-                            <p className="text-white font-black text-lg">{point.days}</p>
-                          </div>
-                          <div className="bg-white/5 backdrop-blur-sm rounded-xl p-5 border border-white/10 hover:bg-white/10 transition-colors">
-                            <Clock className="w-6 h-6 text-green-400 mb-3" strokeWidth={2.5} />
-                            <p className="text-sm text-gray-400 mb-1">Horario</p>
-                            <p className="text-white font-black text-lg">{point.schedule}</p>
-                          </div>
-                        </div>
-
-                        {point.weekendSchedule && (
-                          <div className={`${point.weekendSchedule === 'NO' 
-                            ? 'bg-gradient-to-br from-red-500/10 to-red-600/5 border-red-500/30' 
-                            : 'bg-gradient-to-br from-purple-500/10 to-pink-500/5 border-purple-500/30'
-                          } backdrop-blur-sm rounded-xl p-5 border`}>
+                        {/* Schedule Cards - Grid Layout */}
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/10 transition-colors">
                             <div className="flex items-center gap-3">
-                              <Calendar className={`w-6 h-6 ${point.weekendSchedule === 'NO' ? 'text-red-400' : 'text-purple-400'}`} strokeWidth={2.5} />
+                              <Calendar className="w-5 h-5 text-blue-400" strokeWidth={2.5} />
                               <div>
-                                <p className={`text-sm ${point.weekendSchedule === 'NO' ? 'text-red-300' : 'text-purple-300'} mb-1`}>Fines de Semana</p>
-                                <p className="text-white font-black text-lg">{point.weekendSchedule}</p>
+                                <p className="text-xs text-gray-400 mb-0.5">Días</p>
+                                <p className="text-white font-black text-sm">{point.days}</p>
                               </div>
                             </div>
                           </div>
-                        )}
+                          <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/10 transition-colors">
+                            <div className="flex items-center gap-3">
+                              <Clock className="w-5 h-5 text-green-400" strokeWidth={2.5} />
+                              <div>
+                                <p className="text-xs text-gray-400 mb-0.5">Horario</p>
+                                <p className="text-white font-black text-sm">{point.schedule}</p>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {point.weekendSchedule && (
+                            <div className={`col-span-2 ${point.weekendSchedule === 'NO' 
+                              ? 'bg-gradient-to-br from-red-500/10 to-red-600/5 border-red-500/30' 
+                              : 'bg-gradient-to-br from-purple-500/10 to-pink-500/5 border-purple-500/30'
+                            } backdrop-blur-sm rounded-xl p-4 border`}>
+                              <div className="flex items-center gap-3">
+                                <Calendar className={`w-5 h-5 ${point.weekendSchedule === 'NO' ? 'text-red-400' : 'text-purple-400'}`} strokeWidth={2.5} />
+                                <div>
+                                  <p className={`text-xs ${point.weekendSchedule === 'NO' ? 'text-red-300' : 'text-purple-300'} mb-0.5`}>Fines de Semana / Feriados</p>
+                                  <p className="text-white font-black text-sm">{point.weekendSchedule}</p>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
 
                         {/* Action Button */}
                         <a
