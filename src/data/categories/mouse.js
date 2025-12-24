@@ -10,8 +10,8 @@ export const mouseProducts = [
     brand: "Logitech",
     model: "G305",
     category: "Mouse",
-    price: 55000,
-    stock: 4,
+    price: 50000,
+    stock: 5,
     images: [
       "/images/mouse/logitech_g305mouse.webp",
       "/images/mouse/logitech_g305mouse_side.webp",
@@ -245,12 +245,12 @@ export const mouseProducts = [
   },
   {
     id: 46,
-    name: "Logitech G203 Lightsync Negro",
+    name: "Logitech G203 Lightsync Varios colores",
     brand: "Logitech",
     model: "G203 Lightsync",
     category: "Mouse",
     price: 30000,
-    stock: 17,
+    stock: 27,
     images: [
       "/images/mouse/logitech_g203_mouse.webp",
       "/images/mouse/logitech_g203_mouse_specs1.webp",
