@@ -52,7 +52,7 @@ export const conectividadProducts = [
     brand: "TP-Link",
     model: "TL-WN823N",
     category: "Conectividad",
-    price: 10000,
+    price: 13000,
     stock: 2,
     images: [
       "/images/conectividad/tplink_usb.webp",
