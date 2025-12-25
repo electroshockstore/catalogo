@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useLazyImage } from '../../hooks/useIntersectionObserver';
+import { getOptimizedImageUrl } from '../../utils/performance';
 
 const OptimizedImage = ({ 
   src, 
@@ -8,14 +10,15 @@ const OptimizedImage = ({
   className = '', 
   priority = false,
   onError,
+  sizes,
   ...props 
 }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
-
-  const handleLoad = () => {
-    setIsLoaded(true);
-  };
+  
+  // Si es priority, cargar inmediatamente, sino lazy load
+  const { elementRef, imageSrc, isLoaded } = priority 
+    ? { elementRef: null, imageSrc: src, isLoaded: true }
+    : useLazyImage(src);
 
   const handleError = (e) => {
     setHasError(true);
@@ -45,23 +48,26 @@ const OptimizedImage = ({
     );
   }
 
+  const optimizedSrc = getOptimizedImageUrl(imageSrc, width);
+
   return (
-    <div className="relative">
-      {!isLoaded && (
+    <div ref={elementRef} className="relative">
+      {!isLoaded && !priority && (
         <div 
           className={`absolute inset-0 bg-gray-200 animate-pulse ${className}`}
           style={{ width, height }}
         />
       )}
       <img
-        src={src}
+        src={optimizedSrc}
         alt={alt}
         width={width}
         height={height}
         loading={priority ? 'eager' : 'lazy'}
         decoding={priority ? 'sync' : 'async'}
-        className={`${className} ${!isLoaded ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
-        onLoad={handleLoad}
+        sizes={sizes}
+        className={`${className} ${!isLoaded && !priority ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
+        onLoad={() => {}}
         onError={handleError}
         {...props}
       />
