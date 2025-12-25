@@ -77,24 +77,16 @@ const HeroCarousel = () => {
   const nextSlide = useCallback(() => setCurrentSlide((prev) => (prev + 1) % slides.length), []);
   const prevSlide = useCallback(() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length), []);
 
-  // Auto-play del carousel
   useEffect(() => {
     const timer = setInterval(nextSlide, 8000);
     return () => clearInterval(timer);
   }, [nextSlide]);
 
-  // Precargar imagen siguiente y anterior
   useEffect(() => {
     const nextIndex = (currentSlide + 1) % slides.length;
     const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
     
-    setLoadedImages(prev => {
-      const newSet = new Set(prev);
-      newSet.add(currentSlide);
-      newSet.add(nextIndex);
-      newSet.add(prevIndex);
-      return newSet;
-    });
+    setLoadedImages(prev => new Set([...prev, currentSlide, nextIndex, prevIndex]));
   }, [currentSlide]);
 
   const current = useMemo(() => slides[currentSlide], [currentSlide]);

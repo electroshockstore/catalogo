@@ -111,29 +111,34 @@ export function FilterProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    let filtered = products || [];
+    if (!products) {
+      setFilteredProducts([]);
+      return;
+    }
 
-    // Si hay búsqueda activa, buscar en TODOS los productos ignorando filtros
+    let filtered = products;
+
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(product =>
-        product.name?.toLowerCase().includes(query) ||
-        product.brand?.toLowerCase().includes(query) ||
-        product.model?.toLowerCase().includes(query) ||
-        product.sku?.toLowerCase().includes(query) ||
-        product.category?.toLowerCase().includes(query)
+      filtered = filtered.filter(p =>
+        p.name?.toLowerCase().includes(query) ||
+        p.brand?.toLowerCase().includes(query) ||
+        p.model?.toLowerCase().includes(query) ||
+        p.sku?.toLowerCase().includes(query) ||
+        p.category?.toLowerCase().includes(query)
       );
     } else {
-      // Solo aplicar filtros si NO hay búsqueda activa
       if (selectedCategory) {
-        filtered = filtered.filter(product => product.category === selectedCategory);
+        filtered = filtered.filter(p => p.category === selectedCategory);
       }
 
-      Object.entries(subFilters).forEach(([filterType, selectedValues]) => {
-        if (selectedValues && selectedValues.length > 0) {
-          filtered = filtered.filter(product => {
-            if (!product.specifications) return false;
-            
+      const activeFilters = Object.entries(subFilters).filter(([, values]) => values?.length > 0);
+      
+      if (activeFilters.length > 0) {
+        filtered = filtered.filter(product => {
+          if (!product.specifications) return false;
+          
+          return activeFilters.every(([filterType, selectedValues]) => {
             const specValue = product.specifications[filterType];
             if (!specValue) return false;
             
@@ -143,8 +148,8 @@ export function FilterProvider({ children }) {
               normalizedProductValue.toString().toLowerCase() === selectedValue.toLowerCase()
             );
           });
-        }
-      });
+        });
+      }
     }
 
     setFilteredProducts(filtered);

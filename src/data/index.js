@@ -1,50 +1,77 @@
-import { fuentesProducts } from './categories/fuentes';
-import { almacenamientoProducts } from './categories/almacenamiento';
-import { memoriasProducts } from './categories/memorias';
-import { procesadoresProducts } from './categories/procesadores';
-import { motherboardsProducts } from './categories/motherboards';
-import { refrigeracionProducts } from './categories/refrigeracion';
-import { mouseProducts } from './categories/mouse';
-import { auricularesProducts } from './categories/auriculares';
-import { tecladosProducts } from './categories/teclados';
-import { joystickProducts } from './categories/joystick';
-import { monitoresProducts } from './categories/monitores';
-import { conectividadProducts } from './categories/conectividad';
-import { portatilesProducts } from './categories/portatiles';
-import { extendProductsWithCompatibility } from './compatibility';
+// Lazy loading de categorías de productos
+export const loadCategory = async (categoryName) => {
+  const categoryMap = {
+    'Procesadores': () => import('./categories/procesadores.js'),
+    'Motherboards': () => import('./categories/motherboards.js'),
+    'Memorias RAM': () => import('./categories/memorias.js'),
+    'Almacenamiento': () => import('./categories/almacenamiento.js'),
+    'Fuentes': () => import('./categories/fuentes.js'),
+    'Refrigeración': () => import('./categories/refrigeracion.js'),
+    'Teclados': () => import('./categories/teclados.js'),
+    'Mouse': () => import('./categories/mouse.js'),
+    'Auriculares': () => import('./categories/auriculares.js'),
+    'Joystick': () => import('./categories/joystick.js'),
+    'Conectividad': () => import('./categories/conectividad.js'),
+    'Monitores': () => import('./categories/monitores.js'),
+    'Portátiles': () => import('./categories/portatiles.js')
+  };
 
-export const categories = [
-  'Fuentes',
-  'Almacenamiento',
-  'Memorias RAM',
-  'Motherboards',
-  'Procesadores',
-  'Refrigeración',
-  'Mouse',
-  'Auriculares',
-  'Teclados',
-  'Joystick',
-  'Monitores',
-  'Conectividad',
-  'Portátiles'
-];
+  const loader = categoryMap[categoryName];
+  if (!loader) return [];
 
-// Raw products without compatibility data
-const rawProducts = [
-  ...fuentesProducts,
-  ...almacenamientoProducts,
-  ...memoriasProducts,
-  ...motherboardsProducts,
+  try {
+    const module = await loader();
+    const key = Object.keys(module).find(k => k.includes('Products'));
+    return module[key] || [];
+  } catch (error) {
+    console.error(`Error loading category ${categoryName}:`, error);
+    return [];
+  }
+};
+
+// Eager loading para uso inmediato (mantener compatibilidad)
+import { procesadoresProducts } from './categories/procesadores.js';
+import { motherboardsProducts } from './categories/motherboards.js';
+import { memoriasProducts } from './categories/memorias.js';
+import { almacenamientoProducts } from './categories/almacenamiento.js';
+import { fuentesProducts } from './categories/fuentes.js';
+import { refrigeracionProducts } from './categories/refrigeracion.js';
+import { tecladosProducts } from './categories/teclados.js';
+import { mouseProducts } from './categories/mouse.js';
+import { auricularesProducts } from './categories/auriculares.js';
+import { joystickProducts } from './categories/joystick.js';
+import { conectividadProducts } from './categories/conectividad.js';
+import { monitoresProducts } from './categories/monitores.js';
+import { portatilesProducts } from './categories/portatiles.js';
+
+export const products = [
   ...procesadoresProducts,
+  ...motherboardsProducts,
+  ...memoriasProducts,
+  ...almacenamientoProducts,
+  ...fuentesProducts,
   ...refrigeracionProducts,
+  ...tecladosProducts,
   ...mouseProducts,
   ...auricularesProducts,
-  ...tecladosProducts,
   ...joystickProducts,
-  ...monitoresProducts,
   ...conectividadProducts,
+  ...monitoresProducts,
   ...portatilesProducts
 ];
 
-// Products extended with compatibility data for PC Builder
-export const products = extendProductsWithCompatibility(rawProducts);
+export const categories = [
+  'Procesadores',
+  'Motherboards',
+  'Memorias RAM',
+  'Almacenamiento',
+  'Fuentes',
+  'Refrigeración',
+  'Teclados',
+  'Mouse',
+  'Auriculares',
+  'Joystick',
+  'Conectividad',
+  'Monitores',
+  'Portátiles'
+];

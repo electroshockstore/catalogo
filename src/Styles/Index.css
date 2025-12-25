@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+.font-outfit { font-family: 'Outfit', sans-serif; }
+
 /* --- CONFIGURACIÓN DE MALLA ABSTRACTA (OPTIMIZADA) --- */
 
 .mesh-container {
@@ -62,7 +64,7 @@
   text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Outfit:wght@100;300;600;900&display=swap');
+
 
 .font-outfit { font-family: 'Outfit', sans-serif; }
 
