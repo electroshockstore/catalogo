@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Sparkles } from 'lucide-react';
 
 // Todas las categorías reales del proyecto
@@ -79,7 +80,10 @@ const CategoryGrid = ({ onCategoryClick }) => {
 
 
 // --- Componente Reutilizable para la Tarjeta ---
-const CategoryCard = ({ category, onCategoryClick, className, textSize }) => (
+const CategoryCard = ({ category, onCategoryClick, className, textSize }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  
+  return (
     <button
         onClick={() => onCategoryClick && onCategoryClick(category.slug)}
         className={`group relative w-full overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-red-500/50 bg-gray-800 ${className}`}
@@ -87,13 +91,18 @@ const CategoryCard = ({ category, onCategoryClick, className, textSize }) => (
     >
         {/* Imagen de fondo */}
         <div className="absolute inset-0 bg-gray-800">
+            {!imageLoaded && (
+              <div className="w-full h-full bg-gradient-to-br from-gray-700 to-gray-900 animate-pulse" />
+            )}
             <img
                 src={category.image}
                 alt={category.name}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                loading="eager"
+                className={`w-full h-full object-cover transition-all duration-500 ${imageLoaded ? 'opacity-100 group-hover:scale-110' : 'opacity-0'}`}
+                loading="lazy"
+                onLoad={() => setImageLoaded(true)}
                 onError={(e) => {
                     e.target.style.display = 'none';
+                    setImageLoaded(true);
                 }}
             />
         </div>
@@ -117,7 +126,8 @@ const CategoryCard = ({ category, onCategoryClick, className, textSize }) => (
         {/* Hover effect rojo */}
         <div className="absolute inset-0 bg-red-600/0 group-hover:bg-red-600/20 transition-colors duration-300" />
     </button>
-);
+  );
+};
 
 
 // Exportamos el componente principal

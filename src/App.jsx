@@ -1,9 +1,6 @@
+import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import Store from "./modules/Store";
-import ProductDetailPage from "./Modules/ProductDetailPage";
-import PCBuilder from "./Modules/PCBuilder";
-import PuntosRetiro from "./Modules/PuntosRetiro";
 import { FilterProvider } from "./context/FilterContext";
 import { StockProvider } from "./context/StockContext";
 import { PCBuilderProvider } from "./context/PCBuilderContext";
@@ -12,26 +9,32 @@ import ErrorNotification from "./components/ErrorNotification";
 import { useErrorHandler } from "./hooks/useErrorHandler";
 import SkipToContent from "./components/SEO/SkipToContent";
 
+// Lazy load de módulos principales
+const Store = lazy(() => import("./modules/Store"));
+const ProductDetailPage = lazy(() => import("./Modules/ProductDetailPage"));
+const PCBuilder = lazy(() => import("./Modules/PCBuilder"));
+const PuntosRetiro = lazy(() => import("./Modules/PuntosRetiro"));
+
+// Loading component simple y ligero
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#E5E7EB] to-[#C7CCD1]">
+    <div className="text-center">
+      <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+      <p className="text-gray-600 font-medium">Cargando...</p>
+    </div>
+  </div>
+);
+
+// Animaciones simplificadas para mejor rendimiento
 const pageVariants = {
-  initial: {
-    opacity: 0,
-    y: 20
+  initial: { opacity: 0 },
+  animate: { 
+    opacity: 1, 
+    transition: { duration: 0.2, ease: 'easeOut' }
   },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.4,
-      ease: [0.25, 0.1, 0.25, 1]
-    }
-  },
-  exit: {
-    opacity: 0,
-    y: -20,
-    transition: {
-      duration: 0.3,
-      ease: [0.25, 0.1, 0.25, 1]
-    }
+  exit: { 
+    opacity: 0, 
+    transition: { duration: 0.15, ease: 'easeIn' }
   }
 };
 
@@ -53,22 +56,22 @@ function AnimatedRoutes() {
   };
 
   return (
-    
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={getRouteKey(location.pathname)}>
-        <Route
-          path="/"
-          element={
-            <motion.div
-              variants={pageVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
-              <Store />
-            </motion.div>
-          }
-        />
+    <Suspense fallback={<PageLoader />}>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={getRouteKey(location.pathname)}>
+          <Route
+            path="/"
+            element={
+              <motion.div
+                variants={pageVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+              >
+                <Store />
+              </motion.div>
+            }
+          />
         <Route
           path="/armatupc/:mode"
           element={
@@ -150,8 +153,9 @@ function AnimatedRoutes() {
             </motion.div>
           }
         />
-      </Routes>
-    </AnimatePresence>
+        </Routes>
+      </AnimatePresence>
+    </Suspense>
   );
 }
 

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -72,55 +72,72 @@ const slides = [
 
 const HeroCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [loadedImages, setLoadedImages] = useState(new Set([0])); // Precargar solo la primera
 
   const nextSlide = useCallback(() => setCurrentSlide((prev) => (prev + 1) % slides.length), []);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  const prevSlide = useCallback(() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length), []);
 
+  // Auto-play del carousel
   useEffect(() => {
     const timer = setInterval(nextSlide, 8000);
     return () => clearInterval(timer);
   }, [nextSlide]);
 
-  const current = slides[currentSlide];
+  // Precargar imagen siguiente y anterior
+  useEffect(() => {
+    const nextIndex = (currentSlide + 1) % slides.length;
+    const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+    
+    setLoadedImages(prev => {
+      const newSet = new Set(prev);
+      newSet.add(currentSlide);
+      newSet.add(nextIndex);
+      newSet.add(prevIndex);
+      return newSet;
+    });
+  }, [currentSlide]);
+
+  const current = useMemo(() => slides[currentSlide], [currentSlide]);
 
   return (
     <section className="relative w-full h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px] bg-[#020617] overflow-hidden rounded-2xl z-10">
       
-      {/* Background Image - Optimizado para móvil y desktop */}
+      {/* Background Image - Solo cargar si está en loadedImages */}
       <AnimatePresence mode="wait">
         <motion.div
           key={current.id}
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.5 }}
           className="absolute right-0 top-0 w-full md:w-[70%] h-full z-0"
         >
-          <img 
-            src={current.image} 
-            className="w-full h-full object-cover" 
-            alt=""
-            loading="eager"
-            decoding="async"
-            width="1920"
-            height="1080"
-          />
-          {/* Overlay gradiente más fuerte en móvil */}
+          {loadedImages.has(currentSlide) && (
+            <img 
+              src={current.image} 
+              className="w-full h-full object-cover" 
+              alt=""
+              loading={currentSlide === 0 ? "eager" : "lazy"}
+              decoding="async"
+              width="1920"
+              height="1080"
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-r from-[#020617] via-[#020617]/80 md:via-[#020617]/50 to-transparent" />
         </motion.div>
       </AnimatePresence>
 
-      {/* Contenido a la izquierda - Optimizado para móvil */}
+      {/* Contenido a la izquierda */}
       <div className="relative z-20 h-full flex items-center">
         <div className="container mx-2 px-4 sm:px-6 md:px-12 lg:px-16">
           <div className="max-w-2xl lg:max-w-4xl">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current.id + '-text'}
-                initial={{ opacity: 0, x: -30 }}
+                initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 30 }}
-                transition={{ duration: 0.5 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
               >
                 {/* Tag Superior */}
                 <div className="flex items-center gap-2 sm:gap-4 mb-4 sm:mb-6">
@@ -130,24 +147,24 @@ const HeroCarousel = () => {
                   </span>
                 </div>
 
-                {/* Título - Responsive */}
+                {/* Título */}
                 <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white leading-[0.85] tracking-tighter mb-4 sm:mb-6 md:mb-8">
                   {current.title}
                 </h1>
 
-                {/* Subtítulo / Descripción */}
+                {/* Subtítulo */}
                 <p className="text-base sm:text-xl md:text-2xl lg:text-3xl text-slate-300 font-medium mb-6 sm:mb-8 md:mb-12 italic">
                   {current.description}
                 </p>
 
-                {/* Points - Optimizado para móvil */}
+                {/* Points */}
                 <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 md:gap-8">
                   {current.points.map((point, idx) => (
                     <motion.div 
                       key={idx}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.2 + idx * 0.1 }}
+                      transition={{ delay: 0.1 + idx * 0.05 }}
                       className="flex items-start gap-3 sm:gap-4 group"
                     >
                       <div className="flex flex-col items-center pt-1">
@@ -165,9 +182,9 @@ const HeroCarousel = () => {
         </div>
       </div>
 
-      {/* Navegación - Optimizada para móvil */}
+      {/* Navegación */}
       <div className="absolute bottom-4 sm:bottom-8 md:bottom-12 right-4 sm:right-8 md:right-12 z-30 flex flex-col items-end gap-3 sm:gap-4 md:gap-6">
-        {/* Contador - Más pequeño en móvil */}
+        {/* Contador */}
         <div className="flex items-baseline gap-2 sm:gap-3">
           <span className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-none">
             {String(currentSlide + 1).padStart(2, '0')}
@@ -183,6 +200,7 @@ const HeroCarousel = () => {
             <button
               key={idx}
               onClick={() => setCurrentSlide(idx)}
+              aria-label={`Ir a slide ${idx + 1}`}
               className={`h-[3px] sm:h-[4px] transition-all duration-500 rounded-full ${
                 idx === currentSlide 
                   ? `w-10 sm:w-12 md:w-16 bg-gradient-to-r ${current.gradient}` 
@@ -192,16 +210,18 @@ const HeroCarousel = () => {
           ))}
         </div>
 
-        {/* Botones de control - Más pequeños en móvil */}
+        {/* Botones de control */}
         <div className="flex gap-2 sm:gap-3 md:gap-4">
           <button 
-            onClick={prevSlide} 
+            onClick={prevSlide}
+            aria-label="Slide anterior"
             className="p-2 sm:p-3 md:p-4 rounded-full border border-white/10 text-white hover:bg-white hover:text-black transition-all group active:scale-95"
           >
             <ChevronLeft size={20} className="sm:w-6 sm:h-6 md:w-7 md:h-7" />
           </button>
           <button 
-            onClick={nextSlide} 
+            onClick={nextSlide}
+            aria-label="Siguiente slide"
             className="p-2 sm:p-3 md:p-4 rounded-full border border-white/10 text-white hover:bg-white hover:text-black transition-all group active:scale-95"
           >
             <ChevronRight size={20} className="sm:w-6 sm:h-6 md:w-7 md:h-7" />

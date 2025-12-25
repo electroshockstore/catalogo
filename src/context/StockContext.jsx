@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import { products as initialProducts } from '../data';
 
 const StockContext = createContext();
@@ -23,7 +23,7 @@ export const StockProvider = ({ children }) => {
     setStockAlerts(lowStockProducts);
   }, [products]);
 
-  const updateStock = (productId, newStock) => {
+  const updateStock = useCallback((productId, newStock) => {
     setProducts(prevProducts => 
       prevProducts.map(product => 
         product.id === productId 
@@ -31,9 +31,9 @@ export const StockProvider = ({ children }) => {
           : product
       )
     );
-  };
+  }, []);
 
-  const decreaseStock = (productId, quantity = 1) => {
+  const decreaseStock = useCallback((productId, quantity = 1) => {
     setProducts(prevProducts => 
       prevProducts.map(product => 
         product.id === productId 
@@ -41,9 +41,9 @@ export const StockProvider = ({ children }) => {
           : product
       )
     );
-  };
+  }, []);
 
-  const increaseStock = (productId, quantity = 1) => {
+  const increaseStock = useCallback((productId, quantity = 1) => {
     setProducts(prevProducts => 
       prevProducts.map(product => 
         product.id === productId 
@@ -51,23 +51,23 @@ export const StockProvider = ({ children }) => {
           : product
       )
     );
-  };
+  }, []);
 
-  const getProductById = (id) => {
+  const getProductById = useCallback((id) => {
     return products.find(product => product.id === id);
-  };
+  }, [products]);
 
-  const getProductsByCategory = (category) => {
+  const getProductsByCategory = useCallback((category) => {
     if (category === 'Todos') return products;
     return products.filter(product => product.category === category);
-  };
+  }, [products]);
 
-  const getProductsByBrand = (brand) => {
+  const getProductsByBrand = useCallback((brand) => {
     if (brand === 'Todos') return products;
     return products.filter(product => product.brand === brand);
-  };
+  }, [products]);
 
-  const searchProducts = (query) => {
+  const searchProducts = useCallback((query) => {
     const lowercaseQuery = query.toLowerCase();
     return products.filter(product => 
       product.name.toLowerCase().includes(lowercaseQuery) ||
@@ -76,39 +76,54 @@ export const StockProvider = ({ children }) => {
       product.sku.toLowerCase().includes(lowercaseQuery) ||
       product.description.toLowerCase().includes(lowercaseQuery)
     );
-  };
+  }, [products]);
 
-  const getLowStockProducts = () => {
-    // Definir umbral de stock bajo (5 unidades o menos)
+  const getLowStockProducts = useCallback(() => {
     return products.filter(product => product.stock <= 5);
-  };
+  }, [products]);
 
-  const getTotalProducts = () => products.length;
+  const getTotalProducts = useCallback(() => products.length, [products]);
   
-  const getTotalStockValue = () => {
+  const getTotalStockValue = useCallback(() => {
     return products.reduce((total, product) => total + (product.price * product.stock), 0);
-  };
+  }, [products]);
 
-  const getOutOfStockProducts = () => {
+  const getOutOfStockProducts = useCallback(() => {
     return products.filter(product => product.stock === 0);
-  };
+  }, [products]);
+
+  const value = useMemo(() => ({
+    products,
+    stockAlerts,
+    updateStock,
+    decreaseStock,
+    increaseStock,
+    getProductById,
+    getProductsByCategory,
+    getProductsByBrand,
+    searchProducts,
+    getLowStockProducts,
+    getTotalProducts,
+    getTotalStockValue,
+    getOutOfStockProducts
+  }), [
+    products,
+    stockAlerts,
+    updateStock,
+    decreaseStock,
+    increaseStock,
+    getProductById,
+    getProductsByCategory,
+    getProductsByBrand,
+    searchProducts,
+    getLowStockProducts,
+    getTotalProducts,
+    getTotalStockValue,
+    getOutOfStockProducts
+  ]);
 
   return (
-    <StockContext.Provider value={{
-      products,
-      stockAlerts,
-      updateStock,
-      decreaseStock,
-      increaseStock,
-      getProductById,
-      getProductsByCategory,
-      getProductsByBrand,
-      searchProducts,
-      getLowStockProducts,
-      getTotalProducts,
-      getTotalStockValue,
-      getOutOfStockProducts
-    }}>
+    <StockContext.Provider value={value}>
       {children}
     </StockContext.Provider>
   );

@@ -22,7 +22,8 @@ root.render(
       pauseOnFocusLoss
       draggable
       pauseOnHover
-      style={{ width: '500px', height: '500px', padding: '4px' }}
+      limit={3}
+      className="!w-auto !max-w-md"
     />
   </React.StrictMode>
 );

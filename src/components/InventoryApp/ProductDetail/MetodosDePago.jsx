@@ -92,7 +92,7 @@ const MetodosDePago = () => {
                     <div 
                       className="absolute inset-0 bg-cover bg-center"
                       style={{
-                        backgroundImage: 'url(/images/cash.png)',
+                        backgroundImage: 'url(/images/cash_tiny.png)',
                         backgroundSize: 'contain',
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'right'
@@ -105,7 +105,7 @@ const MetodosDePago = () => {
                     <div 
                       className="absolute inset-0 bg-cover bg-center"
                       style={{
-                        backgroundImage: 'url(/images/transfer.png)',
+                        backgroundImage: 'url(/images/transfer_tiny.png)',
                         backgroundSize: 'contain',
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'right'

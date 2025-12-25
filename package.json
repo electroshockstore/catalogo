@@ -13,7 +13,8 @@
     "deploy": "npm run build && node scripts/generate-404.js && gh-pages -d dist",
     "clean": "rm -rf dist node_modules/.vite",
     "analyze": "vite build --mode analyze",
-    "setup:mcp": "node scripts/setup-mcp.js"
+    "setup:mcp": "node scripts/setup-mcp.js",
+    "optimize": "node scripts/optimize-all.js"
   },
   "dependencies": {
     "autoprefixer": "^10.4.20",
@@ -38,6 +39,7 @@
     "fast-check": "^4.4.0",
     "gh-pages": "^6.3.0",
     "globals": "^15.9.0",
+    "sharp": "^0.34.5",
     "tailwindcss": "^3.4.13",
     "vite": "^6.4.1",
     "vitest": "^4.0.15"
