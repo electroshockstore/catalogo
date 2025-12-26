@@ -2,14 +2,9 @@ import { useEffect } from 'react';
 
 const PreloadResources = () => {
   useEffect(() => {
-    // Precargar solo imágenes críticas que existen y son optimizadas
+    // Precargar solo imágenes críticas del hero carousel
     const criticalImages = [
-      '/images/builder_tiny.webp',
-      '/images/hero/megaphone_tiny.webp',
-      '/images/hero/stop_tiny.webp',
-      '/images/hero/methods_tiny.webp',
-      '/images/hero/atenttion_tiny.webp',
-      '/images/hero/location_tiny.webp'
+      '/images/hero/megaphone_tiny.webp'
     ];
 
     criticalImages.forEach(src => {

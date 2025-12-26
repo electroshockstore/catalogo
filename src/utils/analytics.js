@@ -46,7 +46,9 @@ export const trackViewItemList = (products, listName = 'Product List') => {
       items: items
     });
 
-    console.log('📊 GA4: view_item_list', { listName, itemCount: items.length });
+    if (import.meta.env.DEV) {
+      console.log('📊 GA4: view_item_list', { listName, itemCount: items.length });
+    }
   } catch (error) {
     console.error('Error tracking view_item_list:', error);
   }
@@ -68,7 +70,9 @@ export const trackSelectItem = (product, index = 0, listName = 'Product List') =
       items: [item]
     });
 
-    console.log('📊 GA4: select_item', { productName: product.name, index });
+    if (import.meta.env.DEV) {
+      console.log('📊 GA4: select_item', { productName: product.name, index });
+    }
   } catch (error) {
     console.error('Error tracking select_item:', error);
   }
@@ -90,7 +94,9 @@ export const trackViewItem = (product) => {
       items: [item]
     });
 
-    console.log('📊 GA4: view_item', { productName: product.name, price: product.price });
+    if (import.meta.env.DEV) {
+      console.log('📊 GA4: view_item', { productName: product.name, price: product.price });
+    }
   } catch (error) {
     console.error('Error tracking view_item:', error);
   }
@@ -115,7 +121,9 @@ export const trackWhatsAppClick = (product, actionType = 'consult') => {
       value: product.price || 0
     });
 
-    console.log('📊 GA4: whatsapp_click', { productName: product.name, actionType });
+    if (import.meta.env.DEV) {
+      console.log('📊 GA4: whatsapp_click', { productName: product.name, actionType });
+    }
   } catch (error) {
     console.error('Error tracking whatsapp_click:', error);
   }
@@ -138,7 +146,9 @@ export const trackAddToCart = (product, quantity = 1) => {
       items: [item]
     });
 
-    console.log('📊 GA4: add_to_cart', { productName: product.name, quantity });
+    if (import.meta.env.DEV) {
+      console.log('📊 GA4: add_to_cart', { productName: product.name, quantity });
+    }
   } catch (error) {
     console.error('Error tracking add_to_cart:', error);
   }
@@ -162,7 +172,9 @@ export const trackBeginCheckout = (products, totalValue) => {
       items: items
     });
 
-    console.log('📊 GA4: begin_checkout', { itemCount: items.length, totalValue });
+    if (import.meta.env.DEV) {
+      console.log('📊 GA4: begin_checkout', { itemCount: items.length, totalValue });
+    }
   } catch (error) {
     console.error('Error tracking begin_checkout:', error);
   }
@@ -181,7 +193,9 @@ export const trackSearch = (searchTerm, resultsCount = 0) => {
       results_count: resultsCount
     });
 
-    console.log('📊 GA4: search', { searchTerm, resultsCount });
+    if (import.meta.env.DEV) {
+      console.log('📊 GA4: search', { searchTerm, resultsCount });
+    }
   } catch (error) {
     console.error('Error tracking search:', error);
   }
@@ -202,7 +216,9 @@ export const trackViewCategory = (categoryName, productCount = 0) => {
       product_count: productCount
     });
 
-    console.log('📊 GA4: view_category', { categoryName, productCount });
+    if (import.meta.env.DEV) {
+      console.log('📊 GA4: view_category', { categoryName, productCount });
+    }
   } catch (error) {
     console.error('Error tracking view_category:', error);
   }
@@ -223,7 +239,9 @@ export const trackShareProduct = (product, method = 'unknown') => {
       product_name: product.name
     });
 
-    console.log('📊 GA4: share', { productName: product.name, method });
+    if (import.meta.env.DEV) {
+      console.log('📊 GA4: share', { productName: product.name, method });
+    }
   } catch (error) {
     console.error('Error tracking share:', error);
   }
@@ -244,7 +262,9 @@ export const trackPCBuilderAction = (action, componentCategory = '', productName
       product_name: productName
     });
 
-    console.log('📊 GA4: pc_builder_action', { action, componentCategory });
+    if (import.meta.env.DEV) {
+      console.log('📊 GA4: pc_builder_action', { action, componentCategory });
+    }
   } catch (error) {
     console.error('Error tracking pc_builder_action:', error);
   }

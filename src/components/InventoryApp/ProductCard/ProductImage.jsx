@@ -1,24 +1,13 @@
 import { Package } from 'lucide-react';
-import { useLazyImage } from '../../../hooks/useIntersectionObserver';
 
 const ProductImage = ({ src, alt, className = "" }) => {
-  const { elementRef, imageSrc, isLoaded } = useLazyImage(src);
-
   return (
-    <div 
-      ref={elementRef}
-      className={`relative w-full h-full bg-white p-6 ${className}`}
-    >
-      {!isLoaded && (
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse rounded-xl" />
-      )}
-      
+    <div className={`relative w-full h-full bg-white p-6 ${className}`}>
       <img
-        src={imageSrc}
+        src={src}
         alt={alt}
-        className={`w-full h-full object-contain transition-all duration-500 ${
-          isLoaded ? 'opacity-100 group-hover:scale-110' : 'opacity-0'
-        }`}
+        className="w-full h-full object-contain
+                 group-hover:scale-110 transition-all duration-500"
         loading="lazy"
         onError={(e) => {
           e.target.style.display = 'none';
