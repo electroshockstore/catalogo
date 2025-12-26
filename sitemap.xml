@@ -148,13 +148,19 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.jldev.com.ar/categoria/memorias-ram/adata-adata-xpg-gammix-d35-ddr4-16gb</loc>
+    <loc>https://www.jldev.com.ar/categoria/memorias-ram/neo-forza-neo-forza-ddr5-16gb-5200-cl42-</loc>
     <lastmod>2025-12-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.jldev.com.ar/categoria/memorias-ram/netac-netac-shadow-ddr4-16gb-3200mhz</loc>
+    <loc>https://www.jldev.com.ar/categoria/memorias-ram/neo-forza-neo-forza-ddr5-32gb-5200mhz-cl</loc>
+    <lastmod>2025-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.jldev.com.ar/categoria/memorias-ram/adata-adata-xpg-gammix-d35-ddr4-16gb</loc>
     <lastmod>2025-12-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -166,43 +172,13 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.jldev.com.ar/categoria/memorias-ram/adata-adata-premier-8gb-u-dimm-ddr3-</loc>
-    <lastmod>2025-12-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.jldev.com.ar/categoria/memorias-ram/adata-adata-4gb-ddr4-2666-mhz-sodimm</loc>
-    <lastmod>2025-12-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.jldev.com.ar/categoria/memorias-ram/adata-adata-ddr4-premier-16gb-3200mh</loc>
-    <lastmod>2025-12-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.jldev.com.ar/categoria/memorias-ram/netac-netac-basic-ddr4-16gb-3200-mhz</loc>
-    <lastmod>2025-12-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.jldev.com.ar/categoria/memorias-ram/patriot-patriot-signature-ddr4-16gb-32</loc>
-    <lastmod>2025-12-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.jldev.com.ar/categoria/memorias-ram/lexar-lexar-16gb-ddr4-3200mhz-udimm</loc>
-    <lastmod>2025-12-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://www.jldev.com.ar/categoria/memorias-ram/xpg-adata-xpg-ddr4-16gb-3200mhz-sp</loc>
+    <lastmod>2025-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.jldev.com.ar/categoria/memorias-ram/netac-netac-shadow-ddr4-16gb-3200mhz</loc>
     <lastmod>2025-12-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -214,13 +190,37 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.jldev.com.ar/categoria/memorias-ram/neo-forza-neo-forza-ddr5-16gb-5200-cl42-</loc>
+    <loc>https://www.jldev.com.ar/categoria/memorias-ram/lexar-lexar-16gb-ddr4-3200mhz-udimm</loc>
     <lastmod>2025-12-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.jldev.com.ar/categoria/memorias-ram/neo-forza-neo-forza-ddr5-32gb-5200mhz-cl</loc>
+    <loc>https://www.jldev.com.ar/categoria/memorias-ram/patriot-patriot-signature-ddr4-16gb-32</loc>
+    <lastmod>2025-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.jldev.com.ar/categoria/memorias-ram/netac-netac-basic-ddr4-16gb-3200-mhz</loc>
+    <lastmod>2025-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.jldev.com.ar/categoria/memorias-ram/adata-adata-ddr4-premier-16gb-3200mh</loc>
+    <lastmod>2025-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.jldev.com.ar/categoria/memorias-ram/adata-adata-4gb-ddr4-2666-mhz-sodimm</loc>
+    <lastmod>2025-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.jldev.com.ar/categoria/memorias-ram/adata-adata-premier-8gb-u-dimm-ddr3-</loc>
     <lastmod>2025-12-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
