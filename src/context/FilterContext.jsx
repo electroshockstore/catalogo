@@ -10,14 +10,13 @@ export function FilterProvider({ children }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [subFilters, setSubFilters] = useState({});
-  const [filteredProducts, setFilteredProducts] = useState([]);
 
   // Limpiar subfiltros cuando cambia la categoría
   useEffect(() => {
     setSubFilters({});
   }, [selectedCategory]);
 
-  // Memoizar la función de normalización para evitar recrearla
+  // Memoizar la función de normalización
   const normalizeValue = useCallback((filterType, specValue) => {
     const valueStr = specValue.toString().toLowerCase();
     let normalizedValue = specValue;
@@ -110,11 +109,9 @@ export function FilterProvider({ children }) {
     return normalizedValue;
   }, []);
 
-  useEffect(() => {
-    if (!products) {
-      setFilteredProducts([]);
-      return;
-    }
+  // OPTIMIZACIÓN CRÍTICA: Memoizar productos filtrados
+  const filteredProducts = useMemo(() => {
+    if (!products) return [];
 
     let filtered = products;
 
@@ -152,7 +149,7 @@ export function FilterProvider({ children }) {
       }
     }
 
-    setFilteredProducts(filtered);
+    return filtered;
   }, [products, searchQuery, selectedCategory, subFilters, normalizeValue]);
 
   const handleSubFilterChange = useCallback((filterType, values) => {
@@ -197,4 +194,29 @@ export function useFilter() {
     throw new Error('useFilter must be used within a FilterProvider');
   }
   return context;
+}
+
+// OPTIMIZACIÓN: Selectores específicos para evitar re-renders innecesarios
+export function useFilteredProducts() {
+  const context = useContext(FilterContext);
+  if (context === undefined) {
+    throw new Error('useFilteredProducts must be used within a FilterProvider');
+  }
+  return context.filteredProducts;
+}
+
+export function useSearchQuery() {
+  const context = useContext(FilterContext);
+  if (context === undefined) {
+    throw new Error('useSearchQuery must be used within a FilterProvider');
+  }
+  return [context.searchQuery, context.setSearchQuery];
+}
+
+export function useSelectedCategory() {
+  const context = useContext(FilterContext);
+  if (context === undefined) {
+    throw new Error('useSelectedCategory must be used within a FilterProvider');
+  }
+  return [context.selectedCategory, context.setSelectedCategory];
 }

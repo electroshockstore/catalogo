@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback } from 'react';
+import { createContext, useContext, useState, useCallback, useMemo } from 'react';
 
 const PCBuilderContext = createContext(null);
 
@@ -33,13 +33,15 @@ export const PCBuilderProvider = ({ children }) => {
   const [compatibilityStatus, setCompatibilityStatus] = useState(new Map());
   const [warnings, setWarnings] = useState([]);
   
-  // Calculate total price
-  const totalPrice = Object.values(pcBuild).reduce((total, component) => {
-    if (Array.isArray(component)) {
-      return total + component.reduce((sum, item) => sum + (item?.price || 0), 0);
-    }
-    return total + (component?.price || 0);
-  }, 0);
+  // OPTIMIZACIÓN: Memoizar totalPrice
+  const totalPrice = useMemo(() => {
+    return Object.values(pcBuild).reduce((total, component) => {
+      if (Array.isArray(component)) {
+        return total + component.reduce((sum, item) => sum + (item?.price || 0), 0);
+      }
+      return total + (component?.price || 0);
+    }, 0);
+  }, [pcBuild]);
   
   const selectComponent = useCallback((category, product) => {
     setPcBuild(prev => {

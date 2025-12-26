@@ -1,6 +1,5 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
 import { FilterProvider } from "./context/FilterContext";
 import { StockProvider } from "./context/StockContext";
 import { PCBuilderProvider } from "./context/PCBuilderContext";
@@ -25,136 +24,20 @@ const PageLoader = () => (
   </div>
 );
 
-// Animaciones simplificadas para mejor rendimiento
-const pageVariants = {
-  initial: { opacity: 0 },
-  animate: { 
-    opacity: 1, 
-    transition: { duration: 0.2, ease: 'easeOut' }
-  },
-  exit: { 
-    opacity: 0, 
-    transition: { duration: 0.15, ease: 'easeIn' }
-  }
-};
-
 function AnimatedRoutes() {
   const location = useLocation();
-  
-  // Solo animar transiciones entre páginas diferentes (no entre categorías)
-  const getRouteKey = (pathname) => {
-    if (pathname.includes('/armatupc')) {
-      return 'armatupc';
-    }
-    if (pathname.includes('/puntos-de-retiro')) {
-      return 'puntos-retiro';
-    }
-    if (pathname.includes('/categoria/') && pathname.split('/').length === 4) {
-      return 'product-detail'; // Página de detalle de producto
-    }
-    return 'store'; // Página principal/categorías
-  };
 
   return (
     <Suspense fallback={<PageLoader />}>
-      <AnimatePresence mode="wait">
-        <Routes location={location} key={getRouteKey(location.pathname)}>
-          <Route
-            path="/"
-            element={
-              <motion.div
-                variants={pageVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-              >
-                <Store />
-              </motion.div>
-            }
-          />
-        <Route
-          path="/armatupc/:mode"
-          element={
-            <motion.div
-              variants={pageVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
-              <PCBuilder />
-            </motion.div>
-          }
-        />
-        {/* Ruta de Puntos de Retiro */}
-        <Route
-          path="/puntos-de-retiro"
-          element={
-            <motion.div
-              variants={pageVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
-              <PuntosRetiro />
-            </motion.div>
-          }
-        />
-        {/* Ruta legacy para compatibilidad */}
-        <Route
-          path="/pc-builder"
-          element={
-            <motion.div
-              variants={pageVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
-              <PCBuilder />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/categoria/:categorySlug"
-          element={
-            <motion.div
-              variants={pageVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
-              <Store />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/categoria/:categorySlug/:productSku"
-          element={
-            <motion.div
-              variants={pageVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
-              <ProductDetailPage />
-            </motion.div>
-          }
-        />
-        {/* Ruta legacy para compatibilidad */}
-        <Route
-          path="/producto/:id"
-          element={
-            <motion.div
-              variants={pageVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
-              <ProductDetailPage />
-            </motion.div>
-          }
-        />
-        </Routes>
-      </AnimatePresence>
+      <Routes location={location}>
+        <Route path="/" element={<div className="page-transition"><Store /></div>} />
+        <Route path="/armatupc/:mode" element={<div className="page-transition"><PCBuilder /></div>} />
+        <Route path="/puntos-de-retiro" element={<div className="page-transition"><PuntosRetiro /></div>} />
+        <Route path="/pc-builder" element={<div className="page-transition"><PCBuilder /></div>} />
+        <Route path="/categoria/:categorySlug" element={<div className="page-transition"><Store /></div>} />
+        <Route path="/categoria/:categorySlug/:productSku" element={<div className="page-transition"><ProductDetailPage /></div>} />
+        <Route path="/producto/:id" element={<div className="page-transition"><ProductDetailPage /></div>} />
+      </Routes>
     </Suspense>
   );
 }

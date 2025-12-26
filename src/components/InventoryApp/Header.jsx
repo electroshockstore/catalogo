@@ -1,8 +1,7 @@
-// Header negro con buscador centrado - Responsive
+// Header negro con buscador centrado - Responsive - OPTIMIZADO
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Package, Search, FileText, MapPin, X, Home, Bot, ArrowRight, Cpu } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Package, Search, FileText, MapPin, X, Home, Bot, ArrowRight } from 'lucide-react';
 import { useStock } from '../../context/StockContext';
 
 const Header = ({ searchQuery = '', onSearchChange, onGoHome }) => {
@@ -57,73 +56,64 @@ const Header = ({ searchQuery = '', onSearchChange, onGoHome }) => {
   return (
     <>
       {/* Modal de Condiciones - Diseño Moderno */}
-      <AnimatePresence>
-        {showConditionsModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
-            onClick={() => setShowConditionsModal(false)}
+      {showConditionsModal && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-fadeIn"
+          onClick={() => setShowConditionsModal(false)}
+        >
+          <div
+            className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-3xl shadow-2xl max-w-2xl w-full border border-gray-700/50 overflow-hidden modal-scale-enter"
+            onClick={(e) => e.stopPropagation()}
           >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-3xl shadow-2xl max-w-2xl w-full border border-gray-700/50 overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
+            {/* Decorative gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-blue-500/10 pointer-events-none" />
+            
+            {/* Close button - Floating */}
+            <button
+              onClick={() => setShowConditionsModal(false)}
+              className="absolute top-4 right-4 z-10 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full p-2 transition-all duration-200 hover:scale-110 border border-white/20"
             >
-              {/* Decorative gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-blue-500/10 pointer-events-none" />
-              
-              {/* Close button - Floating */}
+              <X className="w-5 h-5 text-white" strokeWidth={2.5} />
+            </button>
+
+            {/* Header minimalista */}
+            <div className="px-6 pt-6 pb-4">
+              <div className="flex items-center gap-3">
+                <div className="bg-orange-500/20 backdrop-blur-sm p-3 rounded-xl border border-orange-500/30">
+                  <FileText className="w-6 h-6 text-orange-400" strokeWidth={2.5} />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white">Condiciones de Venta</h3>
+                  <p className="text-sm text-gray-400">Información importante</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Contenido del Modal */}
+            <div className="px-4 sm:px-6 pb-6 flex items-center justify-center">
+              <div className="relative group">
+                <img
+                  src="/images/condiciones_tiny.webp"
+                  alt="Condiciones de Venta"
+                  className="max-w-full max-h-[60vh] sm:max-h-[70vh] w-auto h-auto object-contain rounded-xl shadow-2xl border border-gray-700/50"
+                />
+                {/* Subtle glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-t from-orange-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none" />
+              </div>
+            </div>
+
+            {/* Footer minimalista */}
+            <div className="px-6 pb-6 flex justify-center">
               <button
                 onClick={() => setShowConditionsModal(false)}
-                className="absolute top-4 right-4 z-10 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full p-2 transition-all duration-200 hover:scale-110 border border-white/20"
+                className="px-8 py-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl transition-all duration-200 shadow-lg hover:shadow-orange-500/50 hover:scale-105"
               >
-                <X className="w-5 h-5 text-white" strokeWidth={2.5} />
+                Entendido
               </button>
-
-              {/* Header minimalista */}
-              <div className="px-6 pt-6 pb-4">
-                <div className="flex items-center gap-3">
-                  <div className="bg-orange-500/20 backdrop-blur-sm p-3 rounded-xl border border-orange-500/30">
-                    <FileText className="w-6 h-6 text-orange-400" strokeWidth={2.5} />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-white">Condiciones de Venta</h3>
-                    <p className="text-sm text-gray-400">Información importante</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Contenido del Modal */}
-              <div className="px-4 sm:px-6 pb-6 flex items-center justify-center">
-                <div className="relative group">
-                  <img
-                    src="/images/condiciones_tiny.webp"
-                    alt="Condiciones de Venta"
-                    className="max-w-full max-h-[60vh] sm:max-h-[70vh] w-auto h-auto object-contain rounded-xl shadow-2xl border border-gray-700/50"
-                  />
-                  {/* Subtle glow effect */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-orange-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none" />
-                </div>
-              </div>
-
-              {/* Footer minimalista */}
-              <div className="px-6 pb-6 flex justify-center">
-                <button
-                  onClick={() => setShowConditionsModal(false)}
-                  className="px-8 py-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl transition-all duration-200 shadow-lg hover:shadow-orange-500/50 hover:scale-105"
-                >
-                  Entendido
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </div>
+          </div>
+        </div>
+      )}
 
       <header className="sticky top-0 z-50 w-full bg-black border-b border-gray-800">
       <div className="w-full px-4 sm:px-6 py-3 sm:py-4">
@@ -149,122 +139,62 @@ const Header = ({ searchQuery = '', onSearchChange, onGoHome }) => {
             </button>
             
             <div className="flex items-center gap-2">
-              {/* Bot Helper - Mobile - DENTRO del bloque de botones */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.8, type: "spring" }}
-                className="flex items-center gap-1.5 mr-2"
-              >
+              {/* Bot Helper - Mobile */}
+              <div className="flex items-center gap-1.5 mr-2 header-bot-enter">
                 <div className="relative">
-                  <motion.div
-                    animate={{ 
-                      scale: [1, 1.15, 1]
-                    }}
-                    transition={{ 
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                    className="relative"
-                  >
+                  <div className="relative animate-bot-pulse">
                     <div className="bg-gradient-to-br from-cyan-500 via-blue-600 to-indigo-600 rounded-full p-1.5 shadow-lg border-2 border-cyan-300/50">
                       <Bot className="w-3 h-3 text-white" strokeWidth={2.5} />
                     </div>
-                    <motion.div
-                      animate={{ 
-                        scale: [1, 1.4, 1],
-                        opacity: [0.6, 0, 0.6]
-                      }}
-                      transition={{ 
-                        duration: 2,
-                        repeat: Infinity
-                      }}
-                      className="absolute inset-0 bg-cyan-400 rounded-full blur-sm"
-                    />
-                  </motion.div>
+                    <div className="absolute inset-0 bg-cyan-400 rounded-full blur-sm animate-bot-glow" />
+                  </div>
                 </div>
                 
-                <motion.div
-                  animate={{ x: [0, 2, 0] }}
-                  transition={{ 
-                    duration: 1.5,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                >
+                <div className="animate-arrow-wiggle">
                   <ArrowRight className="w-3 h-3 text-cyan-400" strokeWidth={3} />
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
 
-           
-              
-              <motion.button
+              <button
                 onClick={() => setShowConditionsModal(true)}
-                animate={{ 
-                  scale: [1, 1.08, 1],
-                  y: [0, -2, 0]
-                }}
-                transition={{ 
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                whileTap={{ scale: 0.9 }}
                 className="relative p-2.5 bg-gradient-to-br from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700
                          rounded-full text-white
                          transition-all duration-300 shadow-lg hover:shadow-orange-500/50
-                         border-2 border-orange-400/50 overflow-hidden group"
+                         border-2 border-orange-400/50 overflow-hidden group
+                         animate-button-float active:scale-90"
                 aria-label="Condiciones de Venta"
               >
-                {/* Glow pulsante */}
-                <motion.div
-                  animate={{ 
-                    scale: [1, 1.5, 1],
-                    opacity: [0.6, 0, 0.6]
-                  }}
-                  transition={{ 
-                    duration: 2,
-                    repeat: Infinity
-                  }}
-                  className="absolute inset-0 bg-orange-400 rounded-full blur-md"
-                />
+                <div className="absolute inset-0 bg-orange-400 rounded-full blur-md animate-button-glow" />
                 <div className="absolute inset-0 bg-white/20 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-full" />
                 <FileText className="h-4 w-4 relative z-10" strokeWidth={2.5} />
-              </motion.button>
+              </button>
               
-              <motion.button
+              <button
                 onClick={() => navigate('/puntos-de-retiro')}
-                whileTap={{ scale: 0.9 }}
                 className="relative p-2.5 bg-gradient-to-br from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700
                          rounded-full text-white
                          transition-all duration-300 shadow-lg hover:shadow-blue-500/50
-                         border border-blue-500/30 overflow-hidden group"
+                         border border-blue-500/30 overflow-hidden group active:scale-90"
                 aria-label="Puntos de Retiro"
               >
                 <div className="absolute inset-0 bg-white/20 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-full" />
                 <MapPin className="h-4 w-4 relative z-10" strokeWidth={2.5} />
-              </motion.button>
+              </button>
 
-
-
-              <motion.button
+              <button
                 onClick={() => {
                   navigate('/');
                   onGoHome?.();
                 }}
-                whileTap={{ scale: 0.9 }}
                 className="relative p-2.5 bg-gradient-to-br from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700
                          rounded-full text-white
                          transition-all duration-300 shadow-lg hover:shadow-green-500/50
-                         border border-green-500/30 overflow-hidden group"
+                         border border-green-500/30 overflow-hidden group active:scale-90"
                 aria-label="Inicio"
               >
                 <div className="absolute inset-0 bg-white/20 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-full" />
                 <Home className="h-4 w-4 relative z-10" strokeWidth={2.5} />
-              </motion.button>
-
-
+              </button>
             </div>
           </div>
           
@@ -290,22 +220,14 @@ const Header = ({ searchQuery = '', onSearchChange, onGoHome }) => {
                 <X className="h-4 w-4" />
               </button>
             )}
-            
-            <AnimatePresence>
+              
               {isSearchOpen && searchResults.length > 0 && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute top-full left-0 right-0 mt-2 bg-gray-900 border border-gray-800 rounded-2xl shadow-2xl overflow-hidden z-50"
-                >
+                <div className="absolute top-full left-0 right-0 mt-2 bg-gray-900 border border-gray-800 rounded-2xl shadow-2xl overflow-hidden z-50 search-results-enter">
                   {searchResults.map((product) => (
-                    <motion.button
+                    <button
                       key={product.id}
                       onClick={() => handleProductClick(product.id)}
-                      className="w-full flex items-center gap-3 p-3 hover:bg-gray-800 transition-colors text-left"
-                      whileHover={{ x: 4 }}
+                      className="w-full flex items-center gap-3 p-3 hover:bg-gray-800 transition-all duration-200 text-left hover:translate-x-1"
                     >
                       <div className="w-12 h-12 bg-gray-800 rounded-lg overflow-hidden flex-shrink-0 flex items-center justify-center">
                         {product.images && product.images.length > 0 ? (
@@ -331,11 +253,10 @@ const Header = ({ searchQuery = '', onSearchChange, onGoHome }) => {
                       <div className="inline-flex items-center gap-1 px-2 py-1 bg-gradient-to-r from-blue-50 to-emerald-50 rounded-lg border border-blue-200">
                         <span className="text-xs font-bold text-gray-800">${product.price.toLocaleString()}</span>
                       </div>
-                    </motion.button>
+                    </button>
                   ))}
-                </motion.div>
+                </div>
               )}
-            </AnimatePresence>
           </div>
         </div>
 
@@ -385,22 +306,14 @@ const Header = ({ searchQuery = '', onSearchChange, onGoHome }) => {
                 </button>
               )}
               
-              <AnimatePresence>
-                {isSearchOpen && searchResults.length > 0 && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-full left-0 right-0 mt-2 bg-gray-900 border border-gray-800 rounded-2xl shadow-2xl overflow-hidden z-50"
-                  >
-                    {searchResults.map((product) => (
-                      <motion.button
-                        key={product.id}
-                        onClick={() => handleProductClick(product.id)}
-                        className="w-full flex items-center gap-4 p-4 hover:bg-gray-800 transition-colors text-left border-b border-gray-800 last:border-b-0"
-                        whileHover={{ x: 4 }}
-                      >
+              {isSearchOpen && searchResults.length > 0 && (
+                <div className="absolute top-full left-0 right-0 mt-2 bg-gray-900 border border-gray-800 rounded-2xl shadow-2xl overflow-hidden z-50 search-results-enter">
+                  {searchResults.map((product) => (
+                    <button
+                      key={product.id}
+                      onClick={() => handleProductClick(product.id)}
+                      className="w-full flex items-center gap-4 p-4 hover:bg-gray-800 transition-all duration-200 text-left border-b border-gray-800 last:border-b-0 hover:translate-x-1"
+                    >
                         <div className="w-16 h-16 bg-gray-800 rounded-xl overflow-hidden flex-shrink-0 flex items-center justify-center">
                           {product.images && product.images.length > 0 ? (
                             <img
@@ -425,144 +338,83 @@ const Header = ({ searchQuery = '', onSearchChange, onGoHome }) => {
                         <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-blue-50 to-emerald-50 rounded-xl border border-blue-200">
                           <span className="text-sm font-bold text-gray-800">${product.price.toLocaleString()}</span>
                         </div>
-                      </motion.button>
+                      </button>
                     ))}
-                  </motion.div>
+                  </div>
                 )}
-              </AnimatePresence>
             </div>
           </div>
 
           <div className="flex items-center gap-2 flex-shrink-0">
-            {/* Bot Helper - Desktop - DENTRO del bloque de botones */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.8, type: "spring" }}
-              className="flex items-center gap-2 mr-3"
-            >
+            {/* Bot Helper - Desktop */}
+            <div className="flex items-center gap-2 mr-3 header-bot-enter">
               <div className="relative">
-                <motion.div
-                  animate={{ 
-                    scale: [1, 1.15, 1]
-                  }}
-                  transition={{ 
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  className="relative"
-                >
+                <div className="relative animate-bot-pulse">
                   <div className="bg-gradient-to-br from-cyan-500 via-blue-600 to-indigo-600 rounded-full p-2 shadow-xl border-2 border-cyan-300/50">
                     <Bot className="w-4 h-4 text-white" strokeWidth={2.5} />
                   </div>
-                  <motion.div
-                    animate={{ 
-                      scale: [1, 1.5, 1],
-                      opacity: [0.6, 0, 0.6]
-                    }}
-                    transition={{ 
-                      duration: 2,
-                      repeat: Infinity
-                    }}
-                    className="absolute inset-0 bg-cyan-400 rounded-full blur-md"
-                  />
-                </motion.div>
+                  <div className="absolute inset-0 bg-cyan-400 rounded-full blur-md animate-bot-glow" />
+                </div>
               </div>
               
-              <motion.div
-                animate={{ x: [0, 3, 0] }}
-                transition={{ 
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
+              <div className="animate-arrow-wiggle">
                 <ArrowRight className="w-4 h-4 text-cyan-400" strokeWidth={3} />
-              </motion.div>
+              </div>
               
               <div className="bg-gradient-to-r from-cyan-500/20 to-blue-600/20 backdrop-blur-sm px-2 py-1 rounded-full border border-cyan-400/30">
                 <p className="text-xs font-bold text-cyan-300 whitespace-nowrap">
                   ¡Info importante!
                 </p>
               </div>
-            </motion.div>
+            </div>
 
-         
-            
             <div className="relative">
-              <motion.button
+              <button
                 onClick={() => setShowConditionsModal(true)}
-                animate={{ 
-                  scale: [1, 1.08, 1],
-                  y: [0, -3, 0]
-                }}
-                transition={{ 
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
                 className="relative flex items-center gap-2 px-5 py-2.5 
                          bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700
                          rounded-full text-white font-bold text-sm
                          transition-all duration-300 shadow-lg hover:shadow-orange-500/50
-                         border-2 border-orange-400/50 overflow-hidden group"
+                         border-2 border-orange-400/50 overflow-hidden group
+                         animate-button-float hover:scale-110 active:scale-95"
               >
-                {/* Glow pulsante */}
-                <motion.div
-                  animate={{ 
-                    scale: [1, 1.6, 1],
-                    opacity: [0.7, 0, 0.7]
-                  }}
-                  transition={{ 
-                    duration: 2,
-                    repeat: Infinity
-                  }}
-                  className="absolute inset-0 bg-orange-400 rounded-full blur-lg"
-                />
+                <div className="absolute inset-0 bg-orange-400 rounded-full blur-lg animate-button-glow" />
                 <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                 <FileText className="h-4 w-4 relative z-10" strokeWidth={2.5} />
                 <span className="hidden lg:inline relative z-10">Condiciones de Venta</span>
-              </motion.button>
+              </button>
             </div>
             
-            <motion.button
+            <button
               onClick={() => navigate('/puntos-de-retiro')}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
               className="relative flex items-center gap-2 px-5 py-2.5 
                        bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700
                        rounded-full text-white font-bold text-sm
                        transition-all duration-300 shadow-lg hover:shadow-blue-500/50
-                       border border-blue-500/30 overflow-hidden group"
+                       border border-blue-500/30 overflow-hidden group
+                       hover:scale-105 active:scale-95"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
               <MapPin className="h-4 w-4 relative z-10" strokeWidth={2.5} />
               <span className="hidden lg:inline relative z-10">Puntos de Retiro</span>
-            </motion.button>
+            </button>
 
-<motion.button
+            <button
               onClick={() => {
                 navigate('/');
                 onGoHome?.();
               }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
               className="relative flex items-center gap-2 px-5 py-2.5 
                        bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700
                        rounded-full text-white font-bold text-sm
                        transition-all duration-300 shadow-lg hover:shadow-green-500/50
-                       border border-green-500/30 overflow-hidden group"
+                       border border-green-500/30 overflow-hidden group
+                       hover:scale-105 active:scale-95"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
               <Home className="h-4 w-4 relative z-10" strokeWidth={2.5} />
               <span className="hidden lg:inline relative z-10">Inicio</span>
-            </motion.button>
-
-
-
+            </button>
           </div>
         </div>
       </div>

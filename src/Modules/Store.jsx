@@ -13,6 +13,7 @@ import PCBuilderSection from '../components/InventoryApp/PCBuilderSection';
 import CategoryProductSection from '../components/InventoryApp/CategoryProductSection';
 import FloatingChatButton from '../components/InventoryApp/FloatingChatButton';
 import { useFilter } from '../context/FilterContext';
+import { useStock } from '../context/StockContext';
 import { getCategoryFromSlug, getSlugFromCategory, generateSKU } from '../utils/slugify';
 import { useCategorySEO, useSEO } from '../hooks/useSEO';
 import { useProductListView, useCategoryTracking } from '../hooks/useAnalytics';
@@ -32,7 +33,7 @@ const Store = () => {
   } = useFilter();
 
   const [viewMode, setViewMode] = useState('grid');
-  const [sortOrder, setSortOrder] = useState(null); // null, 'asc', 'desc'
+  const [sortOrder, setSortOrder] = useState(null);
 
   // Ordenar productos por precio
   const sortedProducts = [...filteredProducts].sort((a, b) => {

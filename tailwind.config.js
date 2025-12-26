@@ -1,10 +1,42 @@
-// tailwind.config.js - Sistema de Diseño Coherente
+// tailwind.config.js - Sistema de Diseño Coherente + OPTIMIZADO
 
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}"
+  ],
+  // OPTIMIZACIÓN: Purge agresivo en producción
+  safelist: [
+    // Clases dinámicas que necesitamos mantener
+    'animate-spin',
+    'animate-pulse',
+    'animate-bounce',
+    // Animaciones custom
+    'animate-shine',
+    'animate-pulse-ring',
+    'animate-wiggle',
+    'animate-arrow-bounce',
+    'animate-accent-line',
+    'animate-float-particle-1',
+    'animate-float-particle-2',
+    'animate-bot-pulse',
+    'animate-bot-glow',
+    'animate-arrow-wiggle',
+    'animate-button-float',
+    'animate-button-glow',
+    // Clases de transición
+    'page-transition',
+    'product-card-enter',
+    'pc-builder-card-enter',
+    'floating-chat-enter',
+    'chat-options-enter',
+    'header-bot-enter',
+    'search-results-enter',
+    'modal-scale-enter',
+    'carousel-image-transition',
+    'carousel-content-transition',
+    'carousel-point-transition'
   ],
   theme: {
     extend: {

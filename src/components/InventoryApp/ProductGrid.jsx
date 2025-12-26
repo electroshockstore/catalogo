@@ -1,5 +1,4 @@
-import { memo, useCallback, useMemo, useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { memo, useCallback, useMemo } from 'react';
 import ProductCard from './ProductCard/index';
 
 const EmptyState = memo(() => (
@@ -52,15 +51,7 @@ const EmptyState = memo(() => (
 
 EmptyState.displayName = 'EmptyState';
 
-// Virtual scrolling implementation
-const ITEM_HEIGHT = 400; // Altura aproximada de cada card
-const BUFFER_SIZE = 3; // Número de items extra a renderizar arriba/abajo
-
 const ProductGrid = memo(({ products, viewMode, openModal }) => {
-  const [visibleRange, setVisibleRange] = useState({ start: 0, end: 20 });
-  const containerRef = useRef(null);
-  const scrollTimeoutRef = useRef(null);
-
   const handleOpenModal = useCallback((product) => {
     openModal(product);
   }, [openModal]);
@@ -71,101 +62,22 @@ const ProductGrid = memo(({ products, viewMode, openModal }) => {
       : 'space-y-3 sm:space-y-4';
   }, [viewMode]);
 
-  // Virtual scrolling para listas grandes
-  useEffect(() => {
-    if (products.length <= 20) return; // No usar virtual scroll para listas pequeñas
-
-    const handleScroll = () => {
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-
-      scrollTimeoutRef.current = setTimeout(() => {
-        if (!containerRef.current) return;
-
-        const scrollTop = containerRef.current.scrollTop;
-        const containerHeight = containerRef.current.clientHeight;
-
-        const itemsPerRow = viewMode === 'grid' ? 4 : 1;
-        const rowHeight = viewMode === 'grid' ? ITEM_HEIGHT : 150;
-
-        const startRow = Math.max(0, Math.floor(scrollTop / rowHeight) - BUFFER_SIZE);
-        const endRow = Math.ceil((scrollTop + containerHeight) / rowHeight) + BUFFER_SIZE;
-
-        const start = startRow * itemsPerRow;
-        const end = Math.min(products.length, endRow * itemsPerRow);
-
-        setVisibleRange({ start, end });
-      }, 100);
-    };
-
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener('scroll', handleScroll);
-      return () => {
-        container.removeEventListener('scroll', handleScroll);
-        if (scrollTimeoutRef.current) {
-          clearTimeout(scrollTimeoutRef.current);
-        }
-      };
-    }
-  }, [products.length, viewMode]);
-
   if (products.length === 0) {
     return <EmptyState />;
   }
 
-  // Para listas pequeñas, renderizar todo
-  if (products.length <= 20) {
-    return (
-      <motion.div 
-        className="p-0 sm:p-4 md:p-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
-      >
-        <div className={gridClasses}>
-          {products.map((product, index) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              viewMode={viewMode}
-              onClick={handleOpenModal}
-              index={index}
-            />
-          ))}
-        </div>
-      </motion.div>
-    );
-  }
-
-  // Virtual scrolling para listas grandes
-  const visibleProducts = products.slice(visibleRange.start, visibleRange.end);
-  const totalHeight = Math.ceil(products.length / (viewMode === 'grid' ? 4 : 1)) * 
-                      (viewMode === 'grid' ? ITEM_HEIGHT : 150);
-  const offsetY = Math.floor(visibleRange.start / (viewMode === 'grid' ? 4 : 1)) * 
-                  (viewMode === 'grid' ? ITEM_HEIGHT : 150);
-
   return (
-    <div ref={containerRef} className="h-full overflow-y-auto p-0 sm:p-4 md:p-6">
-      <div style={{ height: totalHeight, position: 'relative' }}>
-        <div 
-          className={gridClasses}
-          style={{ 
-            transform: `translateY(${offsetY}px)`,
-            willChange: 'transform'
-          }}
-        >
-          {visibleProducts.map((product, index) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              viewMode={viewMode}
-              onClick={handleOpenModal}
-              index={visibleRange.start + index}
-            />
-          ))}
-        </div>
+    <div className="p-0 sm:p-4 md:p-6">
+      <div className={gridClasses}>
+        {products.map((product, index) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            viewMode={viewMode}
+            onClick={handleOpenModal}
+            index={index}
+          />
+        ))}
       </div>
     </div>
   );

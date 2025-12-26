@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const slides = [
@@ -94,43 +93,28 @@ const HeroCarousel = () => {
   return (
     <section className="relative w-full h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px] bg-[#020617] overflow-hidden rounded-2xl z-10">
       
-      {/* Background Image - Solo cargar si está en loadedImages */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={current.id}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          className="absolute right-0 top-0 w-full md:w-[70%] h-full z-0"
-        >
-          {loadedImages.has(currentSlide) && (
-            <img 
-              src={current.image} 
-              className="w-full h-full object-cover" 
-              alt=""
-              loading={currentSlide === 0 ? "eager" : "lazy"}
-              decoding="async"
-              width="1920"
-              height="1080"
-            />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#020617] via-[#020617]/80 md:via-[#020617]/50 to-transparent" />
-        </motion.div>
-      </AnimatePresence>
+      {/* Background Image - Optimizado con CSS transitions */}
+      <div className="absolute right-0 top-0 w-full md:w-[70%] h-full z-0">
+        {loadedImages.has(currentSlide) && (
+          <img 
+            key={current.id}
+            src={current.image} 
+            className="w-full h-full object-cover carousel-image-transition" 
+            alt=""
+            loading={currentSlide === 0 ? "eager" : "lazy"}
+            decoding="async"
+            width="1920"
+            height="1080"
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#020617] via-[#020617]/80 md:via-[#020617]/50 to-transparent" />
+      </div>
 
       {/* Contenido a la izquierda */}
       <div className="relative z-20 h-full flex items-center">
         <div className="container mx-2 px-4 sm:px-6 md:px-12 lg:px-16">
           <div className="max-w-2xl lg:max-w-4xl">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={current.id + '-text'}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-              >
+            <div key={current.id + '-text'} className="carousel-content-transition">
                 {/* Tag Superior */}
                 <div className="flex items-center gap-2 sm:gap-4 mb-4 sm:mb-6">
                   <div className={`h-[2px] sm:h-[3px] w-8 sm:w-12 bg-gradient-to-r ${current.gradient}`} />
@@ -152,12 +136,10 @@ const HeroCarousel = () => {
                 {/* Points */}
                 <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 md:gap-8">
                   {current.points.map((point, idx) => (
-                    <motion.div 
+                    <div 
                       key={idx}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 + idx * 0.05 }}
-                      className="flex items-start gap-3 sm:gap-4 group"
+                      className="flex items-start gap-3 sm:gap-4 group carousel-point-transition"
+                      style={{ animationDelay: `${0.1 + idx * 0.05}s` }}
                     >
                       <div className="flex flex-col items-center pt-1">
                         <div className={`w-[2px] sm:w-[3px] h-6 sm:h-8 md:h-10 bg-gradient-to-b ${point.highlight ? 'from-red-500 to-red-600' : current.gradient}`} />
@@ -165,11 +147,10 @@ const HeroCarousel = () => {
                       <span className={`text-sm sm:text-base md:text-lg lg:text-xl font-bold tracking-tight leading-snug ${point.highlight ? 'text-red-400' : 'text-white'}`}>
                         {point.text}
                       </span>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
-              </motion.div>
-            </AnimatePresence>
+              </div>
           </div>
         </div>
       </div>

@@ -18,7 +18,6 @@ export const StockProvider = ({ children }) => {
   const [stockAlerts, setStockAlerts] = useState([]);
 
   useEffect(() => {
-    // Definir umbral de stock bajo (5 unidades o menos)
     const lowStockProducts = products.filter(product => product.stock <= 5);
     setStockAlerts(lowStockProducts);
   }, [products]);
