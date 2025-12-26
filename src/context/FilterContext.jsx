@@ -1,5 +1,7 @@
 import { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import { useStock } from './StockContext';
+import { normalizeFilterValue } from '../utils/filterNormalizers';
+import { getFilterKey, FILTER_KEY_ALIASES } from '../utils/filterConfig';
 
 const FilterContext = createContext();
 
@@ -15,99 +17,6 @@ export function FilterProvider({ children }) {
   useEffect(() => {
     setSubFilters({});
   }, [selectedCategory]);
-
-  // Memoizar la función de normalización
-  const normalizeValue = useCallback((filterType, specValue) => {
-    const valueStr = specValue.toString().toLowerCase();
-    let normalizedValue = specValue;
-    
-    // Marca (normalizar para joystick)
-    if (filterType === 'marca') {
-      if (valueStr.includes('playstation') || valueStr.includes('sony')) {
-        normalizedValue = 'Sony/PlayStation';
-      } else if (valueStr.includes('microsoft') || valueStr.includes('xbox')) {
-        normalizedValue = 'Microsoft/Xbox';
-      }
-    }
-    // Iluminación
-    else if (filterType === 'iluminacionRGB' || filterType === 'Iluminación') {
-      if (valueStr.includes('rgb') || valueStr.includes('argb')) {
-        normalizedValue = 'RGB';
-      } else if (valueStr.includes('no') || valueStr.includes('sin') || valueStr.includes('posee')) {
-        normalizedValue = 'Sin RGB';
-      }
-    }
-    // Conexión/Conectividad
-    else if (filterType === 'tipoConectividad' || filterType === 'Conectividad' || filterType === 'Tipo de conexión' || filterType === 'inalambrico') {
-      if (valueStr.includes('inalámbrico') || valueStr.includes('wireless') || valueStr.includes('bluetooth') || valueStr.includes('sí') || valueStr.includes('2.4')) {
-        normalizedValue = 'Inalámbrico';
-      } else if (valueStr.includes('alámbrico') || valueStr.includes('cable') || valueStr.includes('usb') || valueStr.includes('3.5') || valueStr.includes('no') || valueStr.includes('gaming, cableado')) {
-        normalizedValue = 'Alámbrico';
-      }
-    }
-    // Batería (para joystick)
-    else if (filterType === 'tipoBateria') {
-      if (valueStr.includes('recargable') || valueStr.includes('interna') || valueStr.includes('li-ion') || valueStr.includes('litio')) {
-        normalizedValue = 'Batería Interna';
-      } else if (valueStr.includes('pilas aa') || valueStr.includes('aa (')) {
-        normalizedValue = 'Pilas AA';
-      }
-    }
-    // Compatibilidad (simplificado para joystick)
-    else if (filterType === 'compatibilidad' || filterType === 'Compatibilidad') {
-      const hasPC = valueStr.includes('pc') || valueStr.includes('windows');
-      const hasConsole = valueStr.includes('ps') || valueStr.includes('xbox') || valueStr.includes('switch') || valueStr.includes('playstation');
-      const hasMobile = valueStr.includes('android') || valueStr.includes('ios') || valueStr.includes('celular');
-      
-      if (hasPC && hasConsole && hasMobile) normalizedValue = 'PC/Consolas/Android';
-      else if (hasPC && hasConsole) normalizedValue = 'PC/Consolas';
-      else if (hasConsole) normalizedValue = 'Consolas';
-      else if (hasPC) normalizedValue = 'PC';
-    }
-    // Potencia
-    else if (filterType === 'Potencia') {
-      const match = valueStr.match(/(\d+)\s*w/);
-      if (match) normalizedValue = `${match[1]}W`;
-    }
-    // Certificación
-    else if (filterType === 'Certificacion') {
-      if (valueStr.includes('gold')) normalizedValue = '80 Plus Gold';
-      else if (valueStr.includes('bronze')) normalizedValue = '80 Plus Bronze';
-      else if (valueStr.includes('white')) normalizedValue = '80 Plus White';
-      else if (valueStr.includes('silver')) normalizedValue = '80 Plus Silver';
-      else if (valueStr.includes('sin')) normalizedValue = 'Sin certificación';
-    }
-    // Capacidad
-    else if (filterType === 'capacidadTotal' || filterType === 'Capacidad' || filterType === 'Capacidad total') {
-      const match = valueStr.match(/(\d+)\s*(gb|tb)/);
-      if (match) {
-        const num = match[1];
-        const unit = match[2].toUpperCase();
-        normalizedValue = `${num}${unit}`;
-      }
-    }
-    // Tipo de memoria
-    else if (filterType === 'tipoMemoriaRAM') {
-      normalizedValue = specValue.toUpperCase();
-    }
-    // Arquitectura
-    else if (filterType === 'Arquitectura') {
-      if (valueStr.includes('mecánico')) normalizedValue = 'Mecánico';
-      else if (valueStr.includes('membrana')) normalizedValue = 'Membrana';
-    }
-    // Sensor
-    else if (filterType === 'tipoSensor') {
-      if (valueStr.includes('óptico')) normalizedValue = 'Óptico';
-      else if (valueStr.includes('láser')) normalizedValue = 'Láser';
-    }
-    // DPI
-    else if (filterType === 'dpi') {
-      const match = valueStr.match(/(\d+)/);
-      if (match) normalizedValue = `${match[1]} DPI`;
-    }
-    
-    return normalizedValue;
-  }, []);
 
   // OPTIMIZACIÓN CRÍTICA: Memoizar productos filtrados
   const filteredProducts = useMemo(() => {
@@ -136,10 +45,57 @@ export function FilterProvider({ children }) {
           if (!product.specifications) return false;
           
           return activeFilters.every(([filterType, selectedValues]) => {
-            const specValue = product.specifications[filterType];
+            // Buscar el valor en el producto, considerando TODAS las claves posibles
+            let specValue = product.specifications[filterType];
+            
+            // Si no se encuentra, buscar en todas las variantes posibles
+            if (!specValue) {
+              // Buscar en aliases inversos (todas las claves que mapean a filterType)
+              const possibleKeys = Object.entries(FILTER_KEY_ALIASES)
+                .filter(([, target]) => target === filterType)
+                .map(([key]) => key);
+              
+              // Agregar el filterType mismo
+              possibleKeys.push(filterType);
+              
+              // Buscar en todas las claves posibles
+              for (const key of possibleKeys) {
+                if (product.specifications[key]) {
+                  specValue = product.specifications[key];
+                  break;
+                }
+              }
+              
+              // Búsquedas específicas adicionales
+              if (!specValue && filterType === 'rgb') {
+                specValue = product.specifications['iluminacionRGB'] || 
+                           product.specifications['Iluminación'] ||
+                           product.specifications['RGB'] ||
+                           product.specifications['rgb'];
+              } else if (!specValue && filterType === 'tipoMemoriaRAM') {
+                specValue = product.specifications['tipoMemoriaRAM'] || 
+                           product.specifications['tipoMemoria'] ||
+                           product.specifications['Tipo de memoria'];
+              } else if (!specValue && filterType === 'marca') {
+                specValue = product.specifications['marca'] || 
+                           product.specifications['Marca'] ||
+                           product.specifications['brand'];
+              } else if (!specValue && filterType === 'capacidadTotal') {
+                specValue = product.specifications['capacidadTotal'] || 
+                           product.specifications['Capacidad total'] ||
+                           product.specifications['Capacidad'] ||
+                           product.specifications['capacidad'];
+              } else if (!specValue && filterType === 'formato') {
+                specValue = product.specifications['formato'] || 
+                           product.specifications['Factor de forma'] ||
+                           product.specifications['Formato'] ||
+                           product.specifications['Tipo'];
+              }
+            }
+            
             if (!specValue) return false;
             
-            const normalizedProductValue = normalizeValue(filterType, specValue);
+            const normalizedProductValue = normalizeFilterValue(filterType, specValue);
             
             return selectedValues.some(selectedValue => 
               normalizedProductValue.toString().toLowerCase() === selectedValue.toLowerCase()
@@ -150,7 +106,7 @@ export function FilterProvider({ children }) {
     }
 
     return filtered;
-  }, [products, searchQuery, selectedCategory, subFilters, normalizeValue]);
+  }, [products, searchQuery, selectedCategory, subFilters]);
 
   const handleSubFilterChange = useCallback((filterType, values) => {
     setSubFilters(prev => ({

@@ -117,7 +117,7 @@ const MetodosDePago = () => {
                   <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${method.bgColor} opacity-40 rounded-full blur-3xl transform translate-x-20 -translate-y-20`} />
 
                   {/* Content */}
-                  <div className="relative p-4 sm:p-6 lg:p-8 pb-4 sm:pb-6">
+                  <div className="relative p-4 sm:p-6 lg:p-6 pb-4 sm:pb-6">
                     {/* Icon Circle */}
                     <div className={`inline-flex p-3 sm:p-4 lg:p-5 rounded-xl sm:rounded-2xl bg-gradient-to-br ${method.gradient} shadow-[0_10px_30px_rgba(0,0,0,0.3)] sm:shadow-[0_15px_50px_rgba(0,0,0,0.4)] mb-4 sm:mb-6`}>
                       <Icon className="h-6 w-6 sm:h-8 sm:w-8 lg:h-10 lg:w-10 text-white" strokeWidth={2.5} />

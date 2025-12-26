@@ -1,167 +1,16 @@
 import { useState, useMemo } from 'react';
 import { ChevronDown, ChevronUp, X, SlidersHorizontal } from 'lucide-react';
 import { useStock } from '../../context/StockContext';
-
-// Función para normalizar valores complejos a opciones simples
-const normalizeValue = (key, value) => {
-    if (!value) return null;
-    
-    const valueStr = value.toString().toLowerCase();
-    
-    // Marca (normalizar para joystick)
-    if (key === 'marca') {
-      if (valueStr.includes('playstation') || valueStr.includes('sony')) return 'Sony/PlayStation';
-      if (valueStr.includes('microsoft') || valueStr.includes('xbox')) return 'Microsoft/Xbox';
-      return value;
-    }
-    
-    // Iluminación
-    if (key === 'Iluminación' || key === 'iluminacionRGB') {
-      if (valueStr.includes('rgb') || valueStr.includes('argb')) return 'RGB';
-      if (valueStr.includes('no') || valueStr.includes('sin') || valueStr.includes('posee')) return 'Sin RGB';
-      return 'RGB';
-    }
-    
-    // Conexión/Conectividad
-    if (key === 'Conectividad' || key === 'Tipo de conexión' || key === 'inalambrico' || key === 'tipoConectividad') {
-      if (valueStr.includes('inalámbrico') || valueStr.includes('wireless') || valueStr.includes('bluetooth') || valueStr.includes('sí') || valueStr.includes('2.4')) return 'Inalámbrico';
-      if (valueStr.includes('alámbrico') || valueStr.includes('cable') || valueStr.includes('usb') || valueStr.includes('3.5') || valueStr.includes('no') || valueStr.includes('gaming, cableado')) return 'Alámbrico';
-      return value;
-    }
-    
-    // Sensor
-    if (key === 'tipoSensor') {
-      if (valueStr.includes('óptico')) return 'Óptico';
-      if (valueStr.includes('láser')) return 'Láser';
-      return value;
-    }
-    
-    // DPI
-    if (key === 'dpi') {
-      const match = valueStr.match(/(\d+)/);
-      if (match) return `${match[1]} DPI`;
-      return value;
-    }
-    
-    // Compatibilidad (simplificado para joystick)
-    if (key === 'Compatibilidad' || key === 'compatibilidad') {
-      const hasPC = valueStr.includes('pc') || valueStr.includes('windows');
-      const hasConsole = valueStr.includes('ps') || valueStr.includes('xbox') || valueStr.includes('switch') || valueStr.includes('playstation');
-      const hasMobile = valueStr.includes('android') || valueStr.includes('ios') || valueStr.includes('celular');
-      
-      if (hasPC && hasConsole && hasMobile) return 'PC/Consolas/Android';
-      if (hasPC && hasConsole) return 'PC/Consolas';
-      if (hasConsole) return 'Consolas';
-      if (hasPC) return 'PC';
-      return value;
-    }
-    
-    // Potencia (simplificar)
-    if (key === 'Potencia') {
-      const match = valueStr.match(/(\d+)\s*w/);
-      if (match) return `${match[1]}W`;
-      return value;
-    }
-    
-    // Certificación (simplificar)
-    if (key === 'Certificacion') {
-      if (valueStr.includes('gold')) return '80 Plus Gold';
-      if (valueStr.includes('bronze')) return '80 Plus Bronze';
-      if (valueStr.includes('white')) return '80 Plus White';
-      if (valueStr.includes('silver')) return '80 Plus Silver';
-      if (valueStr.includes('sin')) return 'Sin certificación';
-      return value;
-    }
-    
-    // Capacidad (simplificar)
-    if (key === 'Capacidad' || key === 'Capacidad total' || key === 'capacidadTotal') {
-      const match = valueStr.match(/(\d+)\s*(gb|tb)/);
-      if (match) {
-        const num = match[1];
-        const unit = match[2].toUpperCase();
-        return `${num}${unit}`;
-      }
-      return value;
-    }
-    
-    // Tipo de memoria
-    if (key === 'tipoMemoriaRAM') {
-      return value.toUpperCase();
-    }
-    
-    // Arquitectura/Tipo
-    if (key === 'Arquitectura') {
-      if (valueStr.includes('mecánico')) return 'Mecánico';
-      if (valueStr.includes('membrana')) return 'Membrana';
-      return value;
-    }
-    
-    // Batería (para joystick)
-    if (key === 'tipoBateria' || key === 'bateria') {
-      if (valueStr.includes('recargable') || valueStr.includes('interna') || valueStr.includes('li-ion') || valueStr.includes('litio')) return 'Batería Interna';
-      if (valueStr.includes('pilas aa') || valueStr.includes('aa (')) return 'Pilas AA';
-      return value;
-    }
-    
-    return value;
-};
+import { useCategoryFilters } from '../../hooks/useCategoryFilters';
+import { getFilterLabel } from '../../utils/filterConfig';
 
 const SidebarFilters = ({ selectedCategory, filters, onFilterChange, onClearFilters }) => {
   const [expandedSections, setExpandedSections] = useState({});
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const { products } = useStock();
 
-  const categoryFilters = useMemo(() => {
-    if (selectedCategory === 'Todos') return {};
-
-    const categoryProducts = products.filter(p => p.category === selectedCategory);
-    const dynamicFilters = {};
-
-    // Definir filtros importantes por categoría (máximo 5)
-    const importantFilters = {
-      'Memoria RAM': ['marca', 'iluminacionRGB', 'tipoMemoriaRAM', 'capacidadTotal'],
-      'Memorias RAM': ['marca', 'iluminacionRGB', 'tipoMemoriaRAM', 'capacidadTotal'],
-      'Procesadores': ['marca', 'socket', 'nucleos', 'frecuenciaBase'],
-      'Motherboards': ['marca', 'socket', 'chipset', 'formato'],
-      'Fuentes': ['Marca', 'Potencia', 'Certificacion', 'Cableado'],
-      'Teclados': ['Marca', 'Arquitectura', 'Iluminación', 'Conectividad'],
-      'Mouse': ['marca', 'iluminacionRGB', 'tipoSensor', 'dpi', 'tipoConectividad'],
-      'Auriculares': ['Marca', 'Tipo de conexión', 'Compatibilidad'],
-      'Joystick': ['marca', 'inalambrico', 'compatibilidad', 'tipoBateria'],
-      'Almacenamiento': ['Marca', 'Capacidad', 'Interfaz', 'Factor de forma'],
-      'Refrigeración': ['Marca', 'Tipo', 'TDP', 'Tamaño del ventilador']
-    };
-
-    const allowedFilters = importantFilters[selectedCategory] || [];
-
-    categoryProducts.forEach(product => {
-      if (product.specifications) {
-        Object.entries(product.specifications).forEach(([key, value]) => {
-          // Solo incluir filtros importantes
-          if (allowedFilters.includes(key)) {
-            if (!dynamicFilters[key]) {
-              dynamicFilters[key] = new Set();
-            }
-            if (value && typeof value === 'string') {
-              const normalized = normalizeValue(key, value);
-              if (normalized) {
-                dynamicFilters[key].add(normalized);
-              }
-            }
-          }
-        });
-      }
-    });
-
-    const result = {};
-    Object.entries(dynamicFilters).forEach(([key, valueSet]) => {
-      if (valueSet.size > 0) {
-        result[key] = Array.from(valueSet).sort();
-      }
-    });
-
-    return result;
-  }, [selectedCategory, products]);
+  // Hook personalizado que maneja toda la lógica de filtros
+  const categoryFilters = useCategoryFilters(selectedCategory, products);
 
   const totalProducts = useMemo(() => {
     return products.filter(p => p.category === selectedCategory).length;
@@ -189,53 +38,7 @@ const SidebarFilters = ({ selectedCategory, filters, onFilterChange, onClearFilt
     onFilterChange(filterType, newFilters);
   };
 
-  const formatFilterLabel = (key) => {
-    const labels = {
-      // Memoria RAM
-      'marca': 'Marca',
-      'iluminacionRGB': 'Iluminación',
-      'tipoMemoriaRAM': 'Tipo de Memoria',
-      'capacidadTotal': 'Capacidad',
-      // Procesadores
-      'socket': 'Socket',
-      'nucleos': 'Núcleos',
-      'frecuenciaBase': 'Frecuencia',
-      // Motherboards
-      'chipset': 'Chipset',
-      'formato': 'Formato',
-      // Fuentes
-      'Marca': 'Marca',
-      'Potencia': 'Potencia',
-      'Certificacion': 'Certificación',
-      'Cableado': 'Cableado',
-      // Teclados
-      'Arquitectura': 'Tipo',
-      'Iluminación': 'Iluminación',
-      'Conectividad': 'Conexión',
-      // Mouse
-      'tipoSensor': 'Sensor',
-      'dpi': 'DPI',
-      'tipoConectividad': 'Conexión',
-      'Sensor del mouse': 'Sensor',
-      'DPI del mouse': 'DPI',
-      'Tipo de conexión': 'Conexión',
-      // Auriculares
-      'Compatibilidad': 'Compatibilidad',
-      // Joystick
-      'inalambrico': 'Conexión',
-      'compatibilidad': 'Compatibilidad',
-      'tipoBateria': 'Batería',
-      // Almacenamiento
-      'Capacidad': 'Capacidad',
-      'Interfaz': 'Interfaz',
-      'Factor de forma': 'Formato',
-      // Refrigeración
-      'Tipo': 'Tipo',
-      'TDP': 'TDP',
-      'Tamaño del ventilador': 'Tamaño'
-    };
-    return labels[key] || key;
-  };
+
 
   return (
     <div className="w-full lg:w-80">
@@ -302,7 +105,7 @@ const SidebarFilters = ({ selectedCategory, filters, onFilterChange, onClearFilt
               >
                 <div className="flex items-center gap-3">
                   <span className="text-base font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
-                    {formatFilterLabel(filterType)}
+                    {getFilterLabel(filterType)}
                   </span>
                   {activeCount > 0 && (
                     <span className="flex items-center justify-center min-w-[24px] h-6 px-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs font-bold rounded-full shadow-md animate-pulse">

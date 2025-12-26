@@ -1,4 +1,4 @@
-// ═══════════════════════════════════════════════════════════════
+﻿// ═══════════════════════════════════════════════════════════════
 // RANGO DE IDs: 200-299 (Almacenamiento)
 // Próximo ID disponible: 222
 // IMPORTANTE: NO usar IDs fuera de este rango
@@ -20,11 +20,11 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/adata_legend710_512_side2.webp"
     ],
     specifications: {
-      "Marca": "Adata",
+      marca: "Adata",
       "Línea": "LEGEND 710",
       "Modelo": "ALEG-710-512GCS",
-      "Capacidad": "512 GB",
-      "Factor de forma": "M.2 2280",
+      capacidadTotal: "512 GB",
+      formato: "M.2 2280",
       "Interfaz": "PCIe Gen3 x4 NVMe 1.4",
       "Velocidad de lectura": "Hasta 2400 MB/s",
       "Velocidad de escritura": "Hasta 1800 MB/s",
@@ -49,11 +49,11 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/a400_480gb_specs.webp"
     ],
     specifications: {
-      "Marca": "Kingston",
+      marca: "Kingston",
       "Línea": "A400",
       "Modelo": "SA400S37/480G",
-      "Capacidad": "480 GB",
-      "Factor de forma": "2.5\"",
+      capacidadTotal: "480 GB",
+      formato: "2.5\"",
       "Interfaz": "SATA III 6Gb/s",
       "Velocidad de lectura": "Hasta 500 MB/s",
       "Velocidad de escritura": "Hasta 450 MB/s",
@@ -67,7 +67,7 @@ export const almacenamientoProducts = [
     brand: "Lexar",
     model: "NM620",
     category: "Almacenamiento",
-    price: 170000,
+    price: 180000,
     stock: 3,
     sku: "LEXAR-1TB-NM620",
     description: "SSD M.2 NVMe Gen3 x4 de 1TB, lectura 3500 MB/s, escritura 3000 MB/s",
@@ -77,11 +77,11 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/lexar_nm620_1tb_back.webp"
     ],
     specifications: {
-      "Marca": "Lexar",
+      marca: "Lexar",
       "Línea": "NM620",
       "Modelo": "NM620",
-      "Capacidad": "1 TB",
-      "Factor de forma": "M.2 2280",
+      capacidadTotal: "1 TB",
+      formato: "M.2 2280",
       "Interfaz": "PCIe Gen3 x4 NVMe 1.4",
       "Velocidad de lectura": "Hasta 3500 MB/s",
       "Velocidad de escritura": "Hasta 3000 MB/s",
@@ -95,8 +95,8 @@ export const almacenamientoProducts = [
     brand: "Kingston",
     model: "NV3 SNV3S/1000G",
     category: "Almacenamiento",
-    price: 180000,
-    stock: 3,
+    price: 195000,
+    stock: 2,
     sku: "KING-1TB-GEN4",
     description: "SSD M.2 NVMe Gen4 x4 de 1TB, lectura 3500 MB/s, escritura 2800 MB/s",
     images: [
@@ -104,11 +104,11 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/kingston_nv3_1tb_side.webp"
     ],
     specifications: {
-      "Marca": "Kingston",
+      marca: "Kingston",
       "Línea": "NV3",
       "Modelo": "SNV3S/1000G",
-      "Capacidad": "1 TB",
-      "Factor de forma": "M.2 2280",
+      capacidadTotal: "1 TB",
+      formato: "M.2 2280",
       "Interfaz": "PCIe Gen4 x4 NVMe",
       "Velocidad de lectura": "Hasta 3500 MB/s",
       "Velocidad de escritura": "Hasta 2800 MB/s",
@@ -132,11 +132,11 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/adata_swordfish500_side2.webp"
     ],
     specifications: {
-      "Marca": "Adata",
+      marca: "Adata",
       "Línea": "Swordfish",
       "Modelo": "ASWORDFISH-500G-C",
-      "Capacidad": "500 GB",
-      "Factor de forma": "M.2 2280",
+      capacidadTotal: "500 GB",
+      formato: "M.2 2280",
       "Interfaz": "PCIe Gen3 x4 NVMe",
       "Velocidad de lectura": "Hasta 1800 MB/s",
       "Velocidad de escritura": "Hasta 1200 MB/s",
@@ -161,11 +161,11 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/a400_960_back.webp"
     ],
     specifications: {
-      "Marca": "Kingston",
+      marca: "Kingston",
       "Línea": "A400",
       "Modelo": "SA400S37/960G",
-      "Capacidad": "960 GB",
-      "Factor de forma": "2.5\"",
+      capacidadTotal: "960 GB",
+      formato: "2.5\"",
       "Interfaz": "SATA III 6Gb/s",
       "Velocidad de lectura": "Hasta 500 MB/s",
       "Velocidad de escritura": "Hasta 450 MB/s",
@@ -189,12 +189,12 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/netac_n545s_480_specs.webp"
     ],
     specifications: {
-      "Marca": "Netac",
+      marca: "Netac",
       "Línea": "N535S",
       "Modelo": "NT01N535S-480G-S3X",
-      "Capacidad": "480 GB",
+      capacidadTotal: "480 GB",
       "Interfaz": "SATA III 6 Gb/s",
-      "Factor de forma": "2.5\" (7 mm)",
+      formato: "2.5\" (7 mm)",
       "Tipo de memoria flash": "3D NAND (TLC)",
       "Velocidad de lectura secuencial": "hasta 560 MB/s",
       "Velocidad de escritura secuencial": "hasta 520 MB/s",
@@ -222,12 +222,12 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/wd_green480_side2.webp"
     ],
     specifications: {
-      "Marca": "Western Digital",
+      marca: "Western Digital",
       "Línea": "WD Green",
       "Modelo": "WDS480G3G0A",
-      "Capacidad": "480 GB",
+      capacidadTotal: "480 GB",
       "Interfaz": "SATA III 6 Gb/s",
-      "Factor de forma": "2.5\" (7 mm)",
+      formato: "2.5\" (7 mm)",
       "Velocidad de lectura secuencial": "hasta 545 MB/s",
       "Consumo energético activo": "≈ 80 mW",
       "Temperatura funcionamiento": "0 °C – 70 °C",
@@ -253,11 +253,11 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/lexar_nm620_512_side.webp"
     ],
     specifications: {
-      "Marca": "Lexar",
+      marca: "Lexar",
       "Línea": "NM620",
       "Modelo": "NM620",
-      "Capacidad": "512 GB",
-      "Factor de forma": "M.2 2280",
+      capacidadTotal: "512 GB",
+      formato: "M.2 2280",
       "Interfaz": "PCIe Gen3 x4 NVMe 1.4",
       "Tipo de memoria flash": "3D NAND (TLC)",
       "Velocidad de lectura secuencial": "hasta 3300–3500 MB/s",
@@ -287,12 +287,12 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/patriot_elite_480_side2.webp"
     ],
     specifications: {
-      "Marca": "Patriot",
+      marca: "Patriot",
       "Línea": "Burst Elite",
       "Modelo": "PBE480GS25SSDR",
-      "Capacidad": "480 GB",
+      capacidadTotal: "480 GB",
       "Interfaz": "SATA III 6 Gb/s",
-      "Factor de forma": "2.5\" (7 mm)",
+      formato: "2.5\" (7 mm)",
       "Tipo de memoria flash": "3D NAND",
       "Velocidad de lectura secuencial": "hasta 450 MB/s",
       "Velocidad de escritura secuencial": "hasta 320 MB/s",
@@ -311,7 +311,7 @@ export const almacenamientoProducts = [
     model: "SSD Plus M.2 NVMe",
     category: "Almacenamiento",
     price: 160000,
-    stock: 2,
+    stock: 1,
     sku: "SANDISK-1TB-PLUS",
     description: "SSD M.2 NVMe PCIe Gen3 x4 de 1TB, alta resistencia mecánica",
     images: [
@@ -319,12 +319,12 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/sandisk_ssdplus1tb_side.webp"
     ],
     specifications: {
-      "Marca": "SanDisk",
+      marca: "SanDisk",
       "Línea": "SSD Plus M.2 NVMe",
       "Modelo": "SDSSDA3N-1T00-G26",
-      "Capacidad": "1 TB",
+      capacidadTotal: "1 TB",
       "Interfaz": "PCIe Gen3 x4 NVMe",
-      "Factor de forma": "M.2 2280",
+      formato: "M.2 2280",
       "Tipo de memoria flash": "TLC / 3D NAND",
       "Soporte de funciones": "TRIM",
       "Temperatura funcionamiento": "0 °C – 70 °C",
@@ -351,11 +351,11 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/adatassd_250_blue2.webp"
     ],
     specifications: {
-      "Marca": "Adata",
+      marca: "Adata",
       "Línea": "Ultimate SU650",
       "Modelo": "ASU650SS-256GT-R",
       "Modelo detallado": "ASU650SS-256GT-R",
-      "Capacidad": "256 GB",
+      capacidadTotal: "256 GB",
       "Formato": "2.5\"",
       "Interfaz": "SATA III 6 Gb/s",
       "Tipo de memoria": "3D NAND TLC",
@@ -383,11 +383,11 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/patriot_burst_960_side2.webp"
     ],
     specifications: {
-      "Marca": "Patriot",
+      marca: "Patriot",
       "Línea": "Burst Elite",
       "Modelo": "burst elite",
       "Modelo detallado": "PBE960GS25SSDR",
-      "Capacidad": "960 GB",
+      capacidadTotal: "960 GB",
       "Formato": "2.5\"",
       "Interfaz": "SATA III 6 Gb/s",
       "Tipo de memoria": "3D NAND TLC",
@@ -416,11 +416,11 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/patriot_burst_240_back.webp"
     ],
     specifications: {
-      "Marca": "Patriot",
+      marca: "Patriot",
       "Línea": "Burst Elite",
       "Modelo": "PBU240GS25SSDR",
       "Modelo detallado": "PBE240GS25SSDR",
-      "Capacidad": "240 GB",
+      capacidadTotal: "240 GB",
       "Formato": "2.5\"",
       "Interfaz": "SATA III 6 Gb/s",
       "Tipo de memoria": "3D NAND TLC",
@@ -449,11 +449,11 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/wd_elements_1tb_back.webp"
     ],
     specifications: {
-      "Marca": "Western Digital",
+      marca: "Western Digital",
       "Línea": "WD Elements Portable",
       "Modelo": "WDBUZG0010BBK",
       "Modelo detallado": "WDBUZG0010BBK-0B",
-      "Capacidad": "1 TB",
+      capacidadTotal: "1 TB",
       "Tipo": "HDD externo (2.5 pulgadas)",
       "Interfaz": "USB 3.0 (retrocompatible con USB 2.0)",
       "Velocidad de transferencia": "Hasta 5 Gbps (USB 3.0 teórico)",
@@ -485,11 +485,11 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/wd_elements_2tb_specs.webp"
     ],
     specifications: {
-      "Marca": "Western Digital",
+      marca: "Western Digital",
       "Línea": "WD Elements Portable",
       "Modelo": "WDBU6Y0020BBK",
       "Modelo detallado": "WDBU6Y0020BBK-WESN",
-      "Capacidad": "2 TB",
+      capacidadTotal: "2 TB",
       "Tipo": "Disco duro externo (HDD)",
       "Interfaz": "USB 3.0 (compatible con USB 2.0)",
       "Velocidad de transferencia": "Hasta 5 Gbps (USB 3.0 teórico)",
@@ -524,10 +524,10 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/nvme_wdgreen_240_side.webp"
     ],
     specifications: {
-      "Marca": "Western Digital",
+      marca: "Western Digital",
       "Línea": "WD Green",
       "Modelo": "SN350",
-      "Capacidad": "240 GB",
+      capacidadTotal: "240 GB",
       "Formato": "M.2 2280",
       "Interfaz": "PCIe Gen3 x4, NVMe",
       "Velocidad de lectura": "Hasta 2400 MB/s",
@@ -553,10 +553,10 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/nvme_wdgreen_480_side.webp"
     ],
     specifications: {
-      "Marca": "Western Digital",
+      marca: "Western Digital",
       "Línea": "WD Green",
       "Modelo": "SN350",
-      "Capacidad": "480 GB",
+      capacidadTotal: "480 GB",
       "Formato": "M.2 2280",
       "Interfaz": "PCIe Gen3 x4, NVMe",
       "Velocidad de lectura": "Hasta 2400 MB/s",
@@ -582,10 +582,10 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/nvme_wdgreen_500_side.webp"
     ],
     specifications: {
-      "Marca": "Western Digital",
+      marca: "Western Digital",
       "Línea": "WD Green",
       "Modelo": "SN350",
-      "Capacidad": "500 GB",
+      capacidadTotal: "500 GB",
       "Formato": "M.2 2280",
       "Interfaz": "PCIe Gen3 x4, NVMe",
       "Velocidad de lectura": "Hasta 2400 MB/s",
@@ -602,7 +602,7 @@ export const almacenamientoProducts = [
     brand: "ADATA",
     model: "XPG Spectrix S20G",
     category: "Almacenamiento",
-    price: 110000,
+    price: 120000,
     stock: 1,
     sku: "XPG-500-S20G",
     description: "SSD M.2 NVMe PCIe Gen3 x4 de 500GB con iluminación RGB direccionable, lectura 2500 MB/s, escritura 1800 MB/s",
@@ -610,10 +610,10 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/xpg_spectrix_s20g.webp"
     ],
     specifications: {
-      "Marca": "ADATA",
+      marca: "ADATA",
       "Línea": "XPG Spectrix",
       "Modelo": "S20G",
-      "Capacidad": "500 GB",
+      capacidadTotal: "500 GB",
       "Formato": "M.2 2280",
       "Interfaz": "PCIe Gen3 x4, NVMe 1.3",
       "Velocidad de lectura": "Hasta 2500 MB/s",
@@ -643,10 +643,10 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/seagate_skyhawk_4tb_side3.webp"
     ],
     specifications: {
-      "Marca": "Seagate",
+      marca: "Seagate",
       "Línea": "SkyHawk",
       "Modelo": "ST4000VX016",
-      "Capacidad": "4 TB",
+      capacidadTotal: "4 TB",
       "Formato": "3.5\"",
       "Interfaz": "SATA III 6 Gb/s",
       "Velocidad de rotación": "5900 RPM",
@@ -665,7 +665,7 @@ export const almacenamientoProducts = [
     brand: "ADATA",
     model: "Legend 710 ALEG-710-1TCS",
     category: "Almacenamiento",
-    price: 185000,
+    price: 190000,
     stock: 1,
     sku: "ADATA-1TB-L710",
     description: "SSD M.2 NVMe Gen3 x4 de 1TB con disipador de aluminio incluido, lectura 2400 MB/s, escritura 1800 MB/s",
@@ -675,12 +675,12 @@ export const almacenamientoProducts = [
       "/images/almacenamiento/adata_legend710_512_side2.webp"
     ],
     specifications: {
-      "Marca": "Adata",
+      marca: "Adata",
       "Línea": "LEGEND 710",
       "Modelo": "ALEG-710-1TCS",
-      "Capacidad": "1 TB",
+      capacidadTotal: "1 TB",
       "Interfaz": "PCIe Gen3 x4",
-      "Factor de Forma": "M.2 2280",
+      formato: "M.2 2280",
       "Velocidad Lectura Secuencial": "Hasta 2400 MB/s",
       "Velocidad Escritura Secuencial": "Hasta 1800 MB/s",
       "MTBF": "1,500,000 horas",
