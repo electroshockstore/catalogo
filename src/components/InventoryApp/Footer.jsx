@@ -24,7 +24,7 @@ const Footer = () => {
           <div className="space-y-6">
             <div className="flex items-center gap-3">
               <img 
-                src="/logotipo.png" 
+                src="/logotipo_tiny.png" 
                 alt="Shock-Store Logo" 
                 className="h-16 w-auto object-contain"
               />

@@ -128,7 +128,7 @@ const Header = ({ searchQuery = '', onSearchChange, onGoHome }) => {
               className="flex items-center gap-2 hover:opacity-80 transition-opacity"
             >
               <img 
-                src="/logotipo.png" 
+                src="/logotipo_tiny.png" 
                 alt="Shock-Store Logo" 
                 className="h-14 w-auto object-contain"
               />
@@ -271,7 +271,7 @@ const Header = ({ searchQuery = '', onSearchChange, onGoHome }) => {
             className="flex items-center gap-3 flex-shrink-0 hover:opacity-80 transition-opacity"
           >
             <img 
-              src="/logotipo.png" 
+              src="/logotipo_tiny.png" 
               alt="Shock-Store Logo" 
               className="h-12 w-auto object-contain"
             />

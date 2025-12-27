@@ -28,7 +28,7 @@ export const useSEO = ({
       title: title || 'Shock-Store | Catálogo de Venta - Tecnología y Componentes PC',
       description: description || 'Catálogo de productos Shock-Store. Componentes de PC, periféricos gaming, hardware y tecnología. Berazategui y Florencio Varela.',
       keywords: keywords || 'shock-store, componentes pc, hardware, gaming, periféricos, tecnología, berazategui, florencio varela',
-      image: image || '/logotipo.png',
+      image: image || '/logotipo_tiny.png',
       url,
       type
     });
@@ -68,7 +68,7 @@ export const useProductSEO = (product) => {
   const title = `${product.name} - ${product.brand} | Shock-Store`;
   const description = generateProductDescription(product);
   const keywords = generateProductKeywords(product);
-  const image = product.images?.[0] || '/logotipo.png';
+  const image = product.images?.[0] || '/logotipo_tiny.png';
 
   useSEO({
     title,

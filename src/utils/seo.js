@@ -98,8 +98,8 @@ export const generateOrganizationSchema = () => {
     "name": "Shock-Store",
     "description": "Tienda de componentes de PC, periféricos gaming, hardware y tecnología en Berazategui y Florencio Varela",
     "url": "https://www.jldev.com.ar",
-    "logo": "https://www.jldev.com.ar/logotipo.png",
-    "image": "https://www.jldev.com.ar/logotipo.png",
+    "logo": "https://www.jldev.com.ar/logotipo_tiny.png",
+    "image": "https://www.jldev.com.ar/logotipo_tiny.png",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Berazategui",
