@@ -8,13 +8,14 @@ const ViewDetailsButton = ({ onClick }) => {
         e.stopPropagation();
         onClick();
       }}
-      className="w-full group/btn relative flex items-center justify-center gap-2 
+      className="w-full group/btn relative flex items-center justify-center gap-1.5 sm:gap-2 
                  bg-gray-900 hover:bg-blue-600 text-white 
-                 py-2.5 sm:py-3 px-4 rounded-xl font-medium text-sm
+                 py-2 sm:py-3 px-3 sm:px-4 rounded-lg sm:rounded-xl font-medium text-xs sm:text-sm
                  transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-blue-500/20"
     >
-      <Eye className="w-4 h-4 transition-transform group-hover/btn:scale-110" />
-      <span>Ver Detalles</span>
+      <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover/btn:scale-110" />
+      <span className="hidden sm:inline">Ver Detalles</span>
+      <span className="sm:hidden">Ver</span>
       
       {/* Flecha animada - solo en desktop */}
       <svg 

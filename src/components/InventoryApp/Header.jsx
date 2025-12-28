@@ -38,8 +38,9 @@ const Header = ({ searchQuery = '', onSearchChange, onGoHome }) => {
         setIsSearchOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    // Usar 'click' en vez de 'mousedown' para mejor compatibilidad mobile
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
   const handleProductClick = (productId) => {

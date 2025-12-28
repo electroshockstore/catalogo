@@ -111,7 +111,7 @@ const ProductCard = memo(({ product, viewMode, onClick, index = 0, listName = 'P
     <div 
       ref={cardRef}
       onClick={handleClick}
-      className="group relative bg-white rounded-2xl border border-gray-100 
+      className="group relative bg-white rounded-xl sm:rounded-2xl border border-gray-100 
                  hover:border-blue-500/30 hover:shadow-xl hover:shadow-blue-500/5
                  transition-all duration-300 cursor-pointer overflow-hidden flex flex-col h-full"
     >
@@ -127,14 +127,13 @@ const ProductCard = memo(({ product, viewMode, onClick, index = 0, listName = 'P
         )}
       </div>
 
-      <div className="p-5 flex flex-col flex-1 justify-between gap-4">
+      <div className="p-2 sm:p-5 flex flex-col flex-1 justify-between gap-2 sm:gap-4">
         <div>
            <ProductInfo name={product.name} brand={product.brand} model={product.model} isUsed={isUsed} />
         </div>
         
-        <div className="space-y-3 pt-2 border-t border-gray-50">
+        <div className="space-y-2 sm:space-y-3 pt-2 border-t border-gray-50">
            <PriceDisplay price={product.price} category={product.category} />
-           <ViewDetailsButton onClick={handleClick} />
         </div>
       </div>
     </div>

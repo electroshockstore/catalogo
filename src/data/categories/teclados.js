@@ -18,9 +18,9 @@ export const tecladosProducts = [
       "/images/teclados/eisamax_teclado.webp",
       "/images/teclados/eisamax_teclado_side.webp",
       "/images/teclados/eisamax_teclado_side2.webp",
-       "/images/teclados/eisamax_teclado_key.webp",
-        "/images/teclados/eisamax_teclado.specs",
-         "/images/teclados/eisamax_teclado_back.webp"
+      "/images/teclados/eisamax_teclado_key.webp",
+      "/images/teclados/eisamax_teclado_specs.webp",
+      "/images/teclados/eisamax_teclado_back.webp"
     ],
     specifications: {
       "Marca": "Redragon",
@@ -77,8 +77,8 @@ export const tecladosProducts = [
     brand: "Redragon",
     model: "Fizz Pro K616-RGB",
     category: "Teclados",
-    price: 75000,
-    stock: 3,
+    price: 55000,
+    stock: 1,
     sku: "RED-FIZZ-PRO",
     description: "Teclado mecánico 60% compacto RGB con triple conectividad: Bluetooth 5.0 / 2.4 GHz / USB-C",
     images: [

@@ -94,8 +94,8 @@ const FloatingChatButton = () => {
         {/* Pulse ring effect */}
         <div className="absolute inset-0 rounded-2xl border-4 border-green-400 animate-pulse-ring" />
 
-        {/* Button content */}
-        <div className="relative flex items-center gap-3 px-5 py-4 sm:gap-5 sm:px-10 sm:py-6">
+        {/* Button content - Mobile: solo ícono */}
+        <div className="relative flex items-center gap-3 p-3 sm:gap-5 sm:px-10 sm:py-6">
           
           {/* Icon container */}
           <div className={`relative transition-transform duration-300 ${isExpanded ? 'rotate-180' : 'animate-wiggle'}`}>
@@ -110,11 +110,11 @@ const FloatingChatButton = () => {
             </div>
             
             {/* Online indicator */}
-            <div className={`absolute -top-1 -right-1 w-5 h-5 rounded-full border-2 border-white shadow-lg animate-pulse ${isOnline ? 'bg-green-400' : 'bg-orange-400'}`} />
+            <div className={`absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 border-white shadow-lg animate-pulse ${isOnline ? 'bg-green-400' : 'bg-orange-400'}`} />
           </div>
 
-          {/* Text content */}
-          <div className="flex flex-col items-start">
+          {/* Text content - Solo visible en desktop */}
+          <div className="hidden sm:flex flex-col items-start">
             <span className="text-xs sm:text-base font-semibold text-green-100 uppercase tracking-wide leading-tight">
               ¿Necesitás ayuda?
             </span>
@@ -123,7 +123,7 @@ const FloatingChatButton = () => {
             </span>
           </div>
 
-          {/* Arrow icon */}
+          {/* Arrow icon - Solo visible en desktop */}
           <div className={`hidden sm:block transition-transform duration-300 ${isExpanded ? 'rotate-90' : 'animate-arrow-bounce'}`}>
             <Send className="w-6 h-6 text-white/80" strokeWidth={2.5} />
           </div>

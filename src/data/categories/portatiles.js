@@ -1,6 +1,6 @@
 // ═══════════════════════════════════════════════════════════════
 // RANGO DE IDs: 1300-1399 (Portátiles)
-// Próximo ID disponible: 1302
+// Próximo ID disponible: 1303
 // IMPORTANTE: NO usar IDs fuera de este rango
 // ═══════════════════════════════════════════════════════════════
 export const portatilesProducts = [
@@ -204,6 +204,149 @@ export const portatilesProducts = [
         "Uso diario"
       ],
       observaciones: "Equipo usado. El funcionamiento es correcto. Detalles estéticos mínimos visibles en las fotos."
+    }
+  },
+  {
+    id: 1302,
+    name: "Dell OptiPlex 3090 i5-10500 + Monitor Dell P2222H + Brazo VESA ",
+    brand: "Dell",
+    model: "OptiPlex 3090 SFF",
+    category: "Portátiles",
+    price: 550000,
+    stock: 1,
+    isUsed: true,
+    images: [
+      "/images/portatiles/dell optiplex 3090/dell_optiplex_3090.webp",
+      "/images/portatiles/dell optiplex 3090/dell_optiplex_3090_general.webp",
+      "/images/portatiles/dell optiplex 3090/dell_optiplex_3090_vertical.webp",
+      "/images/portatiles/dell optiplex 3090/dell_optiplex_3090_monitor.webp",
+      "/images/portatiles/dell optiplex 3090/dell_optiplex_3090_monit.webp",
+      "/images/portatiles/dell optiplex 3090/dell_optiplex_3090_ves.webp",
+      "/images/portatiles/dell optiplex 3090/dell_optiplex_3090_vesa2.webp",
+      "/images/portatiles/dell optiplex 3090/dell_optiplex_3090_specs.webp",
+      "/images/portatiles/dell optiplex 3090/dell_optiplex_3090_specs2.webp"
+    ],
+    description: "PC escritorio 16GB RAM DDR4, gráficos Intel UHD 630. HDD 1TB SATA y SSD NVMe 256GB. Combo completo con Monitor Dell P2222H 22\", brazo VESA giratorio, mouse y teclado Logitech sellados. No incluye base monitor ni tornillos vesa",
+    specifications: {
+      producto: "Dell OptiPlex 3090 SFF - Combo Completo",
+      modelo: "OptiPlex 3090 Small Form Factor",
+      estado: "Usado - Excelente condición",
+      formato: "SFF (Small Form Factor)",
+      sistemaOperativo: "Windows 10/11 Pro",
+      procesador: {
+        marca: "Intel",
+        modelo: "Core i5-10500",
+        generacion: "10ª generación (Comet Lake)",
+        nucleos: "6 núcleos",
+        hilos: "12 hilos",
+        frecuenciaBase: "3.1 GHz",
+        frecuenciaMaxima: "4.5 GHz (Turbo Boost)",
+        cache: "12 MB Intel Smart Cache",
+        tdp: "65W"
+      },
+      memoriaRam: {
+        capacidad: "16 GB",
+        tipo: "DDR4",
+        velocidad: "2666 MHz",
+        configuracion: "Dual Channel",
+        slots: "2x DIMM",
+        expandible: "Hasta 64 GB"
+      },
+      graficos: {
+        modelo: "Intel UHD Graphics 630",
+        tipo: "Integrados",
+        memoriaCompartida: "Compartida con RAM del sistema",
+        soporteMonitores: "Hasta 3 monitores simultáneos",
+        resolucionMaxima: "4096 x 2304 @ 60Hz"
+      },
+      almacenamiento: {
+        disco1: "SSD NVMe M.2 256 GB (agregado por usuario)",
+        disco2: "HDD SATA 1 TB (agregado por usuario)",
+        capacidadTotal: "1.25 TB",
+        baysDisponibles: "M.2 NVMe y SATA 2.5\"/3.5\""
+      },
+      conectividad: {
+        ethernet: "Intel Gigabit Ethernet RJ-45",
+        wifi: "Opcional (no incluido)",
+        bluetooth: "Opcional (no incluido)"
+      },
+      puertos: {
+        usbFrontal: "2x USB 3.2 Gen 1, 2x USB 2.0",
+        usbTrasero: "4x USB 3.2 Gen 1, 2x USB 2.0",
+        video: "1x DisplayPort 1.4, 1x HDMI 1.4, 1x VGA",
+        audio: "Line-out, Line-in, Micrófono",
+        red: "1x RJ-45 Gigabit Ethernet",
+        expansion: "1x PCIe x16, 1x PCIe x4"
+      },
+      alimentacion: {
+        fuente: "200W - 260W (según configuración)",
+        eficiencia: "80 PLUS",
+        voltaje: "100-240V AC"
+      },
+      dimensiones: {
+        formato: "Small Form Factor (SFF)",
+        alto: "290 mm",
+        ancho: "92.6 mm",
+        profundidad: "292.8 mm",
+        peso: "Aprox. 5.2 kg"
+      },
+      monitor: {
+        marca: "Dell",
+        modelo: "P2222H",
+        tamaño: "21.5 pulgadas",
+        resolucion: "1920 x 1080 (Full HD)",
+        tipoPantalla: "IPS LED",
+        relacionAspecto: "16:9",
+        brillo: "250 cd/m²",
+        contraste: "1000:1",
+        tiempoRespuesta: "5ms (GtG)",
+        anguloVision: "178° horizontal / 178° vertical",
+        frecuenciaActualizacion: "60 Hz",
+        puertosMonitor: "1x DisplayPort 1.2, 1x HDMI 1.4, 1x VGA",
+        ajustes: "Altura, inclinación, pivote, rotación",
+        vesa: "100 x 100 mm",
+        caracteristicas: [
+          "Tecnología ComfortView (reducción luz azul)",
+          "Flicker-Free (sin parpadeo)",
+          "Certificación TÜV",
+          "Modo lectura",
+          "Gestión de cables integrada"
+        ]
+      },
+      accesorios: {
+        brazoVesa: "Brazo VESA giratorio incluido (tornillos VESA NO incluidos)",
+        mouse: "Mouse Logitech sellado",
+        teclado: "Teclado Logitech sellado",
+        cables: "Cables de alimentación y video incluidos"
+      },
+      usoRecomendado: [
+        "Oficina y productividad",
+        "Trabajo remoto",
+        "Tareas empresariales",
+        "Navegación web",
+        "Aplicaciones de oficina",
+        "Videoconferencias",
+        "Edición ligera de documentos"
+      ],
+      caracteristicasDestacadas: [
+        "Procesador Intel Core i5 de 10ª generación",
+        "16GB RAM DDR4 para multitarea fluida",
+        "Doble almacenamiento: SSD rápido + HDD espacioso",
+        "Monitor Full HD IPS con excelentes ángulos de visión",
+        "Brazo VESA para ergonomía y ahorro de espacio",
+        "Mouse y teclado Logitech nuevos sellados",
+        "Formato compacto ideal para escritorios",
+        "Múltiples puertos USB y opciones de video",
+        "Gráficos Intel UHD 630 para tareas diarias"
+      ],
+      notas: [
+        "Equipo usado en excelente estado de funcionamiento",
+        "Monitor Dell P2222H profesional incluido",
+        "Brazo VESA giratorio (tornillos VESA NO incluidos)",
+        "Mouse y teclado Logitech sellados de fábrica",
+        "Ideal para setup de oficina completo",
+        "Listo para usar - Plug and Play"
+      ]
     }
   }
 ];

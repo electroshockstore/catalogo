@@ -150,9 +150,9 @@ const Store = () => {
           /* VISTA DE PRODUCTOS (Categoría Seleccionada) */
           <div className="flex flex-col lg:flex-row gap-6 min-h-[60vh] px-4 sm:px-6 pb-8">
             
-            {/* 1. FILTROS (Aparece primero en mobile) */}
+            {/* FILTROS - Desktop: Sidebar normal */}
             {showSidebar && (
-              <aside className="lg:flex-shrink-0 lg:pt-24">
+              <aside className="hidden lg:block lg:flex-shrink-0 lg:pt-24">
                 <SidebarFilters
                   selectedCategory={selectedCategory}
                   filters={subFilters}
@@ -162,20 +162,35 @@ const Store = () => {
               </aside>
             )}
             
-          {/* 2. CONTENIDO DE PRODUCTOS */}
+          {/* CONTENIDO DE PRODUCTOS */}
 <div className="flex-1 min-w-0">
   
-  {/* Controles de vista y ordenamiento alineados a la derecha */}
+  {/* Controles: Filtros (mobile), Ordenar y Vista */}
   {filteredProducts.length > 0 && (
-    <div className="pb-4 flex justify-end items-center gap-3">
-      <SortSelector 
-        sortOrder={sortOrder}
-        onSortChange={setSortOrder}
-      />
-      <ViewToggleButton 
-        viewMode={viewMode}
-        toggleViewMode={toggleViewMode}
-      />
+    <div className="pb-4 flex justify-between lg:justify-end items-center gap-2">
+      {/* Botón Filtros - Solo mobile, abre drawer */}
+      {showSidebar && (
+        <div className="lg:hidden">
+          <SidebarFilters
+            selectedCategory={selectedCategory}
+            filters={subFilters}
+            onFilterChange={handleSubFilterChange}
+            onClearFilters={clearSubFilters}
+          />
+        </div>
+      )}
+      
+      {/* Ordenar y Vista */}
+      <div className="flex items-center gap-2">
+        <SortSelector 
+          sortOrder={sortOrder}
+          onSortChange={setSortOrder}
+        />
+        <ViewToggleButton 
+          viewMode={viewMode}
+          toggleViewMode={toggleViewMode}
+        />
+      </div>
     </div>
   )}
 

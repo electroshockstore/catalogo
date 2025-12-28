@@ -13,7 +13,8 @@ export const loadCategory = async (categoryName) => {
     'Joystick': () => import('./categories/joystick.js'),
     'Conectividad': () => import('./categories/conectividad.js'),
     'Monitores': () => import('./categories/monitores.js'),
-    'Portátiles': () => import('./categories/portatiles.js')
+    'Portátiles': () => import('./categories/portatiles.js'),
+    'Placas de Video': () => import('./categories/placas_video.js')
   };
 
   const loader = categoryMap[categoryName];
@@ -43,6 +44,7 @@ import { joystickProducts } from './categories/joystick.js';
 import { conectividadProducts } from './categories/conectividad.js';
 import { monitoresProducts } from './categories/monitores.js';
 import { portatilesProducts } from './categories/portatiles.js';
+import { placasVideoProducts } from './categories/placas_video.js';
 
 export const products = [
   ...procesadoresProducts,
@@ -57,7 +59,8 @@ export const products = [
   ...joystickProducts,
   ...conectividadProducts,
   ...monitoresProducts,
-  ...portatilesProducts
+  ...portatilesProducts,
+  ...placasVideoProducts
 ];
 
 export const categories = [
@@ -73,5 +76,6 @@ export const categories = [
   'Joystick',
   'Conectividad',
   'Monitores',
-  'Portátiles'
+  'Portátiles',
+  'Placas de Video'
 ];

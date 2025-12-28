@@ -8,7 +8,8 @@ const FilterContext = createContext();
 export { FilterContext };
 
 export function FilterProvider({ children }) {
-  const { products } = useStock();
+  const stockContext = useStock();
+  const { products } = stockContext || { products: [] }; // Fallback seguro
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [subFilters, setSubFilters] = useState({});
@@ -20,7 +21,7 @@ export function FilterProvider({ children }) {
 
   // OPTIMIZACIÓN CRÍTICA: Memoizar productos filtrados
   const filteredProducts = useMemo(() => {
-    if (!products) return [];
+    if (!products || products.length === 0) return [];
 
     let filtered = products;
 
