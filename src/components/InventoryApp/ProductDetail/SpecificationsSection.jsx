@@ -1,6 +1,3 @@
-// Sección de especificaciones técnicas en grid de 3 columnas
-import { Zap } from 'lucide-react';
-
 const SpecificationsSection = ({ specifications }) => {
   if (!specifications) return null;
 
@@ -11,67 +8,64 @@ const SpecificationsSection = ({ specifications }) => {
       .trim();
   };
 
-  // Convertir especificaciones a array
   const specsArray = Object.entries(specifications).map(([key, value]) => ({
     key,
     value,
     label: formatLabel(key)
   }));
 
-  // Dividir en 3 columnas balanceadas
-  const itemsPerColumn = Math.ceil(specsArray.length / 3);
-  const columns = [
-    specsArray.slice(0, itemsPerColumn),
-    specsArray.slice(itemsPerColumn, itemsPerColumn * 2),
-    specsArray.slice(itemsPerColumn * 2)
-  ];
-
-  const SpecColumn = ({ specs, columnIndex }) => {
-    if (specs.length === 0) return null;
-    
-    const renderValue = (value) => {
-      // Si es un objeto, convertirlo a lista
-      if (typeof value === 'object' && value !== null) {
-        return (
-          <div className="space-y-1">
-            {Object.entries(value).map(([subKey, subValue]) => (
-              <div key={subKey} className="text-xs">
-                <span className="text-gray-600">{subKey}:</span>{' '}
-                <span className="font-semibold text-gray-900">{subValue}</span>
-              </div>
-            ))}
-          </div>
-        );
-      }
-      // Si es string o número, renderizar directamente
-      return value;
-    };
-    
-    return (
-      <div className="space-y-3">
-        {specs.map(({ key, value, label }) => (
-          <div key={key} className="space-y-1">
-            <dt className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
-              {label}
-            </dt>
-            <dd className="text-sm font-bold text-gray-900">{renderValue(value)}</dd>
-          </div>
-        ))}
-      </div>
-    );
+  const renderValue = (value) => {
+    if (typeof value === 'object' && value !== null) {
+      return (
+        <div className="space-y-1">
+          {Object.entries(value).map(([subKey, subValue]) => (
+            <div key={subKey} className="text-xs sm:text-sm text-gray-600">
+              <span className="font-medium">{subKey}:</span> <span className="font-bold text-gray-900">{subValue}</span>
+            </div>
+          ))}
+        </div>
+      );
+    }
+    return value;
   };
 
   return (
-    <div className="bg-white rounded-xl border-2 border-gray-200 shadow-lg p-6">
-      <div className="flex items-center gap-2 mb-6">
-        <Zap className="h-5 w-5 text-blue-600" />
-        <h3 className="text-lg font-bold text-gray-900">Especificaciones Técnicas</h3>
+    <div className="space-y-4">
+      {/* Header simple */}
+      <div className="flex items-center gap-3 pb-3 border-b-2 border-gray-200">
+        <div className="w-2 h-8 bg-blue-600 rounded-full" />
+        <div>
+          <h3 className="text-lg sm:text-xl font-black text-gray-900">Detalles Técnicos</h3>
+          <p className="text-xs sm:text-sm text-gray-500">Especificaciones del producto</p>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {columns.map((columnSpecs, index) => (
-          <SpecColumn key={index} specs={columnSpecs} columnIndex={index} />
-        ))}
+      {/* Grid limpio tipo tabla mejorada */}
+      <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+        <div className="divide-y divide-gray-100">
+          {specsArray.map((spec, index) => (
+            <div
+              key={spec.key}
+              className={`grid grid-cols-2 gap-4 p-4 sm:p-5 ${
+                index % 2 === 0 ? 'bg-gray-50' : 'bg-white'
+              }`}
+            >
+              {/* Label */}
+              <div className="flex items-center">
+                <span className="text-xs sm:text-sm font-bold text-gray-600 uppercase tracking-wide">
+                  {spec.label}
+                </span>
+              </div>
+
+              {/* Value */}
+              <div className="flex items-center justify-end text-right">
+                <span className="text-sm sm:text-base font-black text-gray-900">
+                  {renderValue(spec.value)}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

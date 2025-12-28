@@ -12,6 +12,27 @@ const SidebarFilters = ({ selectedCategory, filters, onFilterChange, onClearFilt
   // Hook personalizado que maneja toda la lógica de filtros
   const categoryFilters = useCategoryFilters(selectedCategory, products);
 
+  // Mapeo de imágenes de categorías
+  const getCategoryImage = (category) => {
+    const imageMap = {
+      'Fuentes': '/images/category_filter/fuentes.webp',
+      'Almacenamiento': '/images/category_filter/almacenamiento.webp',
+      'Memorias RAM': '/images/category_filter/memorias_ram.webp',
+      'Motherboards': '/images/category_filter/motherboard.webp',
+      'Procesadores': '/images/category_filter/procesadores.webp',
+      'Refrigeración': '/images/category_filter/refrigeracion.webp',
+      'Auriculares': '/images/category_filter/auriculares.webp',
+      'Conectividad': '/images/category_filter/conectividad.webp',
+      'Monitores': '/images/category_filter/monitores.webp',
+      'Joystick': '/images/category_filter/Joystikc.webp',
+      'Placas de Video': '/images/category_filter/placas_video.webp',
+      'Portátiles': '/images/category_filter/portatiles.webp',
+      'Teclados': '/images/category_filter/teclado_mouse.webp',
+      'Mouse': '/images/category_filter/teclado_mouse.webp'
+    };
+    return imageMap[category] || null;
+  };
+
   const totalProducts = useMemo(() => {
     return products.filter(p => p.category === selectedCategory).length;
   }, [products, selectedCategory]);
@@ -41,6 +62,28 @@ const SidebarFilters = ({ selectedCategory, filters, onFilterChange, onClearFilt
 
   const FilterContent = () => (
     <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg border border-gray-200/50 p-5 backdrop-blur-sm h-full overflow-y-auto">
+      {/* Imagen de categoría */}
+      {getCategoryImage(selectedCategory) && (
+        <div >
+          <div className="relative flex flex-col items-center">
+            {/* Sombra flotante debajo de la imagen */}
+            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 w-48 h-10 bg-gray-400/20 rounded-full blur-2xl"></div>
+            
+            {/* Contenedor de la imagen - tamaño máximo */}
+            <div className="relative w-full max-w-[280px] h-84 flex items-center justify-center ">
+              <img 
+                src={getCategoryImage(selectedCategory)} 
+                alt={selectedCategory}
+                className="w-full h-full object-contain filter drop-shadow-2xl"
+                loading="lazy"
+              />
+            </div>
+            
+          
+          </div>
+        </div>
+      )}
+      
       <div className="flex items-center justify-between mb-5">
         <h2 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
           Filtros

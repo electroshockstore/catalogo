@@ -17,62 +17,62 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="w-full bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white pb-24 sm:pb-28">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+    <footer className="w-full bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white pb-20 sm:pb-28">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
           
-          <div className="space-y-6">
-            <div className="flex items-center gap-3">
+          <div className="space-y-3 sm:space-y-6">
+            <div className="flex items-center gap-2 sm:gap-3">
               <img 
                 src="/logotipo_tiny.png" 
                 alt="Shock-Store Logo" 
-                className="h-16 w-auto object-contain"
+                className="h-12 sm:h-16 w-auto object-contain"
               />
               <div>
-                <h3 className="text-3xl font-black text-white tracking-tight">Shock-Store</h3>
-                <p className="text-sm font-bold text-blue-400">Catálogo de Productos</p>
+                <h3 className="text-xl sm:text-3xl font-black text-white tracking-tight">Shock-Store</h3>
+                <p className="text-xs sm:text-sm font-bold text-blue-400">Catálogo de Productos</p>
               </div>
             </div>
             
-            <p className="text-sm text-gray-400 leading-relaxed font-medium">
+            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium hidden sm:block">
               Tu tienda de confianza para componentes de PC y tecnología. Calidad garantizada y los mejores precios del mercado.
             </p>
 
-            <div className="space-y-3">
-              <div className="flex items-center gap-3 text-gray-300">
-                <Clock className="h-5 w-5 text-blue-400" strokeWidth={2.5} />
-                <span className="text-sm font-semibold">Lun - Sáb: 9:00 - 20:00</span>
+            <div className="space-y-2 sm:space-y-3">
+              <div className="flex items-center gap-2 sm:gap-3 text-gray-300">
+                <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400" strokeWidth={2.5} />
+                <span className="text-xs sm:text-sm font-semibold">Lunes a Domingo: 9:00 - 21:00</span>
               </div>
-              <div className="flex items-center gap-3 text-gray-300">
-                <Phone className="h-5 w-5 text-blue-400" strokeWidth={2.5} />
-                <span className="text-sm font-semibold">Consultas por WhatsApp</span>
+              <div className="flex items-center gap-2 sm:gap-3 text-gray-300">
+                <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400" strokeWidth={2.5} />
+                <span className="text-xs sm:text-sm font-semibold">Consultas por WhatsApp</span>
               </div>
-              <div className="flex items-center gap-3 text-gray-300">
-                <Mail className="h-5 w-5 text-blue-400" strokeWidth={2.5} />
-                <span className="text-sm font-semibold">info@shock-store.com</span>
+              <div className="flex items-center gap-2 sm:gap-3 text-gray-300 hidden sm:flex">
+                <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400" strokeWidth={2.5} />
+                <span className="text-xs sm:text-sm font-semibold">info@shock-store.com</span>
               </div>
             </div>
           </div>
 
-          <div className="space-y-4">
-            <h4 className="text-xl font-black text-white flex items-center gap-2">
-              <MapPin className="h-6 w-6 text-blue-400" strokeWidth={2.5} />
-              Nuestras Ubicaciones
+          <div className="space-y-3 sm:space-y-4">
+            <h4 className="text-base sm:text-xl font-black text-white flex items-center gap-2">
+              <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-blue-400" strokeWidth={2.5} />
+              Ubicaciones
             </h4>
             
-            <div className="space-y-4">
+            <div className="space-y-2 sm:space-y-4">
               {locations.map((location, index) => (
                 <div 
                   key={index}
-                  className="bg-gray-800/50 rounded-xl p-4 border-2 border-gray-700 hover:border-blue-500 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20"
+                  className="bg-gray-800/50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-gray-700 hover:border-blue-500 transition-all duration-300"
                 >
-                  <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                      <span className="text-white font-black text-sm">{index + 1}</span>
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <div className="flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                      <span className="text-white font-black text-xs sm:text-sm">{index + 1}</span>
                     </div>
                     <div className="flex-1">
-                      <h5 className="font-bold text-white text-base mb-1">{location.name}</h5>
-                      <p className="text-sm text-gray-400 font-medium">{location.address}</p>
+                      <h5 className="font-bold text-white text-sm sm:text-base mb-0.5 sm:mb-1">{location.name}</h5>
+                      <p className="text-xs sm:text-sm text-gray-400 font-medium">{location.address}</p>
                     </div>
                   </div>
                 </div>
@@ -80,7 +80,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4 hidden lg:block">
             <h4 className="text-xl font-black text-white">Mapa de Ubicaciones</h4>
             
             <div className="relative w-full h-64 lg:h-full min-h-[250px] bg-gray-800 rounded-2xl overflow-hidden border-2 border-gray-700 shadow-xl">
@@ -102,12 +102,12 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t-2 border-gray-700">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm font-semibold text-gray-400">
+        <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-gray-700">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4">
+            <p className="text-xs sm:text-sm font-semibold text-gray-400">
               © {currentYear} Shock-Store. Todos los derechos reservados.
             </p>
-            <p className="text-base font-black text-white">
+            <p className="text-xs sm:text-base font-black text-white">
               Desarrollado por <span className="text-blue-400">JLdev Shock-Store</span>
             </p>
           </div>

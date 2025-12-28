@@ -4,12 +4,12 @@ const PCCategoryFilter = ({ selectedCategory, onCategoryChange, vertical = false
   const { pcBuild } = usePCBuilder();
   
   const pcCategories = [
-    { key: 'Procesadores', label: 'CPU', icon: '🖥️', buildKey: 'cpu' },
-    { key: 'Motherboards', label: 'Motherboard', icon: '🔌', buildKey: 'motherboard' },
-    { key: 'Memorias RAM', label: 'RAM', icon: '💾', buildKey: 'ram' },
-    { key: 'Fuentes', label: 'PSU', icon: '⚡', buildKey: 'psu' },
-    { key: 'Refrigeración', label: 'Cooler', icon: '❄️', buildKey: 'cooling' },
-    { key: 'Almacenamiento', label: 'Storage', icon: '💿', buildKey: 'storage' }
+    { key: 'Procesadores', label: 'CPU', icon: '🖥️', buildKey: 'cpu', image: '/images/category_filter/procesadores.png' },
+    { key: 'Motherboards', label: 'Motherboard', icon: '🔌', buildKey: 'motherboard', image: '/images/category_filter/db9865e3d3dd4131bd5f2f45b6660410.png' },
+    { key: 'Memorias RAM', label: 'RAM', icon: '💾', buildKey: 'ram', image: '/images/category_filter/memorias_ram.png' },
+    { key: 'Fuentes', label: 'PSU', icon: '⚡', buildKey: 'psu', image: '/images/category_filter/fuentes.webp' },
+    { key: 'Refrigeración', label: 'Cooler', icon: '❄️', buildKey: 'cooling', image: '/images/category_filter/refrigeracion.png' },
+    { key: 'Almacenamiento', label: 'Storage', icon: '💿', buildKey: 'storage', image: '/images/category_filter/almacenamiento.png' }
   ];
   
   const hasComponent = (buildKey) => {
@@ -31,7 +31,7 @@ const PCCategoryFilter = ({ selectedCategory, onCategoryChange, vertical = false
               key={category.key}
               onClick={() => onCategoryChange(category.key)}
               className={`
-                relative w-full h-20 rounded-2xl flex flex-col items-center justify-center 
+                relative w-full h-24 rounded-2xl flex flex-col items-center justify-center 
                 transition-all duration-300 group overflow-hidden
                 ${isSelected
                   ? 'bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-600 text-white shadow-2xl shadow-blue-500/40 scale-105'
@@ -45,9 +45,16 @@ const PCCategoryFilter = ({ selectedCategory, onCategoryChange, vertical = false
               {/* Animated background effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
               
-              <span className="text-3xl mb-1 transform group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">
-                {category.icon}
-              </span>
+              {/* Floating Image */}
+              <div className="relative mb-1 transform group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
+                <img 
+                  src={category.image} 
+                  alt={category.label}
+                  className="w-12 h-12 object-contain filter drop-shadow-lg"
+                  loading="lazy"
+                />
+              </div>
+              
               <span className="text-[9px] font-black uppercase tracking-wider">
                 {category.label}
               </span>
